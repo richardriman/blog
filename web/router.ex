@@ -1,5 +1,6 @@
 defmodule PhoenixBlog.Router do
   use PhoenixBlog.Web, :router
+  use Addict.RoutesHelper
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -20,6 +21,10 @@ defmodule PhoenixBlog.Router do
     resources "/posts", PostController do
       post "/comment", PostController, :add_comment
     end
+  end
+
+  scope "/" do
+    addict :routes
   end
 
   # Other scopes may use custom stacks.

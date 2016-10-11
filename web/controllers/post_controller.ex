@@ -6,6 +6,8 @@ defmodule PhoenixBlog.PostController do
 
   plug :scrub_params, "comment" when action in [:add_comment]
 
+  plug Addict.Plugs.Authenticated when action in [:new]
+
   def index(conn, _params) do
     posts = Post
     |> Post.count_comments
