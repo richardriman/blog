@@ -1,7 +1,6 @@
 <div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-  <p>Logged in: <%= @logged_in %></p>
+  <p><strong>Logged in:</strong> <%= @logged_in %></p>
+  <p><strong>User:</strong> <%= @user %></p>
   <%= button("Logout", to: "/logout", method: "delete") %>
 </div>
 
