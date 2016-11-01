@@ -45,3 +45,15 @@
 .new-comment {
   padding-top: 30px;
 }
+
+.post-list-container {
+  padding-top: 30px;
+}
+
+.post-list {
+  padding-top: 30px;
+}
+
+.latest-post {
+  font-size: 1.5em;
+}

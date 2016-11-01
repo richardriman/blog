@@ -23,6 +23,7 @@ defmodule PhoenixBlog.Post do
 
   def count_comments(query) do
     from p in query,
+      order_by: [desc: p.inserted_at],
       group_by: p.id,
       left_join: c in assoc(p, :comments),
       select: {p, count(c.id)}

@@ -16,7 +16,7 @@
   </div>
 
   <div class="form-group">
-    <label>Content</label>
+    <label>Comment</label>
     <%= textarea f, :content, class: "form-control" %>
   </div>
 
