@@ -1,9 +1,9 @@
-<h3>Comments:</h3>
-<table class="table">
+<h3 class="center">Comments</h3>
   <%= for comment <- @post.comments do %>
-    <tr>
-      <td><%= comment.name %></td>
-      <td><%= comment.content %></td>
-    </tr>
-  <% end %>
-</table>
+  <div class="comment-entry-container">
+    <div class="comment-entry-name"><strong><%= comment.name %></strong></div>
+    <div class="entry">
+      <%= comment.content %>
+    </div>
+  </div>
+<% end %>

@@ -4,11 +4,44 @@
   padding-bottom: 15px;
 }
 
-.post-entry{
+.entry {
   padding-left: 15px;
   border-left: 3px solid #3399ff;
 }
 
 .post-preview {
   padding-left: 15px;
+  padding-top: 10px;
+}
+
+.inline {
+  display: inline;
+}
+
+.center {
+  text-align: center;
+}
+
+.post-display {
+  padding-top: 30px;
+}
+
+.post-contents {
+  padding-top: 30px;
+}
+
+.comments-display {
+  padding-top: 50px;
+}
+
+.comment-entry-container {
+  padding-top: 15px;
+}
+
+.comment-entry-name {
+  padding-bottom: 5px;
+}
+
+.new-comment {
+  padding-top: 30px;
 }

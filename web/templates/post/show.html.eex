@@ -1,22 +1,15 @@
-<h2>Show post</h2>
+<div class="post-display">
+  <h1 class="center"><%= @post.title %></h1>
 
-<ul>
+  <div class="post-contents">
+    <%= @post.body %> 
+  </div>
+</div>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </li>
+<div class="comments-display">
+  <%= render "comments.html", post: @post %>
+</div>
 
-  <li>
-    <strong>Body:</strong>
-    <%= @post.body %>
-  </li>
-
-</ul>
-
-<%= render "comments.html", post: @post %>
-
-<%= render "comment_form.html", post: @post, changeset: @changeset, action: post_post_path(@conn, :add_comment, @post) %>
-
-<%= link "Edit", to: post_path(@conn, :edit, @post) %>
-<%= link "Back", to: post_path(@conn, :index) %>
+<div class="new-comment">
+  <%= render "comment_form.html", post: @post, changeset: @changeset, action: post_post_path(@conn, :add_comment, @post) %>
+</div>
