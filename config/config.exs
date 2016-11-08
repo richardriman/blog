@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :phoenix_blog,
-  ecto_repos: [PhoenixBlog.Repo]
+  ecto_repos: [PhoenixBlog.Repo],
+  admin: "sweeneyjohnjoseph@gmail.com"
 
 # Configures the endpoint
 config :phoenix_blog, PhoenixBlog.Endpoint,
@@ -33,3 +34,4 @@ config :addict,
   repo: PhoenixBlog.Repo,
   from_email: "no-reply@example.com", # CHANGE THIS
 mail_service: nil
+  
