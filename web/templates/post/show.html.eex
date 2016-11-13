@@ -2,7 +2,8 @@
   <h1 class="center"><%= @post.title %></h1>
 
   <div class="post-contents">
-    <%= @post.body %> 
+    <%= raw(Earmark.to_html(@post.body)) %>
+
   </div>
 </div>
 
