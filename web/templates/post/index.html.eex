@@ -9,7 +9,7 @@
 
           <div class="post-preview">
             <div class="entry">
-              <p><%= get_preview(post) %></p>
+              <p><%= raw(get_preview(post)) %></p>
             </div>
           </div>
           <i class="fa fa-comments-o"></i> <%= count %>

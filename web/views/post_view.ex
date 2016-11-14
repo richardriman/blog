@@ -13,6 +13,7 @@ defmodule PhoenixBlog.PostView do
     |> Enum.take(count)
     |> Enum.join(" ")
     |> Kernel.<>("...")
+    |> Earmark.to_html()
   end
 
   def get_formatted_date(post) do
