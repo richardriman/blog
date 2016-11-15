@@ -3,14 +3,5 @@
 
   <div class="post-contents">
     <%= raw(Earmark.to_html(@post.body)) %>
-
   </div>
-</div>
-
-<div class="comments-display">
-  <%= render "comments.html", post: @post %>
-</div>
-
-<div class="new-comment">
-  <%= render "comment_form.html", post: @post, changeset: @changeset, action: post_post_path(@conn, :add_comment, @post) %>
 </div>

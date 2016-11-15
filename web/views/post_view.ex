@@ -4,7 +4,7 @@ defmodule PhoenixBlog.PostView do
   alias PhoenixBlog.Post
 
   def get_latest_post_id(posts) do
-    {%Post{:id => id}, _count} = List.first(posts)
+    %Post{:id => id} = List.first(posts)
     id
   end
 

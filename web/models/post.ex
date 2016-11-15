@@ -7,8 +7,6 @@ defmodule PhoenixBlog.Post do
     field :title, :string
     field :body, :string
 
-    has_many :comments, PhoenixBlog.Comment
-
     timestamps()
   end
 
@@ -19,13 +17,5 @@ defmodule PhoenixBlog.Post do
     struct
     |> cast(params, [:title, :body])
     |> validate_required([:title, :body])
-  end
-
-  def count_comments(query) do
-    from p in query,
-      order_by: [desc: p.inserted_at],
-      group_by: p.id,
-      left_join: c in assoc(p, :comments),
-      select: {p, count(c.id)}
   end
 end
