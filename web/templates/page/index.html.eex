@@ -1,5 +1,3 @@
 <div class="jumbotron">
-  <p><strong>Logged in:</strong> <%= @logged_in %></p>
-  <p><strong>User:</strong> <%= @user %></p>
-  <%= button("Logout", to: "/logout", method: "delete") %>
+  <h1>Hello!</h1>
 </div>

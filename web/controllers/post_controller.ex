@@ -3,8 +3,7 @@ defmodule PhoenixBlog.PostController do
 
   alias PhoenixBlog.Post
 
-  # plug Addict.Plugs.Authenticated when action in [:new, :edit]
-  # plug PhoenixBlog.Auth when action in [:new, :edit]
+  plug :authenticate_user when action in [:new, :edit]
 
   def index(conn, _params) do
     query = from p in Post,
