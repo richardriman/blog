@@ -26,12 +26,4 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
-
-config :addict,
-  secret_key: "243262243132244d37586c766b69324f654b58395a73345342464f672e",
-  extra_validation: fn ({valid, errors}, user_params) -> {valid, errors} end, # define extra validation here
-  user_schema: PhoenixBlog.User,
-  repo: PhoenixBlog.Repo,
-  from_email: "no-reply@example.com", # CHANGE THIS
-mail_service: nil
   

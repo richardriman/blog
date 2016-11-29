@@ -3,12 +3,13 @@ defmodule PhoenixBlog.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :email, :string
-      add :encrypted_password, :string
       add :name, :string
+      add :username, :string, null: false
+      add :password_hash, :string
 
-      timestamps()
+      timestamps
     end
 
+    create unique_index(:users, [:username])
   end
 end

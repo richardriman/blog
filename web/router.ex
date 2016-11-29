@@ -1,6 +1,5 @@
 defmodule PhoenixBlog.Router do
   use PhoenixBlog.Web, :router
-  use Addict.RoutesHelper
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -8,6 +7,7 @@ defmodule PhoenixBlog.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug PhoenixBlog.Auth, repo: PhoenixBlog.Repo
   end
 
   pipeline :api do
@@ -18,11 +18,9 @@ defmodule PhoenixBlog.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    resources "/users", UserController, only: [:new, :create]
+    resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/posts", PostController
-  end
-
-  scope "/" do
-    addict :routes
   end
 
   # Other scopes may use custom stacks.
