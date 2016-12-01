@@ -1,23 +1,19 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
+<%= if @changeset.action do %>
+  <div class="alert alert-danger">
+    Oops, something went wrong! Please check the errors below.
+  </div>
+<% end %>
 
-  <div class="form-group">
-    <%= label f, :title, class: "control-label" %>
-    <%= text_input f, :title, class: "form-control" %>
+<%= form_for @changeset, @action, [class: "pure-form pure-form-stacked"], fn f -> %>
+  <fieldset>
+    <%= label f, :title %>
+    <%= text_input f, :title %>
     <%= error_tag f, :title %>
-  </div>
 
-  <div class="form-group">
-    <%= label f, :body, class: "control-label" %>
-    <%= textarea f, :body, class: "form-control" %>
+    <%= label f, :body %>
+    <%= textarea f, :body, class: "pure-input-1", rows: "25" %>
     <%= error_tag f, :body %>
-  </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-  </div>
+    <%= submit "Submit", class: "pure-button pure-button-primary" %>
+  </fieldset>
 <% end %>

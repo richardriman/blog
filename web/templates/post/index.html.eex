@@ -1,19 +1,10 @@
-<div class="post-list-container">
-  <h1 class="center">Posts</h1>
-  <div class="post-list">
-    <%= for post <- @posts do %>
-      <div class="post-entry-container <%= if post.id == get_latest_post_id(@posts) do "latest-post" end%>">
-        <div >
-          <h3 class="inline"><%= link post.title, to: post_path(@conn, :show, post) %></h3>
-          <span style="float: right;"><%= get_formatted_date(post) %></span>
-          <div class="post-preview">
-            <div class="entry">
-              <%= raw(get_preview(post)) %>
-            </div>
-          </div>
-          <i class="fa fa-comments-o"></i> 3
-        </div>
-      </div>
-    <% end %>
-  </div>
+<h1 class="page-heading">Posts</h1>
+<hr>
+<div>
+  <%= for post <- @posts do %>
+    <div class="post-entry">
+      <h3 style="display: inline;"><%= link post.title, to: post_path(@conn, :show, post) %></h3>
+      <span style="float: right;"><%= get_formatted_date(post) %></span>
+    </div>
+  <% end %>
 </div>

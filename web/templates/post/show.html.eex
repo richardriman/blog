@@ -1,7 +1,13 @@
-<div class="post-display">
-  <h1 class="center"><%= @post.title %></h1>
-
-  <div class="post-contents">
-    <%= raw(Earmark.to_html(@post.body)) %>
-  </div>
+<h1 class="page-heading"><%= @post.title %></h1>
+<div style="text-align: center;">
+  <%= get_formatted_date(@post) %>
 </div>
+<hr>
+<div class="post-contents">
+  <%= raw(Earmark.to_html(@post.body)) %>
+</div>
+
+<%= link "Back", to: post_path(@conn, :index) %>
+<%= if @current_user do %>
+  | <%= link "Edit", to: post_path(@conn, :edit, @post) %>
+<% end %>

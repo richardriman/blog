@@ -1,59 +1,18 @@
-/* This file is for your main application css. */
-
-.post-entry-container {
-  padding-bottom: 50px;
+.container {
+  margin: 0 auto;
+  max-width: 50em;
+  line-height: 1.5;
+  padding: 1em;
 }
 
-.entry {
-  padding-left: 15px;
-  border-left: 3px solid #3399ff;
+.header {
+  padding-bottom: 30px;
 }
 
-.post-preview {
-  padding-left: 15px;
-  padding-top: 10px;
-}
-
-.inline {
-  display: inline;
-}
-
-.center {
+.page-heading {
   text-align: center;
 }
 
-.post-display {
-  padding-top: 30px;
-}
-
-.post-contents {
-  padding-top: 30px;
-}
-
-.comments-display {
-  padding-top: 50px;
-}
-
-.comment-entry-container {
-  padding-top: 15px;
-}
-
-.comment-entry-name {
-  padding-bottom: 5px;
-}
-
-.new-comment {
-  padding-top: 30px;
-}
-
-.post-list-container {
-  padding-top: 30px;
-}
-
-.post-list {
-  padding-top: 30px;
-}
-
-.latest-post {
-  font-size: 1.5em;
+.post-entry {
+  padding-bottom: 15px;
 }
