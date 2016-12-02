@@ -10,8 +10,8 @@ defmodule PhoenixBlog.PostController do
       order_by: [desc: p.inserted_at],
       select: p
 
-    posts = query
-    |> Repo.all
+    posts = query |> Repo.all
+    
     render(conn, "index.html", posts: posts)
   end
 

@@ -5,6 +5,10 @@
   padding: 1em;
 }
 
+.home-container {
+  padding-top: 4em;
+}
+
 .header {
   padding-bottom: 30px;
 }
@@ -15,4 +19,12 @@
 
 .post-entry {
   padding-bottom: 15px;
+}
+
+.help-block {
+  color: #a94442;
+}
+
+.indent {
+  padding-left: 30px;
 }
