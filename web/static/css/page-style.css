@@ -48,6 +48,10 @@ hr {
   margin: 50px auto;
 }
 
+.pure-table thead {
+  background-color: #f5f7f9 !important;
+}
+
 .help-block {
   color: #a94442;
 }

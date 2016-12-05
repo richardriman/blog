@@ -4,7 +4,7 @@
 </div>
 <hr>
 <div class="post-contents">
-  <%= raw(Earmark.to_html(@post.body)) %>
+  <%= raw(get_formatted_post(@post)) %>
 </div>
 
 <%= link "Back", to: post_path(@conn, :index) %>

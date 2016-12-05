@@ -22,4 +22,9 @@ defmodule PhoenixBlog.PostHelpers do
     |> Kernel.<>(" ")
     |> Kernel.<>(Integer.to_string(post.inserted_at.year))
   end
+
+  def get_formatted_post(post) do
+    Earmark.to_html(post.body)
+    |> String.replace("<table>", "<table class=\"pure-table\">")
+  end
 end

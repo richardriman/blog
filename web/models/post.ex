@@ -1,8 +1,6 @@
 defmodule PhoenixBlog.Post do
   use PhoenixBlog.Web, :model
 
-  import Ecto.Query
-
   schema "posts" do
     field :title, :string
     field :body, :string

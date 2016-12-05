@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :phoenix_blog,
-  ecto_repos: [PhoenixBlog.Repo]
+  ecto_repos: [PhoenixBlog.Repo],
+  user_registration: :disabled
 
 # Configures the endpoint
 config :phoenix_blog, PhoenixBlog.Endpoint,
