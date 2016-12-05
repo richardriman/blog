@@ -1,7 +1,11 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
 
-body {
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+body {
   color: #566b78;
 }
 
@@ -42,4 +46,8 @@ hr {
   width: 40%;
   border-bottom: 1px solid #eee;
   margin: 50px auto;
+}
+
+.help-block {
+  color: #a94442;
 }

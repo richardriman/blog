@@ -1,0 +1,38 @@
+@media screen and (min-width: 48em) {
+  #home-info {
+    padding-left: 50px;
+  }
+  .container {
+    padding: 1em;
+  }
+  .home-container {
+    padding-top: 4em;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 50em;
+  line-height: 1.5;
+  padding: 1em;
+}
+
+.home-container {
+  padding-top: 2em;
+}
+
+.header {
+  padding-bottom: 30px;
+}
+
+.page-heading {
+  text-align: center;
+}
+
+.post-entry {
+  padding-bottom: 15px;
+}
+
+.indent {
+  padding-left: 30px;
+}

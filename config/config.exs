@@ -7,8 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :phoenix_blog,
-  ecto_repos: [PhoenixBlog.Repo],
-  admin: "sweeneyjohnjoseph@gmail.com"
+  ecto_repos: [PhoenixBlog.Repo]
 
 # Configures the endpoint
 config :phoenix_blog, PhoenixBlog.Endpoint,
