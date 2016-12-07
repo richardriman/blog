@@ -32,11 +32,6 @@
         <span style="display: inline;"><%= link @latest_post.title, to: post_path(@conn, :show, @latest_post) %></span>
         <span style="float: right;"><%= get_formatted_date(@latest_post) %></span>
       </div>
-
-      <h3>What I'm working on</h3>
-      <div class="indent">
-        <a href="//github.com/jswny/phoenix-blog">Phoenix Blog (this website)</a>
-      </div>
     </div>
   </div>
 </div>

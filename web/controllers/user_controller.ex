@@ -7,9 +7,10 @@ defmodule PhoenixBlog.UserController do
       conn
       |> put_flash(:error, "Registration is disabled!")
       |> redirect(to: page_path(conn, :index))
+    else
+      changeset = User.changeset(%User{})
+      render conn, "new.html", changeset: changeset
     end
-    changeset = User.changeset(%User{})
-    render conn, "new.html", changeset: changeset
   end
 
   def create(conn, %{"user" => user_params}) do

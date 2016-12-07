@@ -18,9 +18,12 @@ defmodule PhoenixBlog.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/users", UserController, only: [:new, :create]
-    resources "/sessions", SessionController, only: [:new, :create, :delete]
+    resources "/users", UserController, only: [:create]
+    resources "/sessions", SessionController, only: [:create, :delete]
     resources "/posts", PostController
+
+    get "/login", SessionController, :new
+    get "/register", UserController, :new
   end
 
   # Other scopes may use custom stacks.
