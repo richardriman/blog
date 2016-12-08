@@ -1,4 +1,9 @@
-<h1 class="page-heading"><%= @post.title %></h1>
+<h1 class="page-heading">
+  <%= @post.title %> 
+  <%= if (!@post.published) do %>
+    <span style="color: red;">(unpublished)</span>
+  <% end %>
+</h1>
 <div style="text-align: center;">
   <%= get_formatted_date(@post) %>
 </div>

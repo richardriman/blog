@@ -6,10 +6,17 @@ defmodule PhoenixBlog.PostController do
   plug :authenticate_user when action in [:new, :edit]
 
   def index(conn, _params) do
-    query = from p in Post,
-      where: p.published == true,
-      order_by: [desc: p.inserted_at],
-      select: p
+    query = 
+      if (conn.assigns.current_user) do
+        from p in Post,
+        order_by: [desc: p.inserted_at],
+        select: p
+      else
+        from p in Post,
+        where: p.published == true,
+        order_by: [desc: p.inserted_at],
+        select: p
+      end
 
     posts = query |> Repo.all
     
@@ -36,7 +43,14 @@ defmodule PhoenixBlog.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Repo.get!(Post, id)
-    render(conn, "show.html", post: post)
+
+    if (post.published == true || conn.assigns.current_user) do
+      render(conn, "show.html", post: post)
+    else
+      conn
+      |> put_flash(:error, "This post cannot be viewed.")
+      |> redirect(to: post_path(conn, :index))
+    end
   end
 
   def edit(conn, %{"id" => id}) do
