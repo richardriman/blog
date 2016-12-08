@@ -5,6 +5,7 @@ defmodule PhoenixBlog.Repo.Migrations.CreatePost do
     create table(:posts) do
       add :title, :string
       add :body, :text
+      add :published, :boolean
 
       timestamps()
     end

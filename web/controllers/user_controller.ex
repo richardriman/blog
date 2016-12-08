@@ -27,7 +27,7 @@ defmodule PhoenixBlog.UserController do
       {:ok, user} ->
         conn
         |> PhoenixBlog.Auth.login(user)
-        |> put_flash(:info, "#{user.name} created!")
+        |> put_flash(:info, "#{user.name} successfully registered!")
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)

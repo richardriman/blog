@@ -4,6 +4,7 @@ defmodule PhoenixBlog.Post do
   schema "posts" do
     field :title, :string
     field :body, :string
+    field :published, :boolean
 
     timestamps()
   end
@@ -13,7 +14,7 @@ defmodule PhoenixBlog.Post do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :body])
-    |> validate_required([:title, :body])
+    |> cast(params, [:title, :body, :published])
+    |> validate_required([:title, :body, :published])
   end
 end

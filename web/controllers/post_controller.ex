@@ -7,6 +7,7 @@ defmodule PhoenixBlog.PostController do
 
   def index(conn, _params) do
     query = from p in Post,
+      where: p.published == true,
       order_by: [desc: p.inserted_at],
       select: p
 
