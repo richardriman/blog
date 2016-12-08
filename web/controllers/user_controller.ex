@@ -2,15 +2,11 @@ defmodule PhoenixBlog.UserController do
   use PhoenixBlog.Web, :controller
   alias PhoenixBlog.User
 
+  plug PhoenixBlog.Registration when action in [:new, :create]
+
   def new(conn, _params) do
-    if (Application.get_env(:phoenix_blog, :user_registration) != :enabled) do
-      conn
-      |> put_flash(:error, "Registration is disabled!")
-      |> redirect(to: page_path(conn, :index))
-    else
-      changeset = User.changeset(%User{})
-      render conn, "new.html", changeset: changeset
-    end
+    changeset = User.changeset(%User{})
+    render conn, "new.html", changeset: changeset
   end
 
   def create(conn, %{"user" => user_params}) do
