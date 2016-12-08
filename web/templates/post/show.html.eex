@@ -12,7 +12,9 @@
   <%= raw(get_formatted_post(@post)) %>
 </div>
 
-<%= link "Back", to: post_path(@conn, :index) %>
-<%= if @current_user do %>
-  | <%= link "Edit", to: post_path(@conn, :edit, @post) %>
-<% end %>
+<div class="post-buttons">
+  <%= button "Back", to: post_path(@conn, :index), method: "get", class: "pure-button pure-button-primary", form: [class: "inline-block"] %>
+  <%= if @current_user do %>
+    <%= button "Edit", to: post_path(@conn, :edit, @post), method: "get", class: "pure-button pure-button-primary", form: [class: "inline-block"] %>
+  <% end %>
+</div>
