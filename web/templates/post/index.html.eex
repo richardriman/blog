@@ -1,10 +1,16 @@
 <h1 class="page-heading">Posts</h1>
 <hr>
 <div>
-  <%= for post <- @posts do %>
+  <%= if (@posts != []) do %>
+    <%= for post <- @posts do %>
+      <div class="post-entry">
+        <h3 style="display: inline;"><%= link post.title, to: post_path(@conn, :show, post) %></h3>
+        <span style="float: right;"><%= get_formatted_date(post) %></span>
+      </div>
+    <% end %>
+  <% else %>
     <div class="post-entry">
-      <h3 style="display: inline;"><%= link post.title, to: post_path(@conn, :show, post) %></h3>
-      <span style="float: right;"><%= get_formatted_date(post) %></span>
+      <h3>None yet!</h3>
     </div>
   <% end %>
 </div>
