@@ -10,9 +10,9 @@ defmodule PhoenixBlog.Router do
     plug PhoenixBlog.Auth, repo: PhoenixBlog.Repo
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
+  # pipeline :api do
+  #   plug :accepts, ["json"]
+  # end
 
   scope "/", PhoenixBlog do
     pipe_through :browser # Use the default browser stack
@@ -24,6 +24,8 @@ defmodule PhoenixBlog.Router do
 
     get "/login", SessionController, :new
     get "/register", UserController, :new
+
+    get "/resume", PageController, :resume
   end
 
   # Other scopes may use custom stacks.
