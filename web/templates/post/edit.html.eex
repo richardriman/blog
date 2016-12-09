@@ -1,4 +1,4 @@
 <h1 class="page-heading">Edit Post</h1>
 <hr>
 <%= render "form.html", changeset: @changeset, action: post_path(@conn, :update, @post) %>
-<%= button "Back", to: post_path(@conn, :index), method: "get", class: "pure-button pure-button-primary" %>
+<%= button "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary" %>

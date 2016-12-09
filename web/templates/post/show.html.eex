@@ -13,8 +13,9 @@
 </div>
 
 <div class="post-buttons">
-  <%= button "Back", to: post_path(@conn, :index), method: "get", class: "pure-button pure-button-primary", form: [class: "inline-block"] %>
+  <%= button "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary", form: [class: "inline-block"] %>
   <%= if @current_user do %>
-    <%= button "Edit", to: post_path(@conn, :edit, @post), method: "get", class: "pure-button pure-button-primary", form: [class: "inline-block"] %>
+    <%= button "Edit", to: post_path(@conn, :edit, @post), method: :get, class: "pure-button pure-button-primary", form: [class: "inline-block"] %>
+    <%= button "Delete", to: post_path(@conn, :delete, @post), method: :delete, data: [confirm: "Are you sure?"], class: "pure-button pure-button-primary", form: [class: "inline-block"] %>
   <% end %>
 </div>

@@ -15,7 +15,7 @@
     <%= error_tag f, :published %>
 
     <%= label f, :body %>
-    <%= textarea f, :body, class: "pure-input-1", rows: "25" %>
+    <%= textarea f, :body, class: "pure-input-1 post-body-input", rows: "25" %>
     <%= error_tag f, :body %>
 
     <%= submit "Submit", class: "pure-button pure-button-primary" %>

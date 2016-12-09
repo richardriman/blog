@@ -1,3 +1,7 @@
 .post-buttons {
   padding-top: 4em;
 }
+
+.post-body-input {
+  margin-bottom: .75em !important;
+}
