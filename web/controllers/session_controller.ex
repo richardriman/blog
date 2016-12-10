@@ -1,12 +1,13 @@
 defmodule PhoenixBlog.SessionController do
   use PhoenixBlog.Web, :controller
+  alias PhoenixBlog.Plugs.Auth
 
   def new(conn, _) do
     render conn, "new.html"
   end
 
   def create(conn, %{"session" => %{"username" => user, "password" => pass}}) do
-    case PhoenixBlog.Auth.login_by_username_and_pass(conn, user, pass, repo: Repo) do
+    case Auth.login_by_username_and_pass(conn, user, pass, repo: Repo) do
       {:ok, conn} ->
         conn
         |> put_flash(:info, "Welcome back!")
@@ -20,7 +21,7 @@ defmodule PhoenixBlog.SessionController do
 
   def delete(conn, _) do
     conn
-    |> PhoenixBlog.Auth.logout()
+    |> Auth.logout()
     |> redirect(to: page_path(conn, :index))
   end
 end

@@ -1,4 +1,4 @@
-defmodule PhoenixBlog.Auth do
+defmodule PhoenixBlog.Plugs.Auth do
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
