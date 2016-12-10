@@ -4,10 +4,18 @@ defmodule PhoenixBlog.PageController do
   alias PhoenixBlog.Post
 
   def index(conn, _params) do
-    query = from p in Post,
-      order_by: [desc: p.inserted_at],
-      select: p
-
+    query = 
+      if (conn.assigns.current_user) do
+        from p in Post,
+        order_by: [desc: p.inserted_at],
+        select: p
+      else
+        from p in Post,
+        where: p.published == true,
+        order_by: [desc: p.inserted_at],
+        select: p
+      end
+    
     latest_post = query 
       |> Repo.all
       |> List.first
