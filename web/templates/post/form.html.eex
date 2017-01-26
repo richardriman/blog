@@ -18,15 +18,15 @@
     <%= textarea f, :body, class: "pure-input-1 post-body-input", rows: "25" %>
     <%= error_tag f, :body %>
 
+    <div id="preview"></div>
+
     <%= button "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary" %>
 
     <%= submit "Submit", class: "pure-button pure-button-primary" %>
   </fieldset>
 <% end %>
 
-<div id="preview"></div>
-
-<script type="text/javascript">
+<script>
   var converter;
   var preview;
   document.addEventListener("DOMContentLoaded", function(e) {
