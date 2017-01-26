@@ -30,11 +30,12 @@
   var converter;
   var preview;
   document.addEventListener("DOMContentLoaded", function(e) {
-    converter = new showdown.Converter();
+    converter = new showdown.Converter({"tables": true});
     preview = document.getElementById("preview");
     document.getElementById("post_body").addEventListener("input", function() {
       var md = this.value;
-      var html = converter.makeHtml(md);
+      var html = converter.makeHtml(md).replace("<table>", "<table class=\"pure-table\">");
+
       preview.innerHTML = html;
     });
   });
