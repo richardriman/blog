@@ -5,3 +5,10 @@
 .post-body-input {
   margin-bottom: .75em !important;
 }
+
+#preview {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 30px;
+  margin-bottom: 15px;
+}

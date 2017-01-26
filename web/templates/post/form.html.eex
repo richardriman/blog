@@ -23,3 +23,20 @@
     <%= submit "Submit", class: "pure-button pure-button-primary" %>
   </fieldset>
 <% end %>
+
+<div id="preview"></div>
+
+<script type="text/javascript">
+  var converter;
+  var preview;
+  document.addEventListener("DOMContentLoaded", function(e) {
+    converter = new showdown.Converter();
+    preview = document.getElementById("preview");
+    document.getElementById("post_body").addEventListener("input", function() {
+      var md = this.value;
+      var html = converter.makeHtml(md);
+      preview.innerHTML = html;
+    });
+  });
+</script>
+
