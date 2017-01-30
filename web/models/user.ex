@@ -17,6 +17,7 @@ defmodule PhoenixBlog.User do
     struct
     |> cast(params, [:name, :username])
     |> validate_required([:name, :username])
+    |> unique_constraint(:username)
   end
 
   def registration_changeset(struct, params) do
