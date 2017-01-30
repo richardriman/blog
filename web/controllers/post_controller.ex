@@ -41,6 +41,18 @@ defmodule PhoenixBlog.PostController do
     end
   end
 
+  # def show(conn, %{"id" => id}) do
+  #   post = Repo.get!(Post, id)
+
+  #   if (post.published == true || conn.assigns.current_user) do
+  #     render(conn, "show.html", post: post)
+  #   else
+  #     conn
+  #     |> put_flash(:error, "This post cannot be viewed.")
+  #     |> redirect(to: post_path(conn, :index))
+  #   end
+  # end
+
   def show(conn, %{"id" => id}) do
     post = Repo.get!(Post, id)
 

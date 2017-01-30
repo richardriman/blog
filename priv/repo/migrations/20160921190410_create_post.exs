@@ -6,6 +6,7 @@ defmodule PhoenixBlog.Repo.Migrations.CreatePost do
       add :title, :string
       add :body, :text
       add :published, :boolean
+      add :slug, :string
 
       timestamps()
     end
