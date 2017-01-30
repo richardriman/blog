@@ -2,7 +2,11 @@ exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-      joinTo: "js/app.js"
+      // joinTo: "js/app.js"
+      joinTo: {
+       "js/app.js": /^(web\/static\/js\/app.js)|(node_modules)/,
+       "js/markdown.js": /^(web\/static\/js\/markdown.js)/
+      }
       // To use a separate vendor.js bundle, specify two files path
       // http://brunch.io/docs/config#-files-
       // joinTo: {
@@ -63,7 +67,6 @@ exports.config = {
   },
 
   npm: {
-    enabled: true,
-    globals: {showdown: "showdown"}
+    enabled: true
   }
 };
