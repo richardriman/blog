@@ -1,8 +1,6 @@
 import showdown from "showdown";
 
-var converter;
-var preview;
-
+// tab support for all textaread on page (4 spaces)
 var textareas = document.getElementsByTagName("textarea");
 var count = textareas.length;
 for (var i = 0; i < count; i++) {
@@ -15,11 +13,13 @@ for (var i = 0; i < count; i++) {
     }
   }
 }
-converter = new showdown.Converter({
+
+// show markdown preview
+var converter = new showdown.Converter({
   "tables": true, 
   "disableForced4SpacesIndentedSublists": true
 });
-preview = document.getElementById("preview");
+var preview = document.getElementById("preview");
 document.getElementById("post_body").addEventListener("input", function() {
   var md = this.value;
   var html = converter.makeHtml(md).replace("<table>", "<table class=\"pure-table\">");
