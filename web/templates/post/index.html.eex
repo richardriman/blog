@@ -19,4 +19,6 @@
     </div>
   <% end %>
 </div>
-<%= button "New", to: post_path(@conn, :new), method: :get, class: "pure-button pure-button-primary" %>
+<%= if @current_user do %>
+  <%= button "New", to: post_path(@conn, :new), method: :get, class: "pure-button pure-button-primary" %>
+<% end %>
