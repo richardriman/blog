@@ -33,6 +33,7 @@ defmodule PhoenixBlog.Post do
     |> cast(params, [:title, :body, :published])
     |> validate_required([:title, :body, :published])
     |> slugify_title()
+    |> unique_constraint(:slug)
   end
 
   defimpl Phoenix.Param, for: PhoenixBlog.Post do

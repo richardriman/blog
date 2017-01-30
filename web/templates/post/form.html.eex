@@ -4,11 +4,12 @@
   </div>
 <% end %>
 
-<%= form_for @changeset, @action, [class: "pure-form pure-form-stacked"], fn f -> %>
+<%= form_for translate_slug_error(@changeset), @action, [class: "pure-form pure-form-stacked"], fn f -> %>
   <fieldset>
     <%= label f, :title %>
     <%= text_input f, :title %>
     <%= error_tag f, :title %>
+    <%= error_tag f, :slug %>
 
     <%= label f, :published %>
     <%= checkbox f, :published %>
@@ -32,4 +33,3 @@
     require('web/static/js/markdown.js');
   });
 </script>
-
