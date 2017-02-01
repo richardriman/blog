@@ -12,16 +12,10 @@ defmodule PhoenixBlog.Post do
 
   defp slugify_title(changeset) do
     if title = get_change(changeset, :title) do
-      put_change(changeset, :slug, slugify(title))
+      put_change(changeset, :slug, Slugger.slugify_downcase(title))
     else
       changeset
     end  
-  end
-
-  defp slugify(title) do
-    title
-    |> String.downcase()
-    |> String.replace(~r/[^\w-]+/u, "-")
   end
 
   @doc """
