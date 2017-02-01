@@ -42,7 +42,7 @@ defmodule PhoenixBlog.PostController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = Repo.get!(Post, id)
+    post = Repo.get_by!(Post, slug: id)
 
     if (post.published == true || conn.assigns.current_user) do
       render(conn, "show.html", post: post)
@@ -54,13 +54,13 @@ defmodule PhoenixBlog.PostController do
   end
 
   def edit(conn, %{"id" => id}) do
-    post = Repo.get!(Post, id)
+    post = Repo.get_by!(Post, slug: id)
     changeset = Post.changeset(post)
     render(conn, "edit.html", post: post, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
-    post = Repo.get!(Post, id)
+    post = Repo.get_by!(Post, slug: id)
     changeset = Post.changeset(post, post_params)
 
     case Repo.update(changeset) do
@@ -74,7 +74,7 @@ defmodule PhoenixBlog.PostController do
   end
 
   def delete(conn, %{"id" => id}) do
-    post = Repo.get!(Post, id)
+    post = Repo.get_by!(Post, slug: id)
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).

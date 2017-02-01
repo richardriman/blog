@@ -1,7 +1,6 @@
 defmodule PhoenixBlog.Post do
   use PhoenixBlog.Web, :model
 
-  @primary_key {:id, PhoenixBlog.Permalink, autogenerate: true}
   schema "posts" do
     field :title, :string
     field :body, :string
@@ -37,8 +36,6 @@ defmodule PhoenixBlog.Post do
   end
 
   defimpl Phoenix.Param, for: PhoenixBlog.Post do
-    def to_param(%{slug: slug, id: id}) do
-      "#{id}-#{slug}"
-    end
+    def to_param(%{slug: slug}), do: slug
   end
 end
