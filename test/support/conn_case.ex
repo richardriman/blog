@@ -26,6 +26,7 @@ defmodule PhoenixBlog.ConnCase do
       import Ecto.Query
 
       import PhoenixBlog.Router.Helpers
+      import PhoenixBlog.TestHelpers
 
       # The default endpoint for testing
       @endpoint PhoenixBlog.Endpoint
