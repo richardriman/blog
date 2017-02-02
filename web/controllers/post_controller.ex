@@ -3,7 +3,7 @@ defmodule PhoenixBlog.PostController do
 
   alias PhoenixBlog.Post
 
-  plug :authenticate_user when action in [:new, :edit]
+  plug :authenticate_user when action in [:new, :create, :edit, :update, :delete]
 
   def index(conn, _params) do
     query = 
