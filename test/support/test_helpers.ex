@@ -13,5 +13,9 @@ defmodule PhoenixBlog.TestHelpers do
     |> Repo.insert!()
   end
 
-  # def insert_post(attrs \\ %{}), do: Repo.insert(attrs)
+  def insert_post(attrs \\ %{}) do
+    %PhoenixBlog.Post{}
+    |> PhoenixBlog.Post.changeset(attrs)
+    |> Repo.insert!()
+  end
 end
