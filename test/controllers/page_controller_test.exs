@@ -29,6 +29,21 @@ defmodule PhoenixBlog.PageControllerTest do
     end)
   end
 
+  @tag login_as: "user"
+  test "shows any latest post for logged in user", %{conn: conn} do
+    posts = [
+      %{title: "post 1", body: "this is post 1.", published: true},
+      %{title: "post 2", body: "this is post 2.", published: true},
+      %{title: "post 3", body: "this is post 3.", published: false},
+      %{title: "post 4", body: "this is post 4.", published: false}
+    ]
+    Enum.each(posts, fn post ->
+      insert_post(post)
+      conn = get(conn, "/")
+      assert html_response(conn, 200) =~ post.title
+    end)
+  end
+
   test "resume route redirects", %{conn: conn} do
     conn = get(conn, "/resume")
     assert redirected_to(conn, 302)

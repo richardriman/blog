@@ -1,15 +1,15 @@
 defmodule PhoenixBlog.PostControllerTest do
   use PhoenixBlog.ConnCase
 
-  setup %{conn: conn} = config do
-    if username = config[:login_as] do
-      user = insert_user(%{username: username})
-      conn = assign(build_conn(), :current_user, user)
-      {:ok, conn: conn}
-    else
-      :ok
-    end
-  end
+  # setup %{conn: conn} = config do
+  #   if username = config[:login_as] do
+  #     user = insert_user(%{username: username})
+  #     conn = assign(build_conn(), :current_user, user)
+  #     {:ok, conn: conn}
+  #   else
+  #     :ok
+  #   end
+  # end
 
   test "require user authentication for certain post actions", %{conn: conn} do
     Enum.each([
@@ -49,6 +49,24 @@ defmodule PhoenixBlog.PostControllerTest do
     posts
     |> Enum.filter(fn post -> post.published == false end)
     |> Enum.each(fn post-> refute String.contains?(conn.resp_body, post.title) end)
+  end
+
+  @tag login_as: "user"
+  test "list all posts on index when logged in", %{conn: conn} do
+    posts = [
+      %{title: "post 1", body: "this is post 1.", published: true},
+      %{title: "post 2", body: "this is post 2.", published: true},
+      %{title: "post 3", body: "this is post 3.", published: false},
+      %{title: "post 4", body: "this is post 4.", published: false}
+    ]
+
+    for post <- posts do
+      insert_post(post)
+    end
+
+    conn = get(conn, post_path(conn, :index))
+    assert html_response(conn, 200) =~ ~r/Posts/
+    Enum.each(posts, fn post -> assert String.contains?(conn.resp_body, post.title) end)
   end
 
   alias PhoenixBlog.Post
