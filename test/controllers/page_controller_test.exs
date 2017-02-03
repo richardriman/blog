@@ -29,5 +29,8 @@ defmodule PhoenixBlog.PageControllerTest do
     end)
   end
 
-  
+  test "resume route redirects", %{conn: conn} do
+    conn = get(conn, "/resume")
+    assert redirected_to(conn, 302)
+  end
 end
