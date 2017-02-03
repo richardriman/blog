@@ -1,4 +1,4 @@
-# PhoenixBlog
+# PhoenixBlog [![Build Status](https://travis-ci.com/jswny/phoenix-blog.svg?token=nSmyNDXah7HjpzdjbcwL&branch=master)](https://travis-ci.com/jswny/phoenix-blog)
 
 To start your Phoenix app:
 
