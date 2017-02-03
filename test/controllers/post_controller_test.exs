@@ -24,6 +24,11 @@ defmodule PhoenixBlog.PostControllerTest do
       end)
   end
 
+  test "handle no posts on index", %{conn: conn} do
+    conn = get(conn, post_path(conn, :index))
+    assert html_response(conn, 200) =~ ~r/None yet!/
+  end
+
   test "list only published posts on index", %{conn: conn} do
     posts = [
       %{title: "post 1", body: "this is post 1.", published: true},
