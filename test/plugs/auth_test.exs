@@ -76,7 +76,6 @@ defmodule PhoenixBlog.AuthTest do
 
   test "login with password mismatch", %{conn: conn} do
     _ = insert_user(%{username: "test", password: "secret"})
-
     assert {:error, :unauthorized, _conn} =
       Auth.login_by_username_and_pass(conn, "test", "wrong", repo: Repo)
   end

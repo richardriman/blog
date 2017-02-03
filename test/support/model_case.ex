@@ -21,6 +21,7 @@ defmodule PhoenixBlog.ModelCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      import PhoenixBlog.TestHelpers
       import PhoenixBlog.ModelCase
     end
   end
