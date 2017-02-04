@@ -9,6 +9,6 @@ defmodule PostRepoTest do
     attrs = Map.put(@valid_attrs, :title, "a cool post")
     changeset = Post.changeset(%Post{}, attrs)
     assert {:error, changeset} = Repo.insert(changeset)
-    assert {:slug, {"has already been taken", []}} in changeset.errors
+    assert {:slug, {"There was a problem generating a unique slug for this post. Please ensure that this title is not already taken.", []}} in changeset.errors
   end
 end

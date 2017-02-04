@@ -26,7 +26,7 @@ defmodule PhoenixBlog.Post do
     |> cast(params, [:title, :body, :published])
     |> validate_required([:title, :body, :published])
     |> slugify_title()
-    |> unique_constraint(:slug)
+    |> unique_constraint(:slug, message: "There was a problem generating a unique slug for this post. Please ensure that this title is not already taken.")
   end
 
   defimpl Phoenix.Param, for: PhoenixBlog.Post do
