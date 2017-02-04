@@ -31,4 +31,17 @@ defmodule PhoenixBlog.PostViewTest do
 
     assert String.contains?(content, "New Post")
   end
+
+  test "correctly fixes markdown tables" do
+    post = %{body: ~s"""
+      | a   | simple | table |
+      | --- | ------ | ----- |
+      | col | col    | col   |
+      | col | col    | col   |
+      | col | col    | col   |
+      """}
+
+    html = PhoenixBlog.PostView.get_formatted_post(post)
+    assert String.contains?(html, "<table class=\"pure-table\">")
+  end
 end

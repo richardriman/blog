@@ -2,6 +2,11 @@ defmodule PhoenixBlog.PostView do
   use PhoenixBlog.Web, :view
   import PhoenixBlog.PostHelpers
 
+  def get_formatted_post(post) do
+    Earmark.to_html(post.body)
+    |> String.replace("<table>", "<table class=\"pure-table\">")
+  end
+
   def translate_slug_error(changeset) do
     if changeset.errors[:slug] do
       new_error = {"There was a problem generating a unique slug for this post. Please ensure that this title is not already taken.", []}
