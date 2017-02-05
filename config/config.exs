@@ -8,7 +8,7 @@ use Mix.Config
 # General application configuration
 config :phoenix_blog,
   ecto_repos: [PhoenixBlog.Repo],
-  user_registration: :enabled
+  user_registration: true
 
 # Configures the endpoint
 config :phoenix_blog, PhoenixBlog.Endpoint,

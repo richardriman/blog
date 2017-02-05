@@ -6,13 +6,13 @@ defmodule PhoenixBlog.UserController do
   plug :check_user_registration when action in [:new, :create]
 
   def check_user_registration(conn, _opts) do
-    if (Application.get_env(:phoenix_blog, :user_registration) != :enabled) do
+    if (Application.get_env(:phoenix_blog, :user_registration)) do
+      conn
+    else 
       conn
       |> put_flash(:error, "Registration is disabled!")
       |> redirect(to: Helpers.page_path(conn, :index))
       |> halt()
-    else 
-      conn
     end
   end
 
