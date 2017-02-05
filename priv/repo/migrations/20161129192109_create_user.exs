@@ -7,7 +7,7 @@ defmodule PhoenixBlog.Repo.Migrations.CreateUser do
       add :username, :string, null: false
       add :password_hash, :string
 
-      timestamps
+      timestamps()
     end
 
     create unique_index(:users, [:username])
