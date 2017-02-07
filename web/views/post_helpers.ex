@@ -15,7 +15,8 @@ defmodule PhoenixBlog.PostHelpers do
       12 => "Dec"
     }
 
-    Integer.to_string(post.inserted_at.day)
+    post.inserted_at.day
+    |> Integer.to_string()
     |> Kernel.<>(" ")
     |> Kernel.<>(Map.get(month_strings, post.inserted_at.month))
     |> Kernel.<>(" ")

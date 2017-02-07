@@ -4,7 +4,7 @@ defmodule PhoenixBlog.TestHelpers do
   def insert_user(attrs \\ %{}) do
     changes = Map.merge(%{
         name: "Test User",
-        username: "user#{Base.encode16(:crypto.rand_bytes(8))}",
+        username: "user#{Base.encode16(:crypto.strong_rand_bytes(8))}",
         password: "secret"
       }, attrs)
 

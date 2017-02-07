@@ -3,7 +3,8 @@ defmodule PhoenixBlog.PostView do
   import PhoenixBlog.PostHelpers
 
   def get_formatted_post(post) do
-    Earmark.as_html!(post.body)
+    post.body
+    |> Earmark.as_html!()
     |> String.replace("<table>", "<table class=\"pure-table\">")
   end
 end
