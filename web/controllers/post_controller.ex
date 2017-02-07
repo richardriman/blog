@@ -7,7 +7,7 @@ defmodule PhoenixBlog.PostController do
 
   def index(conn, _params) do
     query = 
-      if (conn.assigns.current_user) do
+      if conn.assigns.current_user do
         from p in Post,
         order_by: [desc: p.inserted_at],
         select: p
@@ -44,7 +44,7 @@ defmodule PhoenixBlog.PostController do
   def show(conn, %{"id" => id}) do
     post = Repo.get_by!(Post, slug: id)
 
-    if (post.published == true || conn.assigns.current_user) do
+    if post.published == true || conn.assigns.current_user do
       render(conn, "show.html", post: post)
     else
       conn

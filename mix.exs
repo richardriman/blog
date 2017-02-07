@@ -40,7 +40,8 @@ defmodule PhoenixBlog.Mixfile do
      {:cowboy, "~> 1.0"},
      {:earmark, "~> 1.0"},
      {:comeonin, "~> 2.0"},
-     {:slugger, "~> 0.1.0"}]
+     {:slugger, "~> 0.1.0"},
+     {:credo, "~> 0.3", only: [:dev, :test]}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

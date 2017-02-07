@@ -5,7 +5,7 @@ defmodule PhoenixBlog.PageController do
 
   def index(conn, _params) do
     query = 
-      if (conn.assigns.current_user) do
+      if conn.assigns.current_user do
         from p in Post,
         order_by: [desc: p.inserted_at],
         select: p
