@@ -4,26 +4,27 @@
   </div>
 <% end %>
 
-<%= form_for @changeset, @action, [class: "pure-form pure-form-stacked"], fn f -> %>
-  <fieldset>
-    <%= label f, :title %>
-    <%= text_input f, :title %>
-    <%= error_tag f, :title %>
-    <%= error_tag f, :slug %>
+<%= form_for @changeset, @action, [class: "pure-form", style: "margin-top: 15px;"], fn f -> %>
+  <fieldset style="padding-top: 0px;">
+    <%= text_input f, :title, class: "pure-input-1-2", placeholder: "Title" %>
+    <div>
+      <%= error_tag f, :title %>
+      <%= error_tag f, :slug %>
+    </div>
 
-    <%= label f, :published %>
-    <%= checkbox f, :published %>
-    <%= error_tag f, :published %>
-
-    <%= label f, :body %>
-    <%= textarea f, :body, class: "pure-input-1 post-body-input", rows: "25" %>
+    <%= textarea f, :body, class: "pure-input-1 post-body-input", rows: "25", placeholder: "Body" %>
     <%= error_tag f, :body %>
 
     <div id="preview"></div>
+    
+    <label for="post_published" class="pure-checkbox", style="margin: 0px;">
+      <%= checkbox f, :published %> Published
+    </label>
+    <%= error_tag f, :published %>
 
-    <%= button "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary" %>
+    <%= button "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary", style: "margin-top: 15px;" %>
 
-    <%= submit "Submit", class: "pure-button pure-button-primary" %>
+    <%= submit "Submit", class: "pure-button pure-button-primary", style: "margin-top: 15px;" %>
   </fieldset>
 <% end %>
 
