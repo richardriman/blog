@@ -56,7 +56,13 @@ defmodule PhoenixBlog.PostControllerTest do
 
     conn = get(conn, post_path(conn, :index))
     assert html_response(conn, 200) =~ ~r/Posts/
-    Enum.each(posts, fn post -> assert String.contains?(conn.resp_body, post.title) end)
+    Enum.each(posts, fn post ->
+      if post.published do
+        assert Regex.match?(~r/(post 4).*\(unpublished\)/s, conn.resp_body) 
+      else
+        assert String.contains?(conn.resp_body, post.title) 
+      end
+    end)
   end
 
   alias PhoenixBlog.Post
