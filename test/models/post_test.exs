@@ -22,11 +22,10 @@ defmodule PhoenixBlog.PostTest do
       %{title: "*()@test%123", body: "this is a test post.", published: true},
       %{title: "123test_post%^&*", body: "this is a test post.", published: true}
     ]
-    Enum.each(posts, 
-      fn post -> 
-        changeset = Post.changeset(%Post{}, post)
-        %{slug: slug} = changeset.changes
-        assert slug == Slugger.slugify_downcase(post.title)
-      end)
+    for post <- posts do 
+      changeset = Post.changeset(%Post{}, post)
+      %{slug: slug} = changeset.changes
+      assert slug == Slugger.slugify_downcase(post.title)
+    end
   end
 end

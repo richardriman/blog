@@ -18,7 +18,7 @@ defmodule PhoenixBlog.PageControllerTest do
       %{title: "post 3", body: "this is post 3.", published: false},
       %{title: "post 4", body: "this is post 4.", published: false}
     ]
-    Enum.each(posts, fn post ->
+    for post <- posts do
       insert_post(post)
       conn = get(conn, "/")
       if (post.published) do
@@ -26,7 +26,7 @@ defmodule PhoenixBlog.PageControllerTest do
       else
         refute html_response(conn, 200) =~ post.title
       end
-    end)
+    end
   end
 
   @tag login_as: "user"
@@ -37,11 +37,11 @@ defmodule PhoenixBlog.PageControllerTest do
       %{title: "post 3", body: "this is post 3.", published: false},
       %{title: "post 4", body: "this is post 4.", published: false}
     ]
-    Enum.each(posts, fn post ->
+    for post <- posts do
       insert_post(post)
       conn = get(conn, "/")
       assert html_response(conn, 200) =~ post.title
-    end)
+    end
   end
 
   test "resume route redirects", %{conn: conn} do
