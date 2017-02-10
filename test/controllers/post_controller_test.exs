@@ -104,6 +104,12 @@ defmodule PhoenixBlog.PostControllerTest do
   end
 
   @tag login_as: "user"
+  test "new shows post new page", %{conn: conn} do
+    conn = get(conn, post_path(conn, :new))
+    assert html_response(conn, :ok) =~ ~r/New Post/s
+  end
+
+  @tag login_as: "user"
   test "edit shows post edit page", %{conn: conn} do
     post = insert_post(@valid_attrs)
     conn = get(conn, post_path(conn, :edit, post))
