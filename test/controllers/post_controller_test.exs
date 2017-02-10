@@ -58,9 +58,9 @@ defmodule PhoenixBlog.PostControllerTest do
     assert html_response(conn, 200) =~ ~r/Posts/
     Enum.each(posts, fn post ->
       if post.published do
-        assert Regex.match?(~r/(post 4).*\(unpublished\)/s, conn.resp_body) 
+        assert String.contains?(conn.resp_body, post.title)
       else
-        assert String.contains?(conn.resp_body, post.title) 
+        assert Regex.match?(~r/(#{post.title})(.*)(\(unpublished\))/s, conn.resp_body)
       end
     end)
   end
@@ -84,6 +84,23 @@ defmodule PhoenixBlog.PostControllerTest do
     conn = post(conn, post_path(conn, :create), post: @invalid_attrs)
     assert html_response(conn, 200) =~ "check the errors"
     assert post_count(Post) == count_before
+  end
+
+  @tag login_as: "user"
+  test "creates new post and shows it", %{conn: conn} do
+    posts = [
+      %{title: "post 1", body: "this is post 1.", published: true},
+      %{title: "post 2", body: "this is post 2.", published: false}
+    ]
+    for post <- posts do
+      inserted_post = insert_post(post)
+      conn = get(conn, post_path(conn, :show, inserted_post))
+      if post.published do
+        assert html_response(conn, :ok) =~ ~r/#{post.body}/s
+      else
+        assert html_response(conn, :ok) =~ ~r/(#{post.title})(.*)(\(unpublished\))/s
+      end
+    end
   end
 
   @tag login_as: "user"
