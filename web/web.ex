@@ -38,6 +38,7 @@ defmodule PhoenixBlog.Web do
       import PhoenixBlog.Gettext
 
       import PhoenixBlog.Auth, only: [authenticate_user: 2]
+      import PhoenixBlog.PostControllerHelpers
     end
   end
 

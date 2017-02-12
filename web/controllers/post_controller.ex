@@ -6,19 +6,7 @@ defmodule PhoenixBlog.PostController do
   plug :authenticate_user when action in [:new, :create, :edit, :update, :delete]
 
   def index(conn, _params) do
-    query = 
-      if conn.assigns.current_user do
-        from p in Post,
-        order_by: [desc: p.inserted_at],
-        select: p
-      else
-        from p in Post,
-        where: p.published == true,
-        order_by: [desc: p.inserted_at],
-        select: p
-      end
-
-    posts = query |> Repo.all
+    posts = get_post_list(conn)
     
     render(conn, "index.html", posts: posts)
   end
