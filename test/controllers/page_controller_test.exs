@@ -21,7 +21,7 @@ defmodule PhoenixBlog.PageControllerTest do
     for post <- posts do
       insert_post(post)
       conn = get(conn, "/")
-      if (post.published) do
+      if post.published do
         assert html_response(conn, 200) =~ post.title
       else
         refute html_response(conn, 200) =~ post.title

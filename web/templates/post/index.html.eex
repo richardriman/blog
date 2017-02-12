@@ -6,7 +6,7 @@
       <div class="post-entry">
         <h3 style="display: inline;">
           <%= link post.title, to: post_path(@conn, :show, post) %>
-          <%= if (!post.published) do %>
+          <%= if !post.published do %>
             <span>(unpublished)</span>
           <% end %>
         </h3>
