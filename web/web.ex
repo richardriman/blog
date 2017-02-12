@@ -37,7 +37,7 @@ defmodule PhoenixBlog.Web do
       import PhoenixBlog.Router.Helpers
       import PhoenixBlog.Gettext
 
-      import PhoenixBlog.Plugs.Auth, only: [authenticate_user: 2]
+      import PhoenixBlog.Auth, only: [authenticate_user: 2]
     end
   end
 
@@ -54,14 +54,13 @@ defmodule PhoenixBlog.Web do
       import PhoenixBlog.Router.Helpers
       import PhoenixBlog.ErrorHelpers
       import PhoenixBlog.Gettext
+      import PhoenixBlog.PostViewHelpers
     end
   end
 
   def router do
     quote do
       use Phoenix.Router
-
-      import PhoenixBlog.Plugs.Auth, only: [authenticate_user: 2]
     end
   end
 

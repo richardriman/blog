@@ -1,6 +1,6 @@
 defmodule PhoenixBlog.SessionController do
   use PhoenixBlog.Web, :controller
-  alias PhoenixBlog.Plugs.Auth
+  alias PhoenixBlog.Auth
 
   def new(conn, _) do
     render conn, "new.html"

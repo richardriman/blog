@@ -7,7 +7,7 @@ defmodule PhoenixBlog.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug PhoenixBlog.Plugs.Auth, repo: PhoenixBlog.Repo
+    plug PhoenixBlog.Auth, repo: PhoenixBlog.Repo
   end
 
   # pipeline :api do

@@ -1,6 +1,6 @@
 defmodule PhoenixBlog.PostHelpersTest do
   use ExUnit.Case, async: true
-  import PhoenixBlog.PostHelpers
+  import PhoenixBlog.PostViewHelpers
 
   test "get_formatted_date returns correctly formatted date" do
     posts = [

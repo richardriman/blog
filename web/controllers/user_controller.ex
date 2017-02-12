@@ -26,7 +26,7 @@ defmodule PhoenixBlog.UserController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
-        |> PhoenixBlog.Plugs.Auth.login(user)
+        |> PhoenixBlog.Auth.login(user)
         |> put_flash(:info, "#{user.name} successfully registered!")
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->

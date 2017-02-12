@@ -1,4 +1,4 @@
-defmodule PhoenixBlog.PostHelpers do
+defmodule PhoenixBlog.PostViewHelpers do
   def get_formatted_date(post) do
     month_strings = %{
       1 => "Jan",

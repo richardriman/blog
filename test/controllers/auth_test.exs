@@ -1,6 +1,6 @@
 defmodule PhoenixBlog.AuthTest do
   use PhoenixBlog.ConnCase
-  alias PhoenixBlog.Plugs.Auth
+  alias PhoenixBlog.Auth
 
   setup %{conn: conn} do
     conn =
