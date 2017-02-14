@@ -14,7 +14,7 @@ defmodule PhoenixBlog.Mixfile do
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [coveralls: :test]
-   ]
+    ]
   end
 
   # Configuration for the OTP application.
