@@ -86,8 +86,20 @@ defmodule PhoenixBlog.PostControllerTest do
     assert post_count(Post) == count_before
   end
 
+  test "does not show unpublished posts", %{conn: conn} do
+    posts = [
+      %{title: "post 1", body: "this is post 1.", published: false},
+      %{title: "post 2", body: "this is post 2.", published: false}
+    ]
+    for post <- posts do
+      inserted_post = insert_post(post)
+      conn = get(conn, post_path(conn, :show, inserted_post))
+      assert redirected_to(conn) == post_path(conn, :index)
+    end
+  end
+
   @tag login_as: "user"
-  test "creates new post and shows it", %{conn: conn} do
+  test "creates new posts and shows them when user is logged in", %{conn: conn} do
     posts = [
       %{title: "post 1", body: "this is post 1.", published: true},
       %{title: "post 2", body: "this is post 2.", published: false}
