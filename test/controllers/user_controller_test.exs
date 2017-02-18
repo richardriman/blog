@@ -44,4 +44,10 @@ defmodule UserControllerTest do
         assert conn.halted
       end)
   end
+
+  @tag user_registration: true
+  test "shows new user page", %{conn: conn} do
+    conn = get(conn, user_path(conn, :new))
+    assert html_response(conn, :ok) =~ ~r/New User/s
+  end
 end
