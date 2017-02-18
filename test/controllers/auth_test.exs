@@ -79,4 +79,8 @@ defmodule PhoenixBlog.AuthTest do
     assert {:error, :unauthorized, _conn} =
       Auth.login_by_username_and_pass(conn, "test", "wrong", repo: Repo)
   end
+
+  test "init gets repo from opts" do
+    assert Auth.init(repo: PhoenixBlog.Repo) == PhoenixBlog.Repo
+  end
 end
