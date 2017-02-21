@@ -40,7 +40,22 @@ defmodule PhoenixBlog.ConnCase do
           :ok
         end
       end
-      
+
+      setup %{conn: conn} = config do
+        post = %PhoenixBlog.Post{
+            title: "test post",
+            slug: "test-post", 
+            body: "this is a test.", 
+            published: true, 
+            inserted_at: ~D[2017-01-01]
+          }
+        case config[:test_post] do
+          true -> {:ok, conn: conn, post: post}
+          opts when is_map(opts) ->
+            {:ok, conn: conn, post: Map.merge(post, opts)}
+          _ -> :ok
+        end
+      end
     end
   end
 
