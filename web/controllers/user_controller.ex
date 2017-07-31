@@ -2,17 +2,18 @@ defmodule PhoenixBlog.UserController do
   use PhoenixBlog.Web, :controller
   alias PhoenixBlog.User
   alias PhoenixBlog.Router.Helpers
+  alias PhoenixBlog.Repo
 
   plug :check_user_registration when action in [:new, :create]
 
   def check_user_registration(conn, _opts) do
-    if Application.get_env(:phoenix_blog, :user_registration) do
-      conn
-    else 
-      conn
-      |> put_flash(:error, "Registration is disabled!")
-      |> redirect(to: Helpers.page_path(conn, :index))
-      |> halt()
+    case Repo.all(User) do
+      [] -> conn
+      _ -> 
+        conn
+        |> put_flash(:error, "Registration is disabled!")
+        |> redirect(to: Helpers.page_path(conn, :index))
+        |> halt()
     end
   end
 

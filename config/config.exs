@@ -7,8 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :phoenix_blog,
-  ecto_repos: [PhoenixBlog.Repo],
-  user_registration: true
+  ecto_repos: [PhoenixBlog.Repo]
 
 # Configures the endpoint
 config :phoenix_blog, PhoenixBlog.Endpoint,
@@ -26,4 +25,3 @@ config :logger, :console,
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
-  
