@@ -1,4 +1,4 @@
-defmodule PhoenixBlog.ModelCase do
+defmodule Blog.ModelCase do
   @moduledoc """
   This module defines the test case to be used by
   model tests.
@@ -16,21 +16,21 @@ defmodule PhoenixBlog.ModelCase do
 
   using do
     quote do
-      alias PhoenixBlog.Repo
+      alias Blog.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import PhoenixBlog.TestHelpers
-      import PhoenixBlog.ModelCase
+      import Blog.TestHelpers
+      import Blog.ModelCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PhoenixBlog.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Blog.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PhoenixBlog.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Blog.Repo, {:shared, self()})
     end
 
     :ok
@@ -60,7 +60,7 @@ defmodule PhoenixBlog.ModelCase do
   """
   def errors_on(struct, data) do
     struct.__struct__.changeset(struct, data)
-    |> Ecto.Changeset.traverse_errors(&PhoenixBlog.ErrorHelpers.translate_error/1)
+    |> Ecto.Changeset.traverse_errors(&Blog.ErrorHelpers.translate_error/1)
     |> Enum.flat_map(fn {key, errors} -> for msg <- errors, do: {key, msg} end)
   end
 end

@@ -1,4 +1,4 @@
-defmodule PhoenixBlog.ConnCase do
+defmodule Blog.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,16 +20,16 @@ defmodule PhoenixBlog.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias PhoenixBlog.Repo
+      alias Blog.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
 
-      import PhoenixBlog.Router.Helpers
-      import PhoenixBlog.TestHelpers
+      import Blog.Router.Helpers
+      import Blog.TestHelpers
 
       # The default endpoint for testing
-      @endpoint PhoenixBlog.Endpoint
+      @endpoint Blog.Endpoint
 
       setup %{conn: conn} = config do
         if username = config[:login_as] do
@@ -42,7 +42,7 @@ defmodule PhoenixBlog.ConnCase do
       end
 
       setup %{conn: conn} = config do
-        post = %PhoenixBlog.Post{
+        post = %Blog.Post{
             title: "test post",
             slug: "test-post", 
             body: "this is a test.", 
@@ -60,10 +60,10 @@ defmodule PhoenixBlog.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PhoenixBlog.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Blog.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PhoenixBlog.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Blog.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

@@ -1,5 +1,5 @@
-defmodule PhoenixBlog.PageControllerTest do
-  use PhoenixBlog.ConnCase
+defmodule Blog.PageControllerTest do
+  use Blog.ConnCase
 
   test "shows home page", %{conn: conn} do
     conn = get(conn, "/")

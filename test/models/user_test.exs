@@ -1,6 +1,6 @@
-defmodule PhoenixBlog.UserTest do
-  use PhoenixBlog.ModelCase, async: true
-  alias PhoenixBlog.User
+defmodule Blog.UserTest do
+  use Blog.ModelCase, async: true
+  alias Blog.User
 
   @valid_attrs %{name: "John Doe", username: "test", password: "secret"}
   @invalid_attrs %{}

@@ -1,5 +1,5 @@
-defmodule PhoenixBlog.PostControllerTest do
-  use PhoenixBlog.ConnCase
+defmodule Blog.PostControllerTest do
+  use Blog.ConnCase
 
   test "require user authentication for certain post actions", %{conn: conn} do
     Enum.each([
@@ -65,7 +65,7 @@ defmodule PhoenixBlog.PostControllerTest do
     end
   end
 
-  alias PhoenixBlog.Post
+  alias Blog.Post
   @valid_attrs %{title: "test post", body: "some cool text.", published: true}
   @invalid_attrs %{title: "invalid post"}
 

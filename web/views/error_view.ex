@@ -1,5 +1,5 @@
-defmodule PhoenixBlog.ErrorView do
-  use PhoenixBlog.Web, :view
+defmodule Blog.ErrorView do
+  use Blog.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

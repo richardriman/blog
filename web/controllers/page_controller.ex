@@ -1,5 +1,5 @@
-defmodule PhoenixBlog.PageController do
-  use PhoenixBlog.Web, :controller
+defmodule Blog.PageController do
+  use Blog.Web, :controller
 
   def index(conn, _params) do
     latest_post =

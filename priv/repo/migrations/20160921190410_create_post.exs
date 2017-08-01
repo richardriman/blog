@@ -1,4 +1,4 @@
-defmodule PhoenixBlog.Repo.Migrations.CreatePost do
+defmodule Blog.Repo.Migrations.CreatePost do
   use Ecto.Migration
 
   def change do

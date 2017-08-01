@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :phoenix_blog, PhoenixBlog.Endpoint,
+config :blog, Blog.Endpoint,
   http: [port: 4001],
   server: false
 
@@ -10,7 +10,7 @@ config :phoenix_blog, PhoenixBlog.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :phoenix_blog, PhoenixBlog.Repo,
+config :blog, Blog.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",

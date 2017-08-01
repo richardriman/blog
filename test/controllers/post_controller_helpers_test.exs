@@ -1,6 +1,6 @@
 defmodule PostControllerHelpersTest do
-  use PhoenixBlog.ConnCase
-  import PhoenixBlog.PostControllerHelpers
+  use Blog.ConnCase
+  import Blog.PostControllerHelpers
 
   test "get_post_list gets only published posts", %{conn: conn} do
     conn = assign(conn, :current_user, nil)

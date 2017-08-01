@@ -1,5 +1,5 @@
-defmodule PhoenixBlog.PostView do
-  use PhoenixBlog.Web, :view
+defmodule Blog.PostView do
+  use Blog.Web, :view
 
   def get_formatted_post(post) do
     post.body

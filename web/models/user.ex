@@ -1,5 +1,5 @@
-defmodule PhoenixBlog.User do
-  use PhoenixBlog.Web, :model
+defmodule Blog.User do
+  use Blog.Web, :model
 
   schema "users" do
     field :name, :string

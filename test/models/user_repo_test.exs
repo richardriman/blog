@@ -1,6 +1,6 @@
 defmodule UserRepoTest do
-  use PhoenixBlog.ModelCase
-  alias PhoenixBlog.User
+  use Blog.ModelCase
+  alias Blog.User
 
   @valid_attrs %{name: "John Doe", username: "test"}
 

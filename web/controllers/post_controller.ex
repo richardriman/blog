@@ -1,7 +1,7 @@
-defmodule PhoenixBlog.PostController do
-  use PhoenixBlog.Web, :controller
+defmodule Blog.PostController do
+  use Blog.Web, :controller
 
-  alias PhoenixBlog.Post
+  alias Blog.Post
 
   plug :authenticate_user when action in [:new, :create, :edit, :update, :delete]
 

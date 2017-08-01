@@ -1,11 +1,11 @@
-defmodule PhoenixBlog.AuthTest do
-  use PhoenixBlog.ConnCase
-  alias PhoenixBlog.Auth
+defmodule Blog.AuthTest do
+  use Blog.ConnCase
+  alias Blog.Auth
 
   setup %{conn: conn} do
     conn =
       conn
-      |> bypass_through(PhoenixBlog.Router, :browser)
+      |> bypass_through(Blog.Router, :browser)
       |> get("/")
 
     {:ok, %{conn: conn}}
@@ -19,7 +19,7 @@ defmodule PhoenixBlog.AuthTest do
   test "authenticate_user continues when the current_user exists", %{conn: conn} do
     conn =
       conn
-      |> assign(:current_user, %PhoenixBlog.User{})
+      |> assign(:current_user, %Blog.User{})
       |> Auth.authenticate_user([])
 
     refute conn.halted
@@ -28,7 +28,7 @@ defmodule PhoenixBlog.AuthTest do
   test "login puts the user into the session", %{conn: conn} do
     login_conn =
       conn
-      |> Auth.login(%PhoenixBlog.User{id: 123})
+      |> Auth.login(%Blog.User{id: 123})
       |> send_resp(:ok, "")
 
     next_conn = get(login_conn, "/")
@@ -81,6 +81,6 @@ defmodule PhoenixBlog.AuthTest do
   end
 
   test "init gets repo from opts" do
-    assert Auth.init(repo: PhoenixBlog.Repo) == PhoenixBlog.Repo
+    assert Auth.init(repo: Blog.Repo) == Blog.Repo
   end
 end

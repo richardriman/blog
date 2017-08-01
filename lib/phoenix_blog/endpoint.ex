@@ -1,14 +1,14 @@
-defmodule PhoenixBlog.Endpoint do
-  use Phoenix.Endpoint, otp_app: :phoenix_blog
+defmodule Blog.Endpoint do
+  use Phoenix.Endpoint, otp_app: :blog
 
-  socket "/socket", PhoenixBlog.UserSocket
+  socket "/socket", Blog.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :phoenix_blog, gzip: false,
+    at: "/", from: :blog, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -38,5 +38,5 @@ defmodule PhoenixBlog.Endpoint do
     key: "_phoenix_blog_key",
     signing_salt: "wjVU0XhT"
 
-  plug PhoenixBlog.Router
+  plug Blog.Router
 end

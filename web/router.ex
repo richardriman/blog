@@ -1,5 +1,5 @@
-defmodule PhoenixBlog.Router do
-  use PhoenixBlog.Web, :router
+defmodule Blog.Router do
+  use Blog.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -7,14 +7,14 @@ defmodule PhoenixBlog.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug PhoenixBlog.Auth, repo: PhoenixBlog.Repo
+    plug Blog.Auth, repo: Blog.Repo
   end
 
   # pipeline :api do
   #   plug :accepts, ["json"]
   # end
 
-  scope "/", PhoenixBlog do
+  scope "/", Blog do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
@@ -29,7 +29,7 @@ defmodule PhoenixBlog.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PhoenixBlog do
+  # scope "/api", Blog do
   #   pipe_through :api
   # end
 end

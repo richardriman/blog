@@ -1,3 +1,3 @@
-defmodule PhoenixBlog.LayoutViewTest do
-  use PhoenixBlog.ConnCase, async: true
+defmodule Blog.LayoutViewTest do
+  use Blog.ConnCase, async: true
 end

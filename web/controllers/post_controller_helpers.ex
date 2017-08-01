@@ -1,7 +1,7 @@
-defmodule PhoenixBlog.PostControllerHelpers do
+defmodule Blog.PostControllerHelpers do
   import Ecto.Query
-  alias PhoenixBlog.Repo
-  alias PhoenixBlog.Post
+  alias Blog.Repo
+  alias Blog.Post
 
   def get_post_list(conn) do
     query = 

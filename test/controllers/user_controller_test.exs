@@ -1,6 +1,6 @@
 defmodule UserControllerTest do
-  use PhoenixBlog.ConnCase
-  alias PhoenixBlog.User
+  use Blog.ConnCase
+  alias Blog.User
 
   @valid_attrs %{name: "John Doe", username: "test", password: "secret"}
   @invalid_attrs %{}

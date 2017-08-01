@@ -1,6 +1,6 @@
-defmodule PhoenixBlog.PostTest do
-  use PhoenixBlog.ModelCase, async: true
-  alias PhoenixBlog.Post
+defmodule Blog.PostTest do
+  use Blog.ModelCase, async: true
+  alias Blog.Post
 
   @valid_attrs %{title: "test post", body: "this is a test post.", published: true}
   @invalid_attrs %{}

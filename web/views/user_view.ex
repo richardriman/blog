@@ -1,3 +1,3 @@
-defmodule PhoenixBlog.UserView do
-  use PhoenixBlog.Web, :view
+defmodule Blog.UserView do
+  use Blog.Web, :view
 end

@@ -1,8 +1,8 @@
-defmodule PhoenixBlog.UserController do
-  use PhoenixBlog.Web, :controller
-  alias PhoenixBlog.User
-  alias PhoenixBlog.Router.Helpers
-  alias PhoenixBlog.Repo
+defmodule Blog.UserController do
+  use Blog.Web, :controller
+  alias Blog.User
+  alias Blog.Router.Helpers
+  alias Blog.Repo
 
   plug :check_user_registration when action in [:new, :create]
 
@@ -27,7 +27,7 @@ defmodule PhoenixBlog.UserController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
-        |> PhoenixBlog.Auth.login(user)
+        |> Blog.Auth.login(user)
         |> put_flash(:info, "#{user.name} successfully registered!")
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->

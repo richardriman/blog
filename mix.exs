@@ -1,9 +1,9 @@
-defmodule PhoenixBlog.Mixfile do
+defmodule Blog.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :phoenix_blog,
+      app: :blog,
       version: "0.0.1",
       elixir: "~> 1.2",
       elixirc_paths: elixirc_paths(Mix.env),
@@ -21,7 +21,7 @@ defmodule PhoenixBlog.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {PhoenixBlog, []},
+    [mod: {Blog, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :comeonin]]
   end

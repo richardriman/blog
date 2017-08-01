@@ -1,6 +1,6 @@
 defmodule PostRepoTest do
-  use PhoenixBlog.ModelCase
-  alias PhoenixBlog.Post
+  use Blog.ModelCase
+  alias Blog.Post
 
   @valid_attrs %{title: "test post", body: "this is a test post.", published: true}
 

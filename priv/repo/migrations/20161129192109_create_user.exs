@@ -1,4 +1,4 @@
-defmodule PhoenixBlog.Repo.Migrations.CreateUser do
+defmodule Blog.Repo.Migrations.CreateUser do
   use Ecto.Migration
 
   def change do
