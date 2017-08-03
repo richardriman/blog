@@ -6,7 +6,7 @@ defmodule Blog.UserController do
 
   plug :check_user_registration when action in [:new, :create]
 
-  def check_user_registration(conn, _opts) do
+  defp check_user_registration(conn, _opts) do
     case Repo.all(User) do
       [] -> conn
       _ -> 
