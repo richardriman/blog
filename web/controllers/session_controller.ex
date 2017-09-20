@@ -1,4 +1,8 @@
 defmodule Blog.SessionController do
+  @moduledoc """
+  Provides controller actions for user sessions.
+  """
+  
   use Blog.Web, :controller
   alias Blog.Auth
 

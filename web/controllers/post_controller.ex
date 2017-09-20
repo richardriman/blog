@@ -1,8 +1,12 @@
 defmodule Blog.PostController do
-  use Blog.Web, :controller
+  @moduledoc """
+  Provides controller actions for working with blog posts.
+  """
 
+  use Blog.Web, :controller
   alias Blog.Post
 
+  # Make sure the user is logged in when attempting to access restricted routes.
   plug :authenticate_user when action in [:new, :create, :edit, :update, :delete]
 
   def index(conn, _params) do

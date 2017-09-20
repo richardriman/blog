@@ -1,4 +1,7 @@
 defmodule Blog.PageController do
+  @moduledoc """
+  Provides controller actions for static pages.
+  """
   use Blog.Web, :controller
 
   def index(conn, _params) do

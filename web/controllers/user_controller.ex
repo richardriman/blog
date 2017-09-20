@@ -1,4 +1,8 @@
 defmodule Blog.UserController do
+  @moduledoc """
+  Provides controller actions for working with users.
+  """
+  
   use Blog.Web, :controller
   alias Blog.User
   alias Blog.Router.Helpers
