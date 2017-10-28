@@ -47,7 +47,8 @@ defmodule Blog.Mixfile do
       {:comeonin, "~> 2.0"},
       {:slugger, "~> 0.1.0"},
       {:credo, "~> 0.3", only: [:dev, :test]},
-      {:excoveralls, "~> 0.6", only: :test}
+      {:excoveralls, "~> 0.6", only: :test},
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false}
     ]
   end
 
