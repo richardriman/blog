@@ -1,8 +1,8 @@
 {
   "skip_files": [
     "test",
-    "lib/phoenix_blog.ex",
-    "web/web.ex",
-    "web/views/error_helpers.ex"
+    "lib/blog/application.ex",
+    "lib/blog_web.ex",
+    "lib/blog_web/views/error_helpers.ex"
   ]
 }
