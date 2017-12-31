@@ -1,6 +1,6 @@
-defmodule PostControllerHelpersTest do
-  use Blog.ConnCase
-  import Blog.PostControllerHelpers
+defmodule BlogWeb.PostControllerHelpersTest do
+  use BlogWeb.ConnCase
+  import BlogWeb.PostControllerHelpers
 
   test "get_post_list gets only published posts", %{conn: conn} do
     conn = assign(conn, :current_user, nil)

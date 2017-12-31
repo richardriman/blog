@@ -1,11 +1,11 @@
-defmodule Blog.AuthTest do
-  use Blog.ConnCase
-  alias Blog.Auth
+defmodule BlogWeb.AuthTest do
+  use BlogWeb.ConnCase
+  alias BlogWeb.Auth
 
   setup %{conn: conn} do
     conn =
       conn
-      |> bypass_through(Blog.Router, :browser)
+      |> bypass_through(BlogWeb.Router, :browser)
       |> get("/")
 
     {:ok, %{conn: conn}}

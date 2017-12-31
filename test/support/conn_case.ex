@@ -1,4 +1,4 @@
-defmodule Blog.ConnCase do
+defmodule BlogWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,11 +25,11 @@ defmodule Blog.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import Blog.Router.Helpers
+      import BlogWeb.Router.Helpers
       import Blog.TestHelpers
 
       # The default endpoint for testing
-      @endpoint Blog.Endpoint
+      @endpoint BlogWeb.Endpoint
 
       setup %{conn: conn} = config do
         if username = config[:login_as] do

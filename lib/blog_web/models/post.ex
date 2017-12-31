@@ -1,5 +1,5 @@
 defmodule Blog.Post do
-  use Blog.Web, :model
+  use BlogWeb, :model
 
   schema "posts" do
     field :title, :string

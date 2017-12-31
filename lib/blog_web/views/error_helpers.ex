@@ -1,4 +1,4 @@
-defmodule Blog.ErrorHelpers do
+defmodule BlogWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule Blog.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(Blog.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(BlogWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(Blog.Gettext, "errors", msg, opts)
+      Gettext.dgettext(BlogWeb.Gettext, "errors", msg, opts)
     end
   end
 end

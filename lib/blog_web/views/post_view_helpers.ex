@@ -1,4 +1,4 @@
-defmodule Blog.PostViewHelpers do
+defmodule BlogWeb.PostViewHelpers do
   def get_formatted_date(post) do
     month_strings = %{
       1 => "Jan",

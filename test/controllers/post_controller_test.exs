@@ -1,5 +1,5 @@
-defmodule Blog.PostControllerTest do
-  use Blog.ConnCase
+defmodule BlogWeb.PostControllerTest do
+  use BlogWeb.ConnCase
 
   test "require user authentication for certain post actions", %{conn: conn} do
     Enum.each([

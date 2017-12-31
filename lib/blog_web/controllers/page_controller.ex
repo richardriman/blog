@@ -1,8 +1,8 @@
-defmodule Blog.PageController do
+defmodule BlogWeb.PageController do
   @moduledoc """
   Provides controller actions for static pages.
   """
-  use Blog.Web, :controller
+  use BlogWeb, :controller
 
   def index(conn, _params) do
     latest_post =

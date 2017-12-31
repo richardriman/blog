@@ -1,9 +1,9 @@
-defmodule Blog.PostController do
+defmodule BlogWeb.PostController do
   @moduledoc """
   Provides controller actions for working with blog posts.
   """
 
-  use Blog.Web, :controller
+  use BlogWeb, :controller
   alias Blog.Post
 
   # Make sure the user is logged in when attempting to access restricted routes.

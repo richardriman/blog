@@ -1,6 +1,6 @@
-defmodule Blog.PostHelpersTest do
+defmodule BlogWeb.PostHelpersTest do
   use ExUnit.Case, async: true
-  import Blog.PostViewHelpers
+  import BlogWeb.PostViewHelpers
 
   test "get_formatted_date returns correctly formatted date" do
     posts = [

@@ -1,5 +1,5 @@
-defmodule Blog.SessionControllerTest do
-  use Blog.ConnCase
+defmodule BlogWeb.SessionControllerTest do
+  use BlogWeb.ConnCase
 
   test "shows new session page", %{conn: conn} do
     conn = get(conn, session_path(conn, :new))

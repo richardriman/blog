@@ -1,10 +1,10 @@
-defmodule Blog.SessionController do
+defmodule BlogWeb.SessionController do
   @moduledoc """
   Provides controller actions for user sessions.
   """
   
-  use Blog.Web, :controller
-  alias Blog.Auth
+  use BlogWeb, :controller
+  alias BlogWeb.Auth
 
   def new(conn, _) do
     render conn, "new.html"

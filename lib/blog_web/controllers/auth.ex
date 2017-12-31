@@ -1,4 +1,4 @@
-defmodule Blog.Auth do
+defmodule BlogWeb.Auth do
   @moduledoc """
   Plug which provides user authentication functionality.
   """
@@ -6,7 +6,7 @@ defmodule Blog.Auth do
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
   import Phoenix.Controller
-  alias Blog.Router.Helpers
+  alias BlogWeb.Router.Helpers
 
   def init(opts) do
     Keyword.fetch!(opts, :repo)

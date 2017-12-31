@@ -1,5 +1,5 @@
 defmodule Blog.User do
-  use Blog.Web, :model
+  use BlogWeb, :model
 
   schema "users" do
     field :name, :string

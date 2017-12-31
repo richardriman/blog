@@ -1,5 +1,5 @@
-defmodule Blog.PostView do
-  use Blog.Web, :view
+defmodule BlogWeb.PostView do
+  use BlogWeb, :view
 
   def get_formatted_post(post) do
     post.body

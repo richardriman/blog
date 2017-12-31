@@ -1,4 +1,4 @@
-defmodule Blog.PostControllerHelpers do
+defmodule BlogWeb.PostControllerHelpers do
   @moduledoc """
   Provides miscellaneous post functions used by multiple modules.
   """

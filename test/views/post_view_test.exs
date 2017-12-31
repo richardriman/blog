@@ -1,5 +1,5 @@
-defmodule Blog.PostViewTest do
-  use Blog.ConnCase, async: true
+defmodule BlogWeb.PostViewTest do
+  use BlogWeb.ConnCase, async: true
   import Phoenix.View
 
   test "renders index.html", %{conn: conn} do
@@ -18,7 +18,7 @@ defmodule Blog.PostViewTest do
         inserted_at: ~D[2016-01-02]
       }
     ]
-    content = render_to_string(Blog.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
+    content = render_to_string(BlogWeb.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
     assert String.contains?(content, "Posts")
     for post <- posts do
       assert String.contains?(content, post.title)
@@ -41,7 +41,7 @@ defmodule Blog.PostViewTest do
         inserted_at: ~D[2016-01-02]
       }
     ]
-    content = render_to_string(Blog.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
+    content = render_to_string(BlogWeb.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
     assert String.contains?(content, "Posts")
     for post <- posts do
       if post.published do
@@ -54,32 +54,32 @@ defmodule Blog.PostViewTest do
 
   test "renders new.html", %{conn: conn} do
     changeset = Blog.Post.changeset(%Blog.Post{})
-    content = render_to_string(Blog.PostView, "new.html", conn: conn, changeset: changeset)
+    content = render_to_string(BlogWeb.PostView, "new.html", conn: conn, changeset: changeset)
     assert String.contains?(content, "New Post")
   end
 
   @tag :test_post
   test "renders show.html", %{conn: conn, post: post} do
-    content = render_to_string(Blog.PostView, "show.html", conn: conn, current_user: nil, post: post)
+    content = render_to_string(BlogWeb.PostView, "show.html", conn: conn, current_user: nil, post: post)
     assert String.contains?(content, post.title)
   end
 
   @tag test_post: %{published: false}
   test "renders show.html with unpublished post", %{conn: conn, post: post} do
-    content = render_to_string(Blog.PostView, "show.html", conn: conn, current_user: nil, post: post)
+    content = render_to_string(BlogWeb.PostView, "show.html", conn: conn, current_user: nil, post: post)
     assert Regex.match?(~r/(#{post.title})(.*)(\(unpublished\))/s, content)
   end
 
   @tag :test_post
   test "renders edit.html", %{conn: conn, post: post} do
     changeset = Blog.Post.changeset(%Blog.Post{})
-    content = render_to_string(Blog.PostView, "edit.html", conn: conn, changeset: changeset, post: post)
+    content = render_to_string(BlogWeb.PostView, "edit.html", conn: conn, changeset: changeset, post: post)
     assert String.contains?(content, "Edit Post")
   end
 
   test "renders form.html", %{conn: conn} do
     changeset = Blog.Post.changeset(%Blog.Post{})
-    content = render_to_string(Blog.PostView, "form.html", conn: conn, changeset: changeset, action: nil)
+    content = render_to_string(BlogWeb.PostView, "form.html", conn: conn, changeset: changeset, action: nil)
     for word <- ["Title", "Body", "Published"], do: assert String.contains?(content, word)
   end
 
@@ -92,7 +92,7 @@ defmodule Blog.PostViewTest do
       | col | col    | col   |
       """}
 
-    html = Blog.PostView.get_formatted_post(post)
+    html = BlogWeb.PostView.get_formatted_post(post)
     assert String.contains?(html, "<table class=\"pure-table\">")
   end
 end

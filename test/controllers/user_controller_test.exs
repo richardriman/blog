@@ -1,5 +1,5 @@
-defmodule UserControllerTest do
-  use Blog.ConnCase
+defmodule BlogWeb.UserControllerTest do
+  use BlogWeb.ConnCase
   alias Blog.User
 
   @valid_attrs %{name: "John Doe", username: "test", password: "secret"}

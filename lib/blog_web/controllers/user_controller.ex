@@ -1,11 +1,11 @@
-defmodule Blog.UserController do
+defmodule BlogWeb.UserController do
   @moduledoc """
   Provides controller actions for working with users.
   """
   
-  use Blog.Web, :controller
+  use BlogWeb, :controller
   alias Blog.User
-  alias Blog.Router.Helpers
+  alias BlogWeb.Router.Helpers
   alias Blog.Repo
 
   plug :check_user_registration when action in [:new, :create]
@@ -31,7 +31,7 @@ defmodule Blog.UserController do
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
-        |> Blog.Auth.login(user)
+        |> BlogWeb.Auth.login(user)
         |> put_flash(:info, "#{user.name} successfully registered!")
         |> redirect(to: page_path(conn, :index))
       {:error, changeset} ->

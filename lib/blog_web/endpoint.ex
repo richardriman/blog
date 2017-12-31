@@ -1,4 +1,4 @@
-defmodule Blog.Endpoint do
+defmodule BlogWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :blog
 
   # Serve at "/" the static files from "priv/static" directory.
@@ -36,5 +36,5 @@ defmodule Blog.Endpoint do
     key: "_phoenix_blog_key",
     signing_salt: "wjVU0XhT"
 
-  plug Blog.Router
+  plug BlogWeb.Router
 end
