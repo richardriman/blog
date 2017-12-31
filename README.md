@@ -1,4 +1,4 @@
-# Blog [![Build Status](https://travis-ci.org/jswny/phoenix-blog.svg?branch=master)](https://travis-ci.org/jswny/phoenix-blog) [![Coverage Status](https://coveralls.io/repos/github/jswny/phoenix-blog/badge.svg?branch=master)](https://coveralls.io/github/jswny/phoenix-blog?branch=master)
+# Blog [![Build Status](https://travis-ci.org/jswny/blog.svg?branch=master)](https://travis-ci.org/jswny/blog) [![Coverage Status](https://coveralls.io/repos/github/jswny/blog/badge.svg?branch=master)](https://coveralls.io/github/jswny/blog?branch=master)
 
 To start your Phoenix app:
 
