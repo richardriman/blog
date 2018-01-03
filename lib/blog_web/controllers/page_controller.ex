@@ -7,9 +7,9 @@ defmodule BlogWeb.PageController do
   def index(conn, _params) do
     latest_post =
       conn
-      |> get_post_list()
-      |> List.first
-
+      |> ControllerHelpers.list_authorized_posts()
+      |> List.first()
+    
     render(conn, "index.html", latest_post: latest_post)
   end
 

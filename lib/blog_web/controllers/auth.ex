@@ -51,6 +51,10 @@ defmodule BlogWeb.Auth do
     end
   end
 
+  def logged_in?(conn) do
+    if conn.assigns.current_user, do: true, else: false
+  end
+
   def authenticate_user(conn, _opts) do
     if conn.assigns.current_user do
       conn

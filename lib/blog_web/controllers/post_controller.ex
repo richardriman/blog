@@ -10,7 +10,7 @@ defmodule BlogWeb.PostController do
   plug :authenticate_user when action in [:new, :create, :edit, :update, :delete]
 
   def index(conn, _params) do
-    posts = get_post_list(conn)
+    posts = ControllerHelpers.list_authorized_posts(conn)
     
     render(conn, "index.html", posts: posts)
   end
