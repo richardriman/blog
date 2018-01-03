@@ -11,6 +11,15 @@ defmodule BlogWeb.AuthTest do
     {:ok, %{conn: conn}}
   end
 
+  test "logged_in? returns false when no current_user exists", %{conn: conn} do
+    assert Auth.logged_in?(conn) == false
+  end
+
+  test "logged_in? returns true when the current_user exists", %{conn: conn} do
+    conn = assign(conn, :current_user, %Blog.User{})
+    assert Auth.logged_in?(conn) == true
+  end
+
   test "authenticate_user halts when no current_user exists", %{conn: conn} do
     conn = Auth.authenticate_user(conn, [])
     assert conn.halted

@@ -1,8 +1,8 @@
 defmodule BlogWeb.PostControllerHelpersTest do
   use BlogWeb.ConnCase
-  import BlogWeb.PostControllerHelpers
+  import BlogWeb.ControllerHelpers
 
-  test "get_post_list gets only published posts", %{conn: conn} do
+  test "list_authorized_posts lists only published posts", %{conn: conn} do
     conn = assign(conn, :current_user, nil)
     posts = [
       %{title: "post 1", body: "this is post 1.", published: true},
@@ -13,10 +13,10 @@ defmodule BlogWeb.PostControllerHelpersTest do
     for post <- posts do
       insert_post(post)
       if post.published do
-        assert Enum.any?(get_post_list(conn), fn p -> p.title == post.title end)
+        assert Enum.any?(list_authorized_posts(conn), fn p -> p.title == post.title end)
       end
     end
-    assert Enum.count(get_post_list(conn)) == 2
+    assert Enum.count(list_authorized_posts(conn)) == 2
   end
 
   @tag login_as: "user"
@@ -29,8 +29,8 @@ defmodule BlogWeb.PostControllerHelpersTest do
     ]
     for post <- posts do
       insert_post(post)
-      assert Enum.any?(get_post_list(conn), fn p -> p.title == post.title end)
+      assert Enum.any?(list_authorized_posts(conn), fn p -> p.title == post.title end)
     end
-    assert Enum.count(get_post_list(conn)) == 4
+    assert Enum.count(list_authorized_posts(conn)) == 4
   end
 end
