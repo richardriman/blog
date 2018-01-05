@@ -1,6 +1,8 @@
 defmodule Blog.TestHelpers do
   alias Blog.Repo
 
+  # TODO: move these into their own context modules and use the context functions instead of accessing the repo directly
+
   def insert_user(attrs \\ %{}) do
     changes = Map.merge(%{
         name: "Test User",

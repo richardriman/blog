@@ -18,9 +18,7 @@ defmodule Blog.Post do
     end  
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
+  @doc false 
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title, :body, :published])

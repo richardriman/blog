@@ -10,9 +10,7 @@ defmodule Blog.User do
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
+  @doc false 
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:name, :username])
@@ -20,6 +18,7 @@ defmodule Blog.User do
     |> unique_constraint(:username)
   end
 
+  @doc false
   def registration_changeset(struct, params) do
     struct
     |> changeset(params)
