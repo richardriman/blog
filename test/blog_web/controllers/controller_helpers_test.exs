@@ -20,7 +20,7 @@ defmodule BlogWeb.PostControllerHelpersTest do
   end
 
   @tag login_as: "user"
-  test "get_post_list gets all posts when user is logged in", %{conn: conn} do
+  test "list_authorized_posts lists all posts when user is logged in", %{conn: conn} do
     posts = [
       %{title: "post 1", body: "this is post 1.", published: true},
       %{title: "post 2", body: "this is post 2.", published: true},

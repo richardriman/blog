@@ -20,13 +20,7 @@ defmodule BlogWeb.PostControllerTest do
   end
 
   test "list only published posts on index", %{conn: conn} do
-    posts = [
-      %{title: "post 1", body: "this is post 1.", published: true},
-      %{title: "post 2", body: "this is post 2.", published: true},
-      %{title: "post 3", body: "this is post 3.", published: false},
-      %{title: "post 4", body: "this is post 4.", published: false}
-    ]
-
+    posts = fixture_posts()
     for post <- posts do
       insert_post(post)
     end
@@ -43,13 +37,7 @@ defmodule BlogWeb.PostControllerTest do
 
   @tag login_as: "user"
   test "list all posts on index when logged in", %{conn: conn} do
-    posts = [
-      %{title: "post 1", body: "this is post 1.", published: true},
-      %{title: "post 2", body: "this is post 2.", published: true},
-      %{title: "post 3", body: "this is post 3.", published: false},
-      %{title: "post 4", body: "this is post 4.", published: false}
-    ]
-
+    posts = fixture_posts()
     for post <- posts do
       insert_post(post)
     end

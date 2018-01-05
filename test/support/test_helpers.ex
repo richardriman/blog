@@ -18,4 +18,13 @@ defmodule Blog.TestHelpers do
     |> Blog.Post.changeset(attrs)
     |> Repo.insert!()
   end
+
+  def fixture_posts() do
+    [
+      %{title: "post 1", body: "this is post 1.", published: true},
+      %{title: "post 2", body: "this is post 2.", published: true},
+      %{title: "post 3", body: "this is post 3.", published: false},
+      %{title: "post 4", body: "this is post 4.", published: false}
+    ]
+  end
 end

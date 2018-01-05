@@ -16,7 +16,8 @@ defmodule Blog.Posts do
         from p in Post,
         where: p.published == true,
         order_by: [desc: p.inserted_at],
-        select: p
+      select: p
+
     Repo.all(query)
   end
 
