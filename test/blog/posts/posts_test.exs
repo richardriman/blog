@@ -1,10 +1,12 @@
-defmodule Blog.PostsRepoTest do
+defmodule Blog.PostsTest do
   use Blog.ModelCase
   alias Blog.Posts
   alias Blog.Post
 
-  @valid_attrs %{title: "test post", body: "this is a test post.", published: true}
+  @valid_attrs post_attrs() 
   @invalid_attrs %{}
+
+  def valid_attrs(), do: @valid_attrs
 
   test "list_posts/0 lists all posts" do
     posts = fixture_posts()
@@ -35,6 +37,15 @@ defmodule Blog.PostsRepoTest do
     for post <- unpublished do
       refute Enum.any?(result, fn p -> p.title == post.title end) == true
     end 
+  end
+
+  test "get_post_by_slug!/1 returns the post with given slug" do
+    post = insert_post()
+    assert Posts.get_post_by_slug!(post.slug) == post
+  end
+
+  test "get_post_by_slug!/1 raises Ecto.NoResultsError on invalid slug" do
+    assert_raise Ecto.NoResultsError, fn -> Posts.get_post_by_slug!("bad") end
   end
 
   # TODO: dulpicate these for update_post/2

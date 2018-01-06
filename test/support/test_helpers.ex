@@ -1,8 +1,12 @@
 defmodule Blog.TestHelpers do
   alias Blog.Repo
-
+  
+  @valid_post_attrs %{title: "test post", body: "this is a test post.", published: true}
+  
   # TODO: move these into their own context modules and use the context functions instead of accessing the repo directly
 
+  def post_attrs(), do: @valid_post_attrs
+ 
   def insert_user(attrs \\ %{}) do
     changes = Map.merge(%{
         name: "Test User",
@@ -16,9 +20,12 @@ defmodule Blog.TestHelpers do
   end
 
   def insert_post(attrs \\ %{}) do
-    %Blog.Post{}
-    |> Blog.Post.changeset(attrs)
-    |> Repo.insert!()
+    {:ok, post} =
+      attrs
+      |> Enum.into(@valid_post_attrs)
+      |> Blog.Posts.create_post()
+
+    post
   end
 
   def fixture_posts() do

@@ -46,6 +46,24 @@ defmodule Blog.Posts do
   end
 
   @doc """
+  Gets a single post.
+
+  Raises `Ecto.NoResultsError` if the post does not exist.
+
+  ## Examples
+
+      iex> get_post_by_slug("abc123")
+      %Post{}
+
+      iex> get_post_by_slug("bad")
+      ** (Ecto.NoResultsError)
+  """
+  def get_post_by_slug!(slug) do
+    Post
+    |> Repo.get_by!(slug: slug)
+  end
+
+  @doc """
   Creates a post.
 
   ## Examples
