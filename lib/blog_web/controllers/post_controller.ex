@@ -4,10 +4,23 @@ defmodule BlogWeb.PostController do
   """
 
   use BlogWeb, :controller
+  alias BlogWeb.Router.Helpers
   alias Blog.Post
+  alias Blog.Posts
 
   # Make sure the user is logged in when attempting to access restricted routes.
   plug :authenticate_user when action in [:new, :create, :edit, :update, :delete]
+
+  defp authenticate_user(conn, _opts) do
+    if Auth.logged_in?(conn) do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You must be logged in to access that page")
+      |> redirect(to: Helpers.page_path(conn, :index))
+      |> halt()
+    end
+  end
 
   def index(conn, _params) do
     posts = ControllerHelpers.list_authorized_posts(conn)
@@ -16,14 +29,12 @@ defmodule BlogWeb.PostController do
   end
 
   def new(conn, _params) do
-    changeset = Post.changeset(%Post{})
+    changeset = Posts.change_post(%Post{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"post" => post_params}) do
-    changeset = Post.changeset(%Post{}, post_params)
-
-    case Repo.insert(changeset) do
+    case Posts.create_post(post_params) do
       {:ok, _post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
@@ -36,7 +47,7 @@ defmodule BlogWeb.PostController do
   def show(conn, %{"id" => id}) do
     post = Repo.get_by!(Post, slug: id)
 
-    if post.published == true || conn.assigns.current_user do
+    if post.published == true || Auth.logged_in?(conn) do
       render(conn, "show.html", post: post)
     else
       conn
@@ -47,7 +58,7 @@ defmodule BlogWeb.PostController do
 
   def edit(conn, %{"id" => id}) do
     post = Repo.get_by!(Post, slug: id)
-    changeset = Post.changeset(post)
+    changeset = Posts.change_post(post)
     render(conn, "edit.html", post: post, changeset: changeset)
   end
 

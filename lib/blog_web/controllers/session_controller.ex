@@ -4,7 +4,6 @@ defmodule BlogWeb.SessionController do
   """
   
   use BlogWeb, :controller
-  alias BlogWeb.Auth
 
   def new(conn, _) do
     render conn, "new.html"

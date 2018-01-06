@@ -39,7 +39,6 @@ defmodule BlogWeb do
 
       alias BlogWeb.ControllerHelpers
       alias BlogWeb.Auth
-      import BlogWeb.Auth, only: [authenticate_user: 2]
     end
   end
 
