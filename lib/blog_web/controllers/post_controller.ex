@@ -64,9 +64,8 @@ defmodule BlogWeb.PostController do
 
   def update(conn, %{"id" => id, "post" => post_params}) do
     post = Posts.get_post_by_slug!(id) 
-    changeset = Post.changeset(post, post_params)
 
-    case Repo.update(changeset) do
+    case Posts.update_post(post, post_params) do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")

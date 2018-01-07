@@ -6,7 +6,8 @@ defmodule Blog.TestHelpers do
   # TODO: move these into their own context modules and use the context functions instead of accessing the repo directly
 
   def post_attrs(), do: @valid_post_attrs
- 
+
+  # TODO: make this look like insert_post/1 
   def insert_user(attrs \\ %{}) do
     changes = Map.merge(%{
         name: "Test User",
