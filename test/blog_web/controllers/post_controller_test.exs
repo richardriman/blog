@@ -53,7 +53,7 @@ defmodule BlogWeb.PostControllerTest do
     end
   end
 
-  alias Blog.Post
+  alias Blog.Posts.Post
   @valid_attrs %{title: "test post", body: "some cool text.", published: true}
   @invalid_attrs %{title: "invalid post"}
 

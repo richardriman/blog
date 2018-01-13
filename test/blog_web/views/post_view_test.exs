@@ -4,13 +4,13 @@ defmodule BlogWeb.PostViewTest do
 
   test "renders index.html", %{conn: conn} do
     posts = [
-      %Blog.Post{
+      %Blog.Posts.Post{
         title: "post 1", 
         slug: "post-1", 
         body: "this is post 1.", 
         published: true, 
         inserted_at: ~D[2016-01-01]},
-      %Blog.Post{
+      %Blog.Posts.Post{
         title: "post 2", 
         slug: "post-2", 
         body: "this is post 2.", 
@@ -27,13 +27,13 @@ defmodule BlogWeb.PostViewTest do
 
   test "renders index.html with unpublished posts", %{conn: conn} do
     posts = [
-      %Blog.Post{
+      %Blog.Posts.Post{
         title: "post 1", 
         slug: "post-1", 
         body: "this is post 1.", 
         published: true, 
         inserted_at: ~D[2016-01-01]},
-      %Blog.Post{
+      %Blog.Posts.Post{
         title: "post 2", 
         slug: "post-2", 
         body: "this is post 2.", 
@@ -53,7 +53,7 @@ defmodule BlogWeb.PostViewTest do
   end
 
   test "renders new.html", %{conn: conn} do
-    changeset = Blog.Post.changeset(%Blog.Post{})
+    changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "new.html", conn: conn, changeset: changeset)
     assert String.contains?(content, "New Post")
   end
@@ -72,13 +72,13 @@ defmodule BlogWeb.PostViewTest do
 
   @tag :test_post
   test "renders edit.html", %{conn: conn, post: post} do
-    changeset = Blog.Post.changeset(%Blog.Post{})
+    changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "edit.html", conn: conn, changeset: changeset, post: post)
     assert String.contains?(content, "Edit Post")
   end
 
   test "renders form.html", %{conn: conn} do
-    changeset = Blog.Post.changeset(%Blog.Post{})
+    changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "form.html", conn: conn, changeset: changeset, action: nil)
     for word <- ["Title", "Body", "Published"], do: assert String.contains?(content, word)
   end

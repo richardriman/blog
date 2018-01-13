@@ -42,7 +42,7 @@ defmodule BlogWeb.ConnCase do
       end
 
       setup %{conn: conn} = config do
-        post = %Blog.Post{
+        post = %Blog.Posts.Post{
             title: "test post",
             slug: "test-post", 
             body: "this is a test.", 

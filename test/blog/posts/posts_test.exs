@@ -1,7 +1,7 @@
 defmodule Blog.PostsTest do
   use Blog.ModelCase
   alias Blog.Posts
-  alias Blog.Post
+  alias Blog.Posts.Post
 
   @valid_attrs post_attrs() 
   @invalid_attrs %{title: nil}

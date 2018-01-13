@@ -1,4 +1,4 @@
-defmodule Blog.Post do
+defmodule Blog.Posts.Post do
   use BlogWeb, :model
 
   schema "posts" do
@@ -27,7 +27,7 @@ defmodule Blog.Post do
     |> unique_constraint(:slug, message: "There was a problem generating a unique slug for this post. Please ensure that this title is not already taken.")
   end
 
-  defimpl Phoenix.Param, for: Blog.Post do
+  defimpl Phoenix.Param, for: Blog.Posts.Post do
     def to_param(%{slug: slug}), do: slug
   end
 end

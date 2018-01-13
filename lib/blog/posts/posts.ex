@@ -3,10 +3,9 @@ defmodule Blog.Posts do
   This is the context which handles all post functionality.
   """
 
-  import Ecto
   import Ecto.Query, warn: false
   alias Blog.Repo
-  alias Blog.Post
+  alias Blog.Posts.Post
 
   @doc """
   Gets a list of all published posts.
@@ -57,6 +56,7 @@ defmodule Blog.Posts do
 
       iex> get_post_by_slug("bad")
       ** (Ecto.NoResultsError)
+
   """
   def get_post_by_slug!(slug) do
     Post
@@ -91,6 +91,7 @@ defmodule Blog.Posts do
 
       iex> update_post(post, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
+
   """
   def update_post(%Post{} = post, attrs) do
     post
@@ -108,6 +109,7 @@ defmodule Blog.Posts do
       
       iex> delete_post(post)
       {:error, %Ecto.Changeset{}}
+
   """
   def delete_post(%Post{} = post) do
     Repo.delete(post)
@@ -120,6 +122,7 @@ defmodule Blog.Posts do
   
       iex> change_post(post)
       %Ecto.Changeset{source: %Post{}}
+
   """
   def change_post(%Post{} = post) do
     Post.changeset(post, %{})
