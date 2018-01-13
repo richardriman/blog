@@ -120,6 +120,12 @@ defmodule Blog.PostsTest do
     end
   end
 
+  test "delete_post/1 deletes the post" do
+    post = insert_post()
+    assert {:ok, %Post{}} = Posts.delete_post(post)
+    assert_raise Ecto.NoResultsError, fn -> Posts.get_post_by_slug!(post.slug) end
+  end
+
   test "change_post/1 returns a post changeset" do
     post = insert_post(@valid_attrs)
     assert %Ecto.Changeset{} = Posts.change_post(post)

@@ -80,7 +80,7 @@ defmodule BlogWeb.PostController do
 
     # Here we use delete! (with a bang) because we expect
     # it to always work (and if it does not, it will raise).
-    Repo.delete!(post)
+    Posts.delete_post(post)
 
     conn
     |> put_flash(:info, "Post deleted successfully.")

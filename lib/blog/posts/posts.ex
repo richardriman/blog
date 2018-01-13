@@ -99,6 +99,21 @@ defmodule Blog.Posts do
   end
 
   @doc """
+  Deletes a post.
+
+  ## Examples
+  
+      iex> delete_post(post)
+      {:ok, %Post{}}
+      
+      iex> delete_post(post)
+      {:error, %Ecto.Changeset{}}
+  """
+  def delete_post(%Post{} = post) do
+    Repo.delete(post)
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking post changes.
 
   ## Examples
