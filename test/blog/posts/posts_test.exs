@@ -8,6 +8,7 @@ defmodule Blog.PostsTest do
 
   def valid_attrs(), do: @valid_attrs
 
+  # TODO: fix these list tests so that they look like the accounts context tests
   test "list_posts/0 lists all posts" do
     posts = fixture_posts()
     for post <- posts do

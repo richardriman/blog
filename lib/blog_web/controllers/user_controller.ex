@@ -4,6 +4,7 @@ defmodule BlogWeb.UserController do
   """
   
   use BlogWeb, :controller
+  alias Blog.Accounts
   alias Blog.User
   alias BlogWeb.Router.Helpers
   alias Blog.Repo
@@ -11,7 +12,7 @@ defmodule BlogWeb.UserController do
   plug :check_user_registration when action in [:new, :create]
 
   defp check_user_registration(conn, _opts) do
-    case Repo.all(User) do
+    case Accounts.list_users() do
       [] -> conn
       _ -> 
         conn
