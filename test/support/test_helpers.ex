@@ -3,14 +3,15 @@ defmodule Blog.TestHelpers do
   
   # TODO: move these into their own context modules and use the context functions instead of accessing the repo directly
 
-  @valid_post_attrs %{title: "test post", body: "this is a test post.", published: true}
   def post_attrs(), do: @valid_post_attrs
-
   @valid_user_attrs %{name: "test user", username: "user123", password: "secret"}
 
-  # TODO: make this look like insert_post/1 
+  # TODO: finish this when Accounts.insert_user/1 is added 
   def insert_user(attrs \\ %{}) do
-    attrs = Enum.into(attrs, @valid_user_attrs)
+    random = Base.encode16(:crypto.strong_rand_bytes(8))
+
+    valid_attrs = %{name: "test user #{random}", username: "user#{random}", password: "secret#{random}"}
+    attrs = Enum.into(attrs, valid_attrs)
 
     {:ok, user} =
       %Blog.User{}
@@ -19,16 +20,8 @@ defmodule Blog.TestHelpers do
 
     user
   end
-  
-  def fixture_users() do
-    [
-      %{name: "test user 1", username: "user1", password: "secret1"},
-      %{name: "test user 2", username: "user2", password: "secret2"},
-      %{name: "test user 3", username: "user3", password: "secret3"},
-      %{name: "test user 4", username: "user4", password: "secret4"}
-    ]
-  end
 
+  # TODO: use a random seed like insert_user/1 and remove fixture_posts/0
   def insert_post(attrs \\ %{}) do
     {:ok, post} =
       attrs
