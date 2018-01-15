@@ -3,8 +3,8 @@ defmodule Blog.TestHelpers do
   
   # TODO: move these into their own context modules and use the context functions instead of accessing the repo directly
 
+  @valid_post_attrs %{title: "test post", body: "this is a test post.", published: true}
   def post_attrs(), do: @valid_post_attrs
-  @valid_user_attrs %{name: "test user", username: "user123", password: "secret"}
 
   # TODO: finish this when Accounts.insert_user/1 is added 
   def insert_user(attrs \\ %{}) do
