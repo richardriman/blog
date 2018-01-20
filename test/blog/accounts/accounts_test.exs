@@ -20,5 +20,18 @@ defmodule Blog.AccountsTest do
     test "with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Accounts.create_user(@invalid_attrs)
     end
+
+    test "converts unique_constraint on username to error" do
+      insert_user(%{name: "a cool user", username: "user123", password: "secret"})
+      attrs = Map.put(@valid_attrs, :username, "user123")
+      assert {:error, %Ecto.Changeset{} = changeset} = Accounts.create_user(attrs) 
+      assert {:username, {"has already been taken", []}} in changeset.errors
+    end
+
+    test "with valid attributes hashes password" do
+      assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
+      assert @valid_attrs.password != user.password_hash
+      assert Comeonin.Bcrypt.checkpw(@valid_attrs.password, user.password_hash)
+    end
   end
 end
