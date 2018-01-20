@@ -30,6 +30,7 @@ defmodule Blog.AccountsTest do
 
     test "with valid attributes hashes password" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
+      assert user.password_hash
       assert @valid_attrs.password != user.password_hash
       assert Comeonin.Bcrypt.checkpw(@valid_attrs.password, user.password_hash)
     end
