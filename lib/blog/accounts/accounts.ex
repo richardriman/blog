@@ -39,23 +39,23 @@ defmodule Blog.Accounts do
     #|> Repo.get_by!(slug: slug)
   #end
 
-  #@doc """
-  #Creates a post.
+  @doc """
+  Creates a post.
 
-  ### Examples
+  ## Examples
 
-      #iex> create_post(%{field: value})
-      #{:ok, %Post{}}
+      iex> create_user(%{field: value})
+      {:ok, %Post{}}
 
-      #iex> create_post(%{field: bad_value})
-      #{:error, %Ecto.Changeset{}}
+      iex> create_user(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
 
-  #"""
-  #def create_post(attrs \\ %{}) do
-    #%Post{}
-    #|> Post.changeset(attrs)
-    #|> Repo.insert()
-  #end
+  """
+  def create_user(attrs \\ %{}) do
+    %User{}
+    |> User.registration_changeset(attrs)
+    |> Repo.insert()
+  end
 
   #@doc """
   #Updates a post.

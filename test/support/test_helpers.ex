@@ -6,17 +6,15 @@ defmodule Blog.TestHelpers do
   @valid_post_attrs %{title: "test post", body: "this is a test post.", published: true}
   def post_attrs(), do: @valid_post_attrs
 
-  # TODO: finish this when Accounts.insert_user/1 is added 
   def insert_user(attrs \\ %{}) do
     random = Base.encode16(:crypto.strong_rand_bytes(8))
 
     valid_attrs = %{name: "test user #{random}", username: "user#{random}", password: "secret#{random}"}
-    attrs = Enum.into(attrs, valid_attrs)
 
     {:ok, user} =
-      %Blog.User{}
-      |> Blog.User.registration_changeset(attrs)
-      |> Repo.insert()
+      attrs
+      |> Enum.into(valid_attrs)
+      |> Blog.Accounts.create_user()
 
     user
   end
