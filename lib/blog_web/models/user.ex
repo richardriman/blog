@@ -10,6 +10,7 @@ defmodule Blog.User do
     timestamps()
   end
 
+  # Would only be used for things like updating a user where the password is not required.
   @doc false 
   def changeset(struct, params \\ %{}) do
     struct

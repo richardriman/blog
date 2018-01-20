@@ -7,7 +7,6 @@ defmodule BlogWeb.UserController do
   alias Blog.Accounts
   alias Blog.User
   alias BlogWeb.Router.Helpers
-  alias Blog.Repo
 
   plug :check_user_registration when action in [:new, :create]
 
@@ -23,8 +22,8 @@ defmodule BlogWeb.UserController do
   end
 
   def new(conn, _params) do
-    changeset = User.changeset(%User{})
-    render conn, "new.html", changeset: changeset
+    changeset = Accounts.change_user(%User{})
+    render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do

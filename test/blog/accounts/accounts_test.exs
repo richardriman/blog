@@ -35,4 +35,9 @@ defmodule Blog.AccountsTest do
       assert Comeonin.Bcrypt.checkpw(@valid_attrs.password, user.password_hash)
     end
   end
+
+  test "change_user/1 returns a user changeset" do
+    user = insert_user(@valid_attrs)
+    assert %Ecto.Changeset{} = Accounts.change_user(user)
+  end
 end

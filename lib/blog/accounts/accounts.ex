@@ -40,7 +40,7 @@ defmodule Blog.Accounts do
   #end
 
   @doc """
-  Creates a post.
+  Creates a user.
 
   ## Examples
 
@@ -57,50 +57,16 @@ defmodule Blog.Accounts do
     |> Repo.insert()
   end
 
-  #@doc """
-  #Updates a post.
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking user changes.
 
-  ### Examples
-    
-      #iex> update_post(post, %{field: new_value})
-      #{:ok, %Post{}}
-
-      #iex> update_post(post, %{field: bad_value})
-      #{:error, %Ecto.Changeset{}}
-
-  #"""
-  #def update_post(%Post{} = post, attrs) do
-    #post
-    #|> Post.changeset(attrs)
-    #|> Repo.update()
-  #end
-
-  #@doc """
-  #Deletes a post.
-
-  ### Examples
+  ## Examples
   
-      #iex> delete_post(post)
-      #{:ok, %Post{}}
-      
-      #iex> delete_post(post)
-      #{:error, %Ecto.Changeset{}}
+      iex> change_user(user)
+      %Ecto.Changeset{source: %User{}}
 
-  #"""
-  #def delete_post(%Post{} = post) do
-    #Repo.delete(post)
-  #end
-
-  #@doc """
-  #Returns an `%Ecto.Changeset{}` for tracking post changes.
-
-  ### Examples
-  
-      #iex> change_post(post)
-      #%Ecto.Changeset{source: %Post{}}
-
-  #"""
-  #def change_post(%Post{} = post) do
-    #Post.changeset(post, %{})
-  #end
+  """
+  def change_user(%User{} = user) do
+    User.registration_changeset(user, %{})
+  end
 end
