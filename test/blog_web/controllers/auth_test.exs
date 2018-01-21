@@ -74,4 +74,8 @@ defmodule BlogWeb.AuthTest do
     assert {:error, :unauthorized, _conn} =
       Auth.login_by_username_and_pass(conn, "test", "wrong", repo: Repo)
   end
+
+  test "init passes through opts" do
+    assert Auth.init(key: "value") == [key: "value"]
+  end
 end
