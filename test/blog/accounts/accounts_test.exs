@@ -11,6 +11,28 @@ defmodule Blog.AccountsTest do
     assert Accounts.list_users() == Enum.map(users, fn u -> %{u | password: nil} end) 
   end
 
+  describe "get_user/1" do
+    test "returns the user with given id" do
+      user = insert_user()
+      assert Accounts.get_user(user.id) == %{user | password: nil}
+    end
+
+    test "with invalid data returns nil" do
+      assert Accounts.get_user(123) == nil
+    end
+  end
+
+  describe "get_user_by_username/1" do
+    test "returns the user with given username" do
+      user = insert_user()
+      assert Accounts.get_user_by_username(user.username) == %{user | password: nil}
+    end
+
+    test "with invalid data returns nil" do
+      assert Accounts.get_user_by_username("wrong") == nil
+    end
+  end
+
   describe "create_user/1" do
     test "with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)

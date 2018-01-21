@@ -20,24 +20,39 @@ defmodule Blog.Accounts do
     Repo.all(User)
   end
 
-  #@doc """
-  #Gets a single post.
+  @doc """
+  Gets a single user.
 
-  #Raises `Ecto.NoResultsError` if the post does not exist.
+  ## Examples
 
-  ### Examples
+      iex> get_user("abc123")
+      %User{}
 
-      #iex> get_post_by_slug("abc123")
-      #%Post{}
+      iex> get_user("bad")
+      nil
 
-      #iex> get_post_by_slug("bad")
-      #** (Ecto.NoResultsError)
+  """
+  def get_user(id) do
+    User
+    |> Repo.get(id)
+  end
 
-  #"""
-  #def get_post_by_slug!(slug) do
-    #Post
-    #|> Repo.get_by!(slug: slug)
-  #end
+  @doc """
+  Gets a single user by a given `username`.
+
+  ## Examples
+
+      iex> get_user_by_username("abc123")
+      %User{}
+
+      iex> get_user_by_username("bad")
+      nil
+
+  """
+  def get_user_by_username(username) do
+    User
+    |> Repo.get_by(username: username)
+  end
 
   @doc """
   Creates a user.

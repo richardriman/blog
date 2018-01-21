@@ -45,16 +45,16 @@ defmodule Blog.Posts do
   end
 
   @doc """
-  Gets a single post.
+  Gets a single post by a given `slug`.
 
   Raises `Ecto.NoResultsError` if the post does not exist.
 
   ## Examples
 
-      iex> get_post_by_slug("abc123")
+      iex> get_post_by_slug!("abc123")
       %Post{}
 
-      iex> get_post_by_slug("bad")
+      iex> get_post_by_slug!("bad")
       ** (Ecto.NoResultsError)
 
   """
