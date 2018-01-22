@@ -1,4 +1,4 @@
-defmodule Blog.User do
+defmodule Blog.Accounts.User do
   use BlogWeb, :model
 
   schema "users" do

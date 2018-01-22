@@ -5,7 +5,7 @@ defmodule Blog.Accounts do
 
   import Ecto.Query, warn: false
   alias Blog.Repo
-  alias Blog.User
+  alias Blog.Accounts.User
 
   @doc """
   Gets a list of all users.

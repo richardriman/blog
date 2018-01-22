@@ -5,7 +5,7 @@ defmodule BlogWeb.UserController do
   
   use BlogWeb, :controller
   alias Blog.Accounts
-  alias Blog.User
+  alias Blog.Accounts.User
   alias BlogWeb.Router.Helpers
 
   plug :check_user_registration when action in [:new, :create]

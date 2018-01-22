@@ -1,6 +1,6 @@
 defmodule BlogWeb.UserControllerTest do
   use BlogWeb.ConnCase
-  alias Blog.User
+  alias Blog.Accounts.User
 
   @valid_attrs %{name: "John Doe", username: "test", password: "secret"}
   @invalid_attrs %{}

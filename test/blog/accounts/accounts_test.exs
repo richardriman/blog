@@ -1,7 +1,7 @@
 defmodule Blog.AccountsTest do
   use Blog.ModelCase
   alias Blog.Accounts
-  alias Blog.User
+  alias Blog.Accounts.User
 
   @valid_attrs %{name: "test user", username: "user", password: "secret"}
   @invalid_attrs %{name: nil}

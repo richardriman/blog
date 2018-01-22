@@ -16,14 +16,14 @@ defmodule BlogWeb.AuthTest do
   end
 
   test "logged_in? returns true when the current_user exists", %{conn: conn} do
-    conn = assign(conn, :current_user, %Blog.User{})
+    conn = assign(conn, :current_user, %Blog.Accounts.User{})
     assert Auth.logged_in?(conn) == true
   end
 
   test "login puts the user into the session", %{conn: conn} do
     login_conn =
       conn
-      |> Auth.login(%Blog.User{id: 123})
+      |> Auth.login(%Blog.Accounts.User{id: 123})
       |> send_resp(:ok, "")
 
     next_conn = get(login_conn, "/")
