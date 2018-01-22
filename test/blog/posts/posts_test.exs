@@ -3,17 +3,14 @@ defmodule Blog.PostsTest do
   alias Blog.Posts
   alias Blog.Posts.Post
 
-  @valid_attrs post_attrs() 
+  @valid_attrs %{title: "test post", body: "this is a test post.", published: true}
   @invalid_attrs %{title: nil}
 
   def valid_attrs(), do: @valid_attrs
 
   # TODO: fix these list tests so that they look like the accounts context tests
   test "list_posts/0 lists all posts" do
-    posts = fixture_posts()
-    for post <- posts do
-      insert_post(post)
-    end
+    posts = gen_fixture_posts(4)
 
     result = Posts.list_posts()
     for post <- posts do
@@ -22,10 +19,7 @@ defmodule Blog.PostsTest do
   end
   
   test "list_published_posts/0 lists all published posts" do
-    posts = fixture_posts()
-    for post <- posts do
-      insert_post(post)
-    end
+    posts = gen_fixture_posts(4)
 
     result = Posts.list_published_posts()
     published = Enum.filter(posts, fn p -> p.published == true end) 
@@ -114,9 +108,9 @@ defmodule Blog.PostsTest do
       end
     end
 
-    test "converts unique_constraint on slug to error" do
-      post = insert_post(%{title: "a cool post"})
-      assert {:error, %Ecto.Changeset{} = changeset} = Posts.update_post(post, %{title: @valid_attrs.title}) 
+    test "converts unique_constraint on slug to error", %{post: post} do
+      new_post = insert_post(%{title: "a cool post"})
+      assert {:error, %Ecto.Changeset{} = changeset} = Posts.update_post(new_post, %{title: post.title}) 
       assert {:slug, {"There was a problem generating a unique slug for this post. Please ensure that this title is not already taken.", []}} in changeset.errors
     end
   end

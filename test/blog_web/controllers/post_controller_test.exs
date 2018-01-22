@@ -20,10 +20,7 @@ defmodule BlogWeb.PostControllerTest do
   end
 
   test "list only published posts on index", %{conn: conn} do
-    posts = fixture_posts()
-    for post <- posts do
-      insert_post(post)
-    end
+    posts = gen_fixture_posts(4)
 
     conn = get(conn, post_path(conn, :index))
     assert html_response(conn, 200) =~ ~r/Posts/
@@ -37,10 +34,7 @@ defmodule BlogWeb.PostControllerTest do
 
   @tag login_as: "user"
   test "list all posts on index when logged in", %{conn: conn} do
-    posts = fixture_posts()
-    for post <- posts do
-      insert_post(post)
-    end
+    posts = gen_fixture_posts(4)
 
     conn = get(conn, post_path(conn, :index))
     assert html_response(conn, 200) =~ ~r/Posts/
