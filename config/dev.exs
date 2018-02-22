@@ -38,6 +38,6 @@ config :blog, Blog.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "phoenix_blog_dev",
+  database: "blog_dev",
   hostname: "localhost",
   pool_size: 10

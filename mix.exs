@@ -22,8 +22,7 @@ defmodule Blog.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Blog.Application, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+     extra_applications: [:logger, :runtime_tools]]
   end
 
   # Specifies which paths to compile per environment.
@@ -46,9 +45,9 @@ defmodule Blog.Mixfile do
       {:earmark, "~> 1.0"},
       {:comeonin, "~> 2.0"},
       {:slugger, "~> 0.1.0"},
-      {:credo, "~> 0.3", only: [:dev]},
       {:excoveralls, "~> 0.6", only: :test},
-      {:ex_doc, "~> 0.16", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
+      {:distillery, "~> 1.5", runtime: false}
     ]
   end
 
