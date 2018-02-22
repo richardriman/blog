@@ -24,7 +24,7 @@ services:
     container_name: blog-server
     environment:
       - PORT=5002
-      - HOST="myapp.com"
+      - HOST="j1.io"
     command: foreground
     networks:
       - nginx-network
