@@ -1,8 +1,5 @@
 FROM bitwalker/alpine-erlang:20.2.2
 
-# Set exposed ports
-EXPOSE 5000 
-
 # Set environment variables
 ENV MIX_ENV=prod
 
