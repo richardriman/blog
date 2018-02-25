@@ -34,13 +34,15 @@ defmodule Blog.PostsTest do
     end 
   end
 
-  test "get_post_by_slug!/1 returns the post with given slug" do
-    post = insert_post()
-    assert Posts.get_post_by_slug!(post.slug) == post
-  end
+  describe "get_post_by_slug!/1" do
+    test "returns the post with given slug" do
+      post = insert_post()
+      assert Posts.get_post_by_slug!(post.slug) == post
+    end
 
-  test "get_post_by_slug!/1 raises Ecto.NoResultsError on invalid slug" do
-    assert_raise Ecto.NoResultsError, fn -> Posts.get_post_by_slug!("bad") end
+    test "raises Ecto.NoResultsError on invalid slug" do
+      assert_raise Ecto.NoResultsError, fn -> Posts.get_post_by_slug!("bad") end
+    end
   end
 
   describe "create_post/1" do
