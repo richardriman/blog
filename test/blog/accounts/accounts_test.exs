@@ -1,5 +1,5 @@
 defmodule Blog.AccountsTest do
-  use Blog.ModelCase
+  use Blog.DataCase
   alias Blog.Accounts
   alias Blog.Accounts.User
 
