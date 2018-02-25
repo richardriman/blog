@@ -7,22 +7,22 @@ defmodule Blog.ReleaseTasks do
     :ecto
   ]
 
-  def myapp, do: :blog
+  defp app(), do: :blog
 
-  def repos, do: Application.get_env(myapp(), :ecto_repos, [])
+  defp repos(), do: Application.get_env(app(), :ecto_repos, [])
 
-  def seed do
-    me = myapp()
+  def seed() do
+    me = app()
 
     IO.puts "Loading #{me}.."
-    # Load the code for myapp, but don't start it
+    # Load the code for the app, but don't start it
     :ok = Application.load(me)
 
     IO.puts "Starting dependencies.."
     # Start apps necessary for executing migrations
     Enum.each(@start_apps, &Application.ensure_all_started/1)
 
-    # Start the Repo(s) for myapp
+    # Start the Repo(s) for the app
     IO.puts "Starting repos.."
     Enum.each(repos(), &(&1.start_link(pool_size: 1)))
 
@@ -34,9 +34,9 @@ defmodule Blog.ReleaseTasks do
     :init.stop()
   end
 
-  def migrate, do: Enum.each(repos(), &run_migrations_for/1)
+  defp migrate(), do: Enum.each(repos(), &run_migrations_for/1)
 
-  def priv_dir(app), do: "#{:code.priv_dir(app)}"
+  defp priv_dir(app), do: "#{:code.priv_dir(app)}"
 
   defp run_migrations_for(repo) do
     app = Keyword.get(repo.config, :otp_app)
@@ -44,9 +44,9 @@ defmodule Blog.ReleaseTasks do
     Ecto.Migrator.run(repo, migrations_path(repo), :up, all: true)
   end
 
-  def migrations_path(repo), do: priv_path_for(repo, "migrations")
+  defp migrations_path(repo), do: priv_path_for(repo, "migrations")
 
-  def priv_path_for(repo, filename) do
+  defp priv_path_for(repo, filename) do
     app = Keyword.get(repo.config, :otp_app)
     repo_underscore = repo |> Module.split |> List.last |> Macro.underscore
     Path.join([priv_dir(app), repo_underscore, filename])

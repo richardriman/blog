@@ -3,6 +3,7 @@
     "test",
     "lib/blog/application.ex",
     "lib/blog_web.ex",
-    "lib/blog_web/views/error_helpers.ex"
+    "lib/blog_web/views/error_helpers.ex",
+    "lib/release_tasks.ex"
   ]
 }
