@@ -2,7 +2,7 @@ defmodule BlogWeb.PostHelpersTest do
   use ExUnit.Case, async: true
   import BlogWeb.PostViewHelpers
 
-  test "get_formatted_date returns correctly formatted date" do
+  test "get_formatted_date/1 returns correctly formatted date" do
     posts = [
       %{inserted_at: ~D[2012-07-08], formatted_date: "8 Jul 2012"},
       %{inserted_at: ~D[2015-11-10], formatted_date: "10 Nov 2015"},

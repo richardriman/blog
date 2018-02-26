@@ -2,52 +2,54 @@ defmodule BlogWeb.PostViewTest do
   use BlogWeb.ConnCase, async: true
   import Phoenix.View
 
-  test "renders index.html", %{conn: conn} do
-    posts = [
-      %Blog.Posts.Post{
-        title: "post 1", 
-        slug: "post-1", 
-        body: "this is post 1.", 
-        published: true, 
-        inserted_at: ~D[2016-01-01]},
-      %Blog.Posts.Post{
-        title: "post 2", 
-        slug: "post-2", 
-        body: "this is post 2.", 
-        published: true, 
-        inserted_at: ~D[2016-01-02]
-      }
-    ]
-    content = render_to_string(BlogWeb.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
-    assert String.contains?(content, "Posts")
-    for post <- posts do
-      assert String.contains?(content, post.title)
-    end
-  end
-
-  test "renders index.html with unpublished posts", %{conn: conn} do
-    posts = [
-      %Blog.Posts.Post{
-        title: "post 1", 
-        slug: "post-1", 
-        body: "this is post 1.", 
-        published: true, 
-        inserted_at: ~D[2016-01-01]},
-      %Blog.Posts.Post{
-        title: "post 2", 
-        slug: "post-2", 
-        body: "this is post 2.", 
-        published: false, 
-        inserted_at: ~D[2016-01-02]
-      }
-    ]
-    content = render_to_string(BlogWeb.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
-    assert String.contains?(content, "Posts")
-    for post <- posts do
-      if post.published do
+  describe "index.html" do
+    test "renders index.html", %{conn: conn} do
+      posts = [
+        %Blog.Posts.Post{
+          title: "post 1", 
+          slug: "post-1", 
+          body: "this is post 1.", 
+          published: true, 
+          inserted_at: ~D[2016-01-01]},
+        %Blog.Posts.Post{
+          title: "post 2", 
+          slug: "post-2", 
+          body: "this is post 2.", 
+          published: true, 
+          inserted_at: ~D[2016-01-02]
+        }
+      ]
+      content = render_to_string(BlogWeb.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
+      assert String.contains?(content, "Posts")
+      for post <- posts do
         assert String.contains?(content, post.title)
-      else
-        assert Regex.match?(~r/(#{post.title})(.*)(\(unpublished\))/s, content)
+      end
+    end
+
+    test "renders index.html with unpublished posts", %{conn: conn} do
+      posts = [
+        %Blog.Posts.Post{
+          title: "post 1", 
+          slug: "post-1", 
+          body: "this is post 1.", 
+          published: true, 
+          inserted_at: ~D[2016-01-01]},
+        %Blog.Posts.Post{
+          title: "post 2", 
+          slug: "post-2", 
+          body: "this is post 2.", 
+          published: false, 
+          inserted_at: ~D[2016-01-02]
+        }
+      ]
+      content = render_to_string(BlogWeb.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
+      assert String.contains?(content, "Posts")
+      for post <- posts do
+        if post.published do
+          assert String.contains?(content, post.title)
+        else
+          assert Regex.match?(~r/(#{post.title})(.*)(\(unpublished\))/s, content)
+        end
       end
     end
   end
@@ -58,16 +60,18 @@ defmodule BlogWeb.PostViewTest do
     assert String.contains?(content, "New Post")
   end
 
-  @tag :test_post
-  test "renders show.html", %{conn: conn, post: post} do
-    content = render_to_string(BlogWeb.PostView, "show.html", conn: conn, current_user: nil, post: post)
-    assert String.contains?(content, post.title)
-  end
+  describe "show.html" do
+    @tag :test_post
+    test "renders", %{conn: conn, post: post} do
+      content = render_to_string(BlogWeb.PostView, "show.html", conn: conn, current_user: nil, post: post)
+      assert String.contains?(content, post.title)
+    end
 
-  @tag test_post: %{published: false}
-  test "renders show.html with unpublished post", %{conn: conn, post: post} do
-    content = render_to_string(BlogWeb.PostView, "show.html", conn: conn, current_user: nil, post: post)
-    assert Regex.match?(~r/(#{post.title})(.*)(\(unpublished\))/s, content)
+    @tag test_post: %{published: false}
+    test "renders with unpublished post", %{conn: conn, post: post} do
+      content = render_to_string(BlogWeb.PostView, "show.html", conn: conn, current_user: nil, post: post)
+      assert Regex.match?(~r/(#{post.title})(.*)(\(unpublished\))/s, content)
+    end
   end
 
   @tag :test_post
