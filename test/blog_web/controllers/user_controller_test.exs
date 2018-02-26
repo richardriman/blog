@@ -16,20 +16,22 @@ defmodule BlogWeb.UserControllerTest do
 
   defp user_count(query), do: Repo.one(from p in query, select: count(p.id))
 
-  @tag test_user: true
-  test "creates new user and redirects when there are no users", %{conn: conn} do
-    assert redirected_to(conn) == page_path(conn, :index)
-    assert get_flash(conn, :info) == "#{@valid_attrs.name} successfully registered!"
-    lookup_attrs = Map.delete(@valid_attrs, :password)
-    assert Repo.get_by!(User, lookup_attrs).username == @valid_attrs.username
-  end
+  describe "create user" do
+    @tag test_user: true
+    test "creates new user and redirects when there are no users", %{conn: conn} do
+      assert redirected_to(conn) == page_path(conn, :index)
+      assert get_flash(conn, :info) == "#{@valid_attrs.name} successfully registered!"
+      lookup_attrs = Map.delete(@valid_attrs, :password)
+      assert Repo.get_by!(User, lookup_attrs).username == @valid_attrs.username
+    end
 
-  @tag test_user: false
-  test "does not create user and renders errors when invalid", %{conn: conn} do
-    count_before = user_count(User)
-    conn = post(conn, user_path(conn, :create), user: @invalid_attrs)
-    assert html_response(conn, 200) =~ "check the errors"
-    assert user_count(User) == count_before
+    @tag test_user: false
+    test "does not create user and renders errors when invalid", %{conn: conn} do
+      count_before = user_count(User)
+      conn = post(conn, user_path(conn, :create), user: @invalid_attrs)
+      assert html_response(conn, 200) =~ "check the errors"
+      assert user_count(User) == count_before
+    end
   end
 
   @tag test_user: true
@@ -44,7 +46,7 @@ defmodule BlogWeb.UserControllerTest do
   end
 
   @tag test_user: false
-  test "shows new user page", %{conn: conn} do
+  test "new user shows new user page", %{conn: conn} do
     conn = get(conn, user_path(conn, :new))
     assert html_response(conn, :ok) =~ ~r/New User/s
   end

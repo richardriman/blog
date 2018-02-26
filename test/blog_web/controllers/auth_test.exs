@@ -22,17 +22,7 @@ defmodule BlogWeb.AuthTest do
     end
   end
 
-  test "login puts the user into the session", %{conn: conn} do
-    login_conn =
-      conn
-      |> Auth.login(%Blog.Accounts.User{id: 123})
-      |> send_resp(:ok, "")
-
-    next_conn = get(login_conn, "/")
-    assert get_session(next_conn, :user_id) == 123
-  end
-
-  test "logout drops the session", %{conn: conn} do
+  test "logout/0 drops the session", %{conn: conn} do
     logout_conn =
       conn
       |> put_session(:user_id, 123)
@@ -61,7 +51,19 @@ defmodule BlogWeb.AuthTest do
   end
 
   describe "login/2" do
-    test "with a valid username and pass", %{conn: conn} do
+    test "puts the user into the session", %{conn: conn} do
+      login_conn =
+        conn
+        |> Auth.login(%Blog.Accounts.User{id: 123})
+        |> send_resp(:ok, "")
+
+      next_conn = get(login_conn, "/")
+      assert get_session(next_conn, :user_id) == 123
+    end
+  end
+
+  describe "login_by_username_and_pass/4" do
+    test " with a valid username and pass assigns the user id", %{conn: conn} do
       user = insert_user(%{username: "test", password: "secret"})
       {:ok, conn} = 
         Auth.login_by_username_and_pass(conn, "test", "secret", repo: Repo)
@@ -81,7 +83,7 @@ defmodule BlogWeb.AuthTest do
     end
   end
 
-  test "init passes through opts" do
+  test "init/1 passes through opts" do
     assert Auth.init(key: "value") == [key: "value"]
   end
 end

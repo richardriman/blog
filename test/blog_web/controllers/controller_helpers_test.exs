@@ -2,7 +2,7 @@ defmodule BlogWeb.PostControllerHelpersTest do
   use BlogWeb.ConnCase
   import BlogWeb.ControllerHelpers
 
-  test "list_authorized_posts lists only published posts", %{conn: conn} do
+  test "list_authorized_posts/1 lists only published posts", %{conn: conn} do
     conn = assign(conn, :current_user, nil)
     posts = [
       %{title: "post 1", body: "this is post 1.", published: true},
@@ -20,7 +20,7 @@ defmodule BlogWeb.PostControllerHelpersTest do
   end
 
   @tag login_as: "user"
-  test "list_authorized_posts lists all posts when user is logged in", %{conn: conn} do
+  test "list_authorized_posts/1 lists all posts when user is logged in", %{conn: conn} do
     posts = [
       %{title: "post 1", body: "this is post 1.", published: true},
       %{title: "post 2", body: "this is post 2.", published: true},
