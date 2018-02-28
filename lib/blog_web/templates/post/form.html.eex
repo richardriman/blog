@@ -29,8 +29,3 @@
 <% end %>
 
 <script src="<%= static_path(@conn, "/js/markdown.js") %>"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function(e) {
-    require('js/markdown.js');
-  });
-</script>
