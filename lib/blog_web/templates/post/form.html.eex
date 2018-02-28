@@ -28,9 +28,9 @@
   </fieldset>
 <% end %>
 
-<script src="/js/markdown.js"></script>
+<script src="<%= static_path(@conn, "/js/markdown.js") %>"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function(e) {
-    require('web/static/js/markdown.js');
+    require('js/markdown.js');
   });
 </script>
