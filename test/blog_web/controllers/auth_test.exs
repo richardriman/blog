@@ -35,7 +35,7 @@ defmodule BlogWeb.AuthTest do
 
   describe "call/2" do
     test "places user from session into assigns", %{conn: conn} do
-      user = insert_user()
+      user = user_fixture()
       conn =
         conn
         |> put_session(:user_id, user.id)
@@ -64,7 +64,7 @@ defmodule BlogWeb.AuthTest do
 
   describe "login_by_username_and_pass/4" do
     test " with a valid username and pass assigns the user id", %{conn: conn} do
-      user = insert_user(%{username: "test", password: "secret"})
+      user = user_fixture(%{username: "test", password: "secret"})
       {:ok, conn} = 
         Auth.login_by_username_and_pass(conn, "test", "secret", repo: Repo)
 
@@ -77,7 +77,7 @@ defmodule BlogWeb.AuthTest do
     end
 
     test "with password mismatch", %{conn: conn} do
-      _ = insert_user(%{username: "test", password: "secret"})
+      _ = user_fixture(%{username: "test", password: "secret"})
       assert {:error, :unauthorized, _conn} =
         Auth.login_by_username_and_pass(conn, "test", "wrong", repo: Repo)
     end

@@ -8,7 +8,7 @@ defmodule BlogWeb.SessionControllerTest do
 
   describe "create session" do
     test "creates a new session", %{conn: conn} do
-      user = insert_user()
+      user = user_fixture()
       params = %{"session" => %{"username" => user.username, "password" => user.password}}
       conn = post(conn, session_path(conn, :create, params))
       assert get_flash(conn, :info) == "Welcome back!"
@@ -16,7 +16,7 @@ defmodule BlogWeb.SessionControllerTest do
     end
 
     test "does not create a new session with invalid params", %{conn: conn} do
-      user = insert_user()
+      user = user_fixture()
       params = %{"session" => %{"username" => user.username, "password" => "wrong"}}
       conn = post(conn, session_path(conn, :create, params))
       assert get_flash(conn, :error) == "Invalid username/password combination"
@@ -24,7 +24,7 @@ defmodule BlogWeb.SessionControllerTest do
     end
 
     test "creates a new session and correctly sets the session and assigns", %{conn: conn} do
-      user = insert_user()
+      user = user_fixture()
       params = %{"session" => %{"username" => user.username, "password" => user.password}}
       conn = post(conn, session_path(conn, :create, params))
       assert get_session(conn, :user_id) == user.id
@@ -33,7 +33,7 @@ defmodule BlogWeb.SessionControllerTest do
   end
 
   test "delete session logs out of current session", %{conn: conn} do
-    user = insert_user()
+    user = user_fixture()
     params = %{"session" => %{"username" => user.username, "password" => user.password}}
     conn = post(conn, session_path(conn, :create, params))
     conn = delete(conn, session_path(conn, :delete, conn.assigns.current_user))

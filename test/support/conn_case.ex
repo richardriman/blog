@@ -27,13 +27,14 @@ defmodule BlogWeb.ConnCase do
 
       import BlogWeb.Router.Helpers
       import Blog.TestHelpers
+      import Blog.AccountsFixtures
 
       # The default endpoint for testing
       @endpoint BlogWeb.Endpoint
 
       setup %{conn: conn} = config do
         if username = config[:login_as] do
-          user = insert_user(%{username: username})
+          user = user_fixture(%{username: username})
           conn = assign(build_conn(), :current_user, user)
           {:ok, conn: conn}
         else

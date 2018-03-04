@@ -1,18 +1,8 @@
 defmodule Blog.TestHelpers do
-  
-  defp gen_random_string(), do: Base.encode16(:crypto.strong_rand_bytes(8))
-
-  def insert_user(attrs \\ %{}) do
-    random = gen_random_string() 
-    valid_attrs = %{name: "test user #{random}", username: "user#{random}", password: "secret#{random}"}
-
-    {:ok, user} =
-      attrs
-      |> Enum.into(valid_attrs)
-      |> Blog.Accounts.create_user()
-
-    user
-  end
+  @doc """
+  Generates a random 8-byte string.
+  """
+  def gen_random_string(), do: Base.encode16(:crypto.strong_rand_bytes(8))
 
   def insert_post(attrs \\ %{}) do
     random = gen_random_string()
