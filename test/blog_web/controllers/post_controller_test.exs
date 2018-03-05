@@ -1,5 +1,6 @@
 defmodule BlogWeb.PostControllerTest do
   use BlogWeb.ConnCase
+  import Blog.PostsFixtures
   alias Blog.Posts.Post
 
   @valid_attrs %{title: "test post", body: "some cool text.", published: true}
@@ -25,7 +26,7 @@ defmodule BlogWeb.PostControllerTest do
     end
 
     test "lists only published posts", %{conn: conn} do
-      posts = gen_fixture_posts(4)
+      posts = gen_post_fixtures(4)
 
       conn = get(conn, post_path(conn, :index))
       assert html_response(conn, 200) =~ ~r/Posts/
@@ -39,7 +40,7 @@ defmodule BlogWeb.PostControllerTest do
 
     @tag login_as: "user"
     test "list all posts when logged in", %{conn: conn} do
-      posts = gen_fixture_posts(4)
+      posts = gen_post_fixtures(4)
 
       conn = get(conn, post_path(conn, :index))
       assert html_response(conn, 200) =~ ~r/Posts/
@@ -79,7 +80,7 @@ defmodule BlogWeb.PostControllerTest do
         %{title: "post 2", body: "this is post 2.", published: false}
       ]
       for post <- posts do
-        inserted_post = insert_post(post)
+        inserted_post = post_fixture(post)
         conn = get(conn, post_path(conn, :show, inserted_post))
         assert redirected_to(conn) == post_path(conn, :index)
       end
@@ -92,7 +93,7 @@ defmodule BlogWeb.PostControllerTest do
         %{title: "post 2", body: "this is post 2.", published: false}
       ]
       for post <- posts do
-        inserted_post = insert_post(post)
+        inserted_post = post_fixture(post)
         conn = get(conn, post_path(conn, :show, inserted_post))
         if post.published do
           assert html_response(conn, :ok) =~ ~r/#{post.body}/s
@@ -111,7 +112,7 @@ defmodule BlogWeb.PostControllerTest do
 
   @tag login_as: "user"
   test "edit shows post edit page", %{conn: conn} do
-    post = insert_post(@valid_attrs)
+    post = post_fixture(@valid_attrs)
     conn = get(conn, post_path(conn, :edit, post))
     assert html_response(conn, :ok) =~ ~r/Edit Post/s
   end
@@ -119,7 +120,7 @@ defmodule BlogWeb.PostControllerTest do
   describe "update post" do
     @tag login_as: "user"
     test "updates existing post and redirects", %{conn: conn} do
-      post = insert_post(@valid_attrs)
+      post = post_fixture(@valid_attrs)
       conn = put(conn, post_path(conn, :update, post), post: %{title: "new title"})
       assert html_response(conn, 302)
       assert Repo.get(Post, post.id).title == "new title"
@@ -127,7 +128,7 @@ defmodule BlogWeb.PostControllerTest do
 
     @tag login_as: "user"
     test "does not update invlaid post", %{conn: conn} do
-      post = insert_post(@valid_attrs)
+      post = post_fixture(@valid_attrs)
       conn = put(conn, post_path(conn, :update, post), post: %{title: ""})
       assert html_response(conn, 200) =~ "check the errors"
       assert Repo.get(Post, post.id).title == post.title
@@ -136,7 +137,7 @@ defmodule BlogWeb.PostControllerTest do
 
   @tag login_as: "user"
   test "delete post deletes existing post", %{conn: conn} do
-    post = insert_post(@valid_attrs)
+    post = post_fixture(@valid_attrs)
     conn = delete(conn, post_path(conn, :delete, post))
     assert html_response(conn, 302)
     refute Repo.get(Post, post.id)

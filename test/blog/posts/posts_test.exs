@@ -1,16 +1,15 @@
 defmodule Blog.PostsTest do
   use Blog.DataCase
+  import Blog.PostsFixtures
   alias Blog.Posts
   alias Blog.Posts.Post
 
-  @valid_attrs %{title: "test post", body: "this is a test post.", published: true}
-  @invalid_attrs %{title: nil}
-
-  def valid_attrs(), do: @valid_attrs
+  @valid_attrs valid_attrs()
+  @invalid_attrs invalid_attrs()
 
   # TODO: fix these list tests so that they look like the accounts context tests
   test "list_posts/0 lists all posts" do
-    posts = gen_fixture_posts(4)
+    posts = gen_post_fixtures(4)
 
     result = Posts.list_posts()
     for post <- posts do
@@ -19,7 +18,7 @@ defmodule Blog.PostsTest do
   end
   
   test "list_published_posts/0 lists all published posts" do
-    posts = gen_fixture_posts(4)
+    posts = gen_post_fixtures(4)
 
     result = Posts.list_published_posts()
     published = Enum.filter(posts, fn p -> p.published == true end) 
@@ -36,7 +35,7 @@ defmodule Blog.PostsTest do
 
   describe "get_post_by_slug!/1" do
     test "returns the post with given slug" do
-      post = insert_post()
+      post = post_fixture()
       assert Posts.get_post_by_slug!(post.slug) == post
     end
 
@@ -70,7 +69,7 @@ defmodule Blog.PostsTest do
     end
 
     test "converts unique_constraint on slug to error" do
-      insert_post(%{title: "a cool post", body: "this is a cool post.", published: true})
+      post_fixture(%{title: "a cool post", body: "this is a cool post.", published: true})
       attrs = Map.put(@valid_attrs, :title, "a cool post")
       assert {:error, %Ecto.Changeset{} = changeset} = Posts.create_post(attrs) 
       assert {:slug, {"There was a problem generating a unique slug for this post. Please ensure that this title is not already taken.", []}} in changeset.errors
@@ -81,7 +80,7 @@ defmodule Blog.PostsTest do
     @update_attrs %{title: "updated title"}
 
     setup do
-      [post: insert_post()]
+      [post: post_fixture()]
     end
 
     test "with valid data updates the post", %{post: post} do
@@ -111,20 +110,20 @@ defmodule Blog.PostsTest do
     end
 
     test "converts unique_constraint on slug to error", %{post: post} do
-      new_post = insert_post(%{title: "a cool post"})
+      new_post = post_fixture(%{title: "a cool post"})
       assert {:error, %Ecto.Changeset{} = changeset} = Posts.update_post(new_post, %{title: post.title}) 
       assert {:slug, {"There was a problem generating a unique slug for this post. Please ensure that this title is not already taken.", []}} in changeset.errors
     end
   end
 
   test "delete_post/1 deletes the post" do
-    post = insert_post()
+    post = post_fixture()
     assert {:ok, %Post{}} = Posts.delete_post(post)
     assert_raise Ecto.NoResultsError, fn -> Posts.get_post_by_slug!(post.slug) end
   end
 
   test "change_post/1 returns a post changeset" do
-    post = insert_post(@valid_attrs)
+    post = post_fixture(@valid_attrs)
     assert %Ecto.Changeset{} = Posts.change_post(post)
   end 
 end

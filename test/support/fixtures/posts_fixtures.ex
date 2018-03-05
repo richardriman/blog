@@ -17,7 +17,7 @@ defmodule Blog.PostsFixtures do
     {:ok, user} =
       attrs
       |> Enum.into(valid_attrs)
-      |> Blog.Accounts.create_user()
+      |> Blog.Posts.create_post()
 
     user
   end

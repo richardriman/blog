@@ -1,5 +1,6 @@
 defmodule BlogWeb.PostControllerHelpersTest do
   use BlogWeb.ConnCase
+  import Blog.PostsFixtures
   import BlogWeb.ControllerHelpers
   import Blog.AccountsFixtures, only: [user_fixture: 1]
 
@@ -12,7 +13,7 @@ defmodule BlogWeb.PostControllerHelpersTest do
       %{title: "post 4", body: "this is post 4.", published: false}
     ]
     for post <- posts do
-      insert_post(post)
+      post_fixture(post)
       if post.published do
         assert Enum.any?(list_authorized_posts(conn), fn p -> p.title == post.title end)
       end
@@ -29,7 +30,7 @@ defmodule BlogWeb.PostControllerHelpersTest do
       %{title: "post 4", body: "this is post 4.", published: false}
     ]
     for post <- posts do
-      insert_post(post)
+      post_fixture(post)
       assert Enum.any?(list_authorized_posts(conn), fn p -> p.title == post.title end)
     end
     assert Enum.count(list_authorized_posts(conn)) == 4

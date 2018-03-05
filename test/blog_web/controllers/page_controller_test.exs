@@ -1,5 +1,6 @@
 defmodule BlogWeb.PageControllerTest do
   use BlogWeb.ConnCase
+  import Blog.PostsFixtures
 
   describe "GET /" do
     test "shows home page", %{conn: conn} do
@@ -20,7 +21,7 @@ defmodule BlogWeb.PageControllerTest do
         %{title: "post 4", body: "this is post 4.", published: false}
       ]
       for post <- posts do
-        insert_post(post)
+        post_fixture(post)
         conn = get(conn, "/")
         if post.published do
           assert html_response(conn, 200) =~ post.title
@@ -39,7 +40,7 @@ defmodule BlogWeb.PageControllerTest do
         %{title: "post 4", body: "this is post 4.", published: false}
       ]
       for post <- posts do
-        insert_post(post)
+        post_fixture(post)
         conn = get(conn, "/")
         if post.published do
           assert html_response(conn, 200) =~ post.title
