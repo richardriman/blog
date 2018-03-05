@@ -18,4 +18,8 @@ defmodule Blog.AccountsFixtures do
 
     user
   end
+
+  def gen_user_fixtures(num) do
+    Enum.map(1..num, fn _n -> user_fixture() end)
+  end
 end

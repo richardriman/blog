@@ -8,7 +8,7 @@ defmodule Blog.AccountsTest do
   @invalid_attrs invalid_attrs()
 
   test "list_users/0 lists all users" do
-    users = Enum.map(1..4, fn _n -> user_fixture() end)
+    users = gen_user_fixtures(4)
     assert Accounts.list_users() == Enum.map(users, fn u -> %{u | password: nil} end) 
   end
 
