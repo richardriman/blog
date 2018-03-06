@@ -4,12 +4,7 @@ defmodule BlogWeb.AuthTest do
   alias BlogWeb.Auth
 
   setup %{conn: conn} do
-    conn =
-      conn
-      |> bypass_through(BlogWeb.Router, :browser)
-      |> get("/")
-
-    {:ok, %{conn: conn}}
+    {:ok, conn: bypass_browser(conn)}
   end
   
   describe "logged_in?/1" do

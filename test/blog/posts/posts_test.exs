@@ -80,7 +80,7 @@ defmodule Blog.PostsTest do
     @update_attrs %{title: "updated title"}
 
     setup do
-      [post: post_fixture()]
+      {:ok, post: post_fixture()}
     end
 
     test "with valid data updates the post", %{post: post} do

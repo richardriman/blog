@@ -5,7 +5,7 @@ defmodule BlogWeb.ConnCase do
 
   Such tests rely on `Phoenix.ConnTest` and also
   import other functionality to make it easier
-  to build and query models.
+  to build common datastructures and query the data layer.
 
   Finally, if the test case interacts with the database,
   it cannot be async. For this reason, every test runs
@@ -36,6 +36,12 @@ defmodule BlogWeb.ConnCase do
       def login_as(conn, username) do
         user = Blog.AccountsFixtures.user_fixture(%{username: username})
         assign(conn, :current_user, user)
+      end
+  
+      defp bypass_browser(conn) do
+        conn 
+        |> bypass_through(BlogWeb.Router, [:browser]) 
+        |> get("/")
       end
 
     end

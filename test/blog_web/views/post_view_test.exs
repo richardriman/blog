@@ -3,24 +3,6 @@ defmodule BlogWeb.PostViewTest do
   import Phoenix.View
   import Blog.PostsFixtures
 
-  setup context do
-    if context[:populate_endpoint] do
-      conn = 
-        context.conn 
-        |> bypass_through(BlogWeb.Router, [:browser]) 
-        |> get("/")
-      [conn: conn]
-    else 
-      :ok
-    end
-  end
-
-  defp populate_endpoint(conn) do
-    conn 
-    |> bypass_through(BlogWeb.Router, [:browser]) 
-    |> get("/")
-  end
-
   describe "index.html" do
     test "renders index.html", %{conn: conn} do
       posts = [
@@ -74,7 +56,7 @@ defmodule BlogWeb.PostViewTest do
   end
 
   test "renders new.html", %{conn: conn} do
-    conn = populate_endpoint(conn)
+    conn = bypass_browser(conn)
     changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "new.html", conn: conn, changeset: changeset)
     assert String.contains?(content, "New Post")
@@ -95,7 +77,7 @@ defmodule BlogWeb.PostViewTest do
   end
 
   test "renders edit.html", %{conn: conn} do
-    conn = populate_endpoint(conn)
+    conn = bypass_browser(conn)
     post = post_fixture()
     changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "edit.html", conn: conn, changeset: changeset, post: post)
@@ -103,7 +85,7 @@ defmodule BlogWeb.PostViewTest do
   end
 
   test "renders form.html", %{conn: conn} do
-    conn = populate_endpoint(conn)
+    conn = bypass_browser(conn)
     changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "form.html", conn: conn, changeset: changeset, action: nil)
     for word <- ["Title", "Body", "Published"], do: assert String.contains?(content, word)
