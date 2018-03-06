@@ -1,5 +1,5 @@
 defmodule Blog.AccountsFixtures do
-  import Blog.TestHelpers
+  import Blog.FixtureHelpers
 
   def user_valid_attrs(), do: %{name: "test user", username: "user", password: "secret"}
   def user_invalid_attrs(), do: %{name: nil}

@@ -23,7 +23,6 @@ defmodule Blog.DataCase do
       import Ecto.Query
       import Blog.DataCase
       
-      import Blog.TestHelpers
     end
   end
 

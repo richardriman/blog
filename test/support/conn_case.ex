@@ -26,20 +26,18 @@ defmodule BlogWeb.ConnCase do
       import Ecto.Query
 
       import BlogWeb.Router.Helpers
-      import Blog.TestHelpers
       import Blog.AccountsFixtures
 
       # The default endpoint for testing
       @endpoint BlogWeb.Endpoint
 
-      setup %{conn: conn} = config do
-        if username = config[:login_as] do
-          user = user_fixture(%{username: username})
-          conn = assign(build_conn(), :current_user, user)
-          {:ok, conn: conn}
-        else
-          :ok
-        end
+      @doc """
+      Logs into the user specified by `username` by putting the `:current_user` assign in a new `%Plug.Conn{}`.
+      """
+      def login_as(conn, username) do
+        user = user_fixture(%{username: username})
+        conn = assign(conn, :current_user, user)
+        conn 
       end
 
       setup %{conn: conn} = config do

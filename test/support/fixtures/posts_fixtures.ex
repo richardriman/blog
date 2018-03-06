@@ -1,5 +1,5 @@
 defmodule Blog.PostsFixtures do
-  import Blog.TestHelpers
+  import Blog.FixtureHelpers
 
   def post_valid_attrs(), do: %{title: "test post", body: "this is a test post.", published: true}
   def post_invalid_attrs(), do: %{title: nil}

@@ -21,8 +21,8 @@ defmodule BlogWeb.PostControllerHelpersTest do
     assert Enum.count(list_authorized_posts(conn)) == 2
   end
 
-  @tag login_as: "user"
   test "list_authorized_posts/1 lists all posts when user is logged in", %{conn: conn} do
+    conn = login_as(conn, "user")
     posts = [
       %{title: "post 1", body: "this is post 1.", published: true},
       %{title: "post 2", body: "this is post 2.", published: true},

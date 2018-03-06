@@ -1,4 +1,4 @@
-defmodule Blog.TestHelpers do
+defmodule Blog.FixtureHelpers do
   @doc """
   Generates a random 8-byte string.
   """

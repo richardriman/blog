@@ -31,8 +31,9 @@ defmodule BlogWeb.PageControllerTest do
       end
     end
 
-    @tag login_as: "user"
     test "shows latest post for logged in user", %{conn: conn} do
+      conn = login_as(conn, "user")
+
       posts = [
         %{title: "post 1", body: "this is post 1.", published: true},
         %{title: "post 2", body: "this is post 2.", published: true},
