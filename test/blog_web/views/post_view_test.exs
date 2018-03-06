@@ -15,6 +15,12 @@ defmodule BlogWeb.PostViewTest do
     end
   end
 
+  defp populate_endpoint(conn) do
+    conn 
+    |> bypass_through(BlogWeb.Router, [:browser]) 
+    |> get("/")
+  end
+
   describe "index.html" do
     test "renders index.html", %{conn: conn} do
       posts = [
@@ -67,8 +73,8 @@ defmodule BlogWeb.PostViewTest do
     end
   end
 
-  @tag :populate_endpoint
   test "renders new.html", %{conn: conn} do
+    conn = populate_endpoint(conn)
     changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "new.html", conn: conn, changeset: changeset)
     assert String.contains?(content, "New Post")
@@ -88,16 +94,16 @@ defmodule BlogWeb.PostViewTest do
     end
   end
 
-  @tag :populate_endpoint
   test "renders edit.html", %{conn: conn} do
+    conn = populate_endpoint(conn)
     post = post_fixture()
     changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "edit.html", conn: conn, changeset: changeset, post: post)
     assert String.contains?(content, "Edit Post")
   end
 
-  @tag :populate_endpoint
   test "renders form.html", %{conn: conn} do
+    conn = populate_endpoint(conn)
     changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "form.html", conn: conn, changeset: changeset, action: nil)
     for word <- ["Title", "Body", "Published"], do: assert String.contains?(content, word)
