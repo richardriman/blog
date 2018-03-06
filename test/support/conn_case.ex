@@ -35,8 +35,7 @@ defmodule BlogWeb.ConnCase do
       """
       def login_as(conn, username) do
         user = Blog.AccountsFixtures.user_fixture(%{username: username})
-        conn = assign(conn, :current_user, user)
-        conn 
+        assign(conn, :current_user, user)
       end
 
     end
