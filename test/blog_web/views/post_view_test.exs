@@ -1,6 +1,7 @@
 defmodule BlogWeb.PostViewTest do
   use BlogWeb.ConnCase, async: true
   import Phoenix.View
+  import Blog.PostsFixtures
 
   setup context do
     if context[:populate_endpoint] do
@@ -74,22 +75,22 @@ defmodule BlogWeb.PostViewTest do
   end
 
   describe "show.html" do
-    @tag :test_post
-    test "renders", %{conn: conn, post: post} do
+    test "renders", %{conn: conn} do
+      post = post_fixture()
       content = render_to_string(BlogWeb.PostView, "show.html", conn: conn, current_user: nil, post: post)
       assert String.contains?(content, post.title)
     end
 
-    @tag test_post: %{published: false}
-    test "renders with unpublished post", %{conn: conn, post: post} do
+    test "renders with unpublished post", %{conn: conn} do
+      post = post_fixture(%{published: false})
       content = render_to_string(BlogWeb.PostView, "show.html", conn: conn, current_user: nil, post: post)
       assert Regex.match?(~r/(#{post.title})(.*)(\(unpublished\))/s, content)
     end
   end
 
-  @tag :test_post
   @tag :populate_endpoint
-  test "renders edit.html", %{conn: conn, post: post} do
+  test "renders edit.html", %{conn: conn} do
+    post = post_fixture()
     changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "edit.html", conn: conn, changeset: changeset, post: post)
     assert String.contains?(content, "Edit Post")

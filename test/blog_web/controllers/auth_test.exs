@@ -1,5 +1,6 @@
 defmodule BlogWeb.AuthTest do
   use BlogWeb.ConnCase
+  import Blog.AccountsFixtures
   alias BlogWeb.Auth
 
   setup %{conn: conn} do

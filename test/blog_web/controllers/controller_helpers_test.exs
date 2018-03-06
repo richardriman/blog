@@ -2,7 +2,6 @@ defmodule BlogWeb.PostControllerHelpersTest do
   use BlogWeb.ConnCase
   import Blog.PostsFixtures
   import BlogWeb.ControllerHelpers
-  import Blog.AccountsFixtures, only: [user_fixture: 1]
 
   test "list_authorized_posts/1 lists only published posts", %{conn: conn} do
     conn = assign(conn, :current_user, nil)

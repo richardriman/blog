@@ -1,5 +1,6 @@
 defmodule BlogWeb.SessionControllerTest do
   use BlogWeb.ConnCase
+  import Blog.AccountsFixtures
 
   test "new session shows new session page", %{conn: conn} do
     conn = get(conn, session_path(conn, :new))
