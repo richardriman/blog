@@ -4,8 +4,8 @@ defmodule Blog.PostsTest do
   alias Blog.Posts
   alias Blog.Posts.Post
 
-  @valid_attrs valid_attrs()
-  @invalid_attrs invalid_attrs()
+  @valid_attrs post_valid_attrs()
+  @invalid_attrs post_invalid_attrs()
 
   # TODO: fix these list tests so that they look like the accounts context tests
   test "list_posts/0 lists all posts" do

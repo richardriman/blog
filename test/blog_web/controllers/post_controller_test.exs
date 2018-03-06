@@ -3,8 +3,8 @@ defmodule BlogWeb.PostControllerTest do
   import Blog.PostsFixtures
   alias Blog.Posts.Post
 
-  @valid_attrs %{title: "test post", body: "some cool text.", published: true}
-  @invalid_attrs %{title: "invalid post"}
+  @valid_attrs post_valid_attrs()
+  @invalid_attrs post_invalid_attrs()
 
   test "require user authentication for certain post actions", %{conn: conn} do
     Enum.each([

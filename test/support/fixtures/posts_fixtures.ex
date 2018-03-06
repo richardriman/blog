@@ -1,13 +1,13 @@
 defmodule Blog.PostsFixtures do
   import Blog.TestHelpers
 
-  def valid_attrs(), do: %{title: "test post", body: "this is a test post.", published: true}
-  def invalid_attrs(), do: %{title: nil}
+  def post_valid_attrs(), do: %{title: "test post", body: "this is a test post.", published: true}
+  def post_invalid_attrs(), do: %{title: nil}
 
   def post_fixture(attrs \\ %{}) do
     random = gen_random_string() 
     valid_attrs = 
-      valid_attrs()
+      post_valid_attrs()
       |> Enum.map(fn
           {:published, v} -> {:published, v}
           {k, v} -> {k, v <> random} 

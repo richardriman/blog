@@ -1,9 +1,10 @@
 defmodule BlogWeb.UserControllerTest do
   use BlogWeb.ConnCase
+  import Blog.AccountsFixtures
   alias Blog.Accounts.User
 
-  @valid_attrs %{name: "John Doe", username: "test", password: "secret"}
-  @invalid_attrs %{}
+  @valid_attrs user_valid_attrs()
+  @invalid_attrs user_invalid_attrs()
 
   setup %{conn: conn} = config do
     if config[:test_user] do

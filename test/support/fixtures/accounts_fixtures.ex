@@ -1,13 +1,13 @@
 defmodule Blog.AccountsFixtures do
   import Blog.TestHelpers
 
-  def valid_attrs(), do: %{name: "test user", username: "user", password: "secret"}
-  def invalid_attrs(), do: %{name: nil}
+  def user_valid_attrs(), do: %{name: "test user", username: "user", password: "secret"}
+  def user_invalid_attrs(), do: %{name: nil}
 
   def user_fixture(attrs \\ %{}) do
     random = gen_random_string() 
     valid_attrs = 
-      valid_attrs()
+      user_valid_attrs()
       |> Enum.map(fn {k, v} -> {k, v <> random} end)
       |> Enum.into(%{})
 

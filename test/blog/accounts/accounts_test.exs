@@ -4,8 +4,8 @@ defmodule Blog.AccountsTest do
   alias Blog.Accounts
   alias Blog.Accounts.User
 
-  @valid_attrs valid_attrs()
-  @invalid_attrs invalid_attrs()
+  @valid_attrs user_valid_attrs()
+  @invalid_attrs user_invalid_attrs()
 
   test "list_users/0 lists all users" do
     users = gen_user_fixtures(4)
