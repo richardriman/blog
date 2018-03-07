@@ -5,21 +5,7 @@ defmodule BlogWeb.PostViewTest do
 
   describe "index.html" do
     test "renders index.html", %{conn: conn} do
-      posts = [
-        %Blog.Posts.Post{
-          title: "post 1", 
-          slug: "post-1", 
-          body: "this is post 1.", 
-          published: true, 
-          inserted_at: ~D[2016-01-01]},
-        %Blog.Posts.Post{
-          title: "post 2", 
-          slug: "post-2", 
-          body: "this is post 2.", 
-          published: true, 
-          inserted_at: ~D[2016-01-02]
-        }
-      ]
+      posts = gen_post_fixtures(4)
       content = render_to_string(BlogWeb.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
       assert String.contains?(content, "Posts")
       for post <- posts do
@@ -29,20 +15,9 @@ defmodule BlogWeb.PostViewTest do
 
     test "renders index.html with unpublished posts", %{conn: conn} do
       posts = [
-        %Blog.Posts.Post{
-          title: "post 1", 
-          slug: "post-1", 
-          body: "this is post 1.", 
-          published: true, 
-          inserted_at: ~D[2016-01-01]},
-        %Blog.Posts.Post{
-          title: "post 2", 
-          slug: "post-2", 
-          body: "this is post 2.", 
-          published: false, 
-          inserted_at: ~D[2016-01-02]
-        }
-      ]
+        %{published: true},
+        %{published: false}
+      ] |> gen_post_fixtures()
       content = render_to_string(BlogWeb.PostView, "index.html", conn: conn, current_user: nil, posts: posts)
       assert String.contains?(content, "Posts")
       for post <- posts do

@@ -8,7 +8,7 @@ defmodule Blog.AccountsFixtures do
     random = gen_random_string() 
     valid_attrs = 
       user_valid_attrs()
-      |> Enum.map(fn {k, v} -> {k, v <> random} end)
+      |> Enum.map(fn {k, v} -> {k, v <> " #{random}"} end)
       |> Enum.into(%{})
 
     {:ok, user} =

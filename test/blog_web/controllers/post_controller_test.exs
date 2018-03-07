@@ -76,12 +76,11 @@ defmodule BlogWeb.PostControllerTest do
   describe "show post" do
     test "does not show unpublished posts", %{conn: conn} do
       posts = [
-        %{title: "post 1", body: "this is post 1.", published: false},
-        %{title: "post 2", body: "this is post 2.", published: false}
-      ]
+        %{published: false},
+        %{published: false}
+      ] |> gen_post_fixtures()
       for post <- posts do
-        inserted_post = post_fixture(post)
-        conn = get(conn, post_path(conn, :show, inserted_post))
+        conn = get(conn, post_path(conn, :show, post))
         assert redirected_to(conn) == post_path(conn, :index)
       end
     end
@@ -89,12 +88,11 @@ defmodule BlogWeb.PostControllerTest do
     test "creates new posts and shows them when user is logged in", %{conn: conn} do
       conn = login_as(conn, "user")
       posts = [
-        %{title: "post 1", body: "this is post 1.", published: true},
-        %{title: "post 2", body: "this is post 2.", published: false}
-      ]
+        %{published: true},
+        %{published: false}
+      ] |> gen_post_fixtures()
       for post <- posts do
-        inserted_post = post_fixture(post)
-        conn = get(conn, post_path(conn, :show, inserted_post))
+        conn = get(conn, post_path(conn, :show, post))
         if post.published do
           assert html_response(conn, :ok) =~ ~r/#{post.body}/s
         else

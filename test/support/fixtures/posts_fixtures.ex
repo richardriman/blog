@@ -10,7 +10,7 @@ defmodule Blog.PostsFixtures do
       post_valid_attrs()
       |> Enum.map(fn
           {:published, v} -> {:published, v}
-          {k, v} -> {k, v <> random} 
+          {k, v} -> {k, v <> " #{random}"} 
         end)
       |> Enum.into(%{})
 
@@ -22,7 +22,10 @@ defmodule Blog.PostsFixtures do
     user
   end
   
-  def gen_post_fixtures(num) do
+  def gen_post_fixtures(num) when is_integer(num) do
     Enum.map(1..num, fn _n -> post_fixture() end)
+  end
+  def gen_post_fixtures(attrs_list) do
+    Enum.map(attrs_list, fn attrs -> post_fixture(attrs) end)
   end
 end
