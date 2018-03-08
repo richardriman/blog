@@ -4,12 +4,7 @@ defmodule BlogWeb.PostControllerHelpersTest do
   import BlogWeb.ControllerHelpers
 
   setup do
-    posts = [
-      %{published: true},
-      %{published: true},
-      %{published: false},
-      %{published: false}
-    ] |> gen_post_fixtures()
+    posts = varied_published_post_attrs() |> gen_post_fixtures()
 
     {:ok, posts: posts}
   end

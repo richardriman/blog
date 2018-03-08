@@ -4,6 +4,15 @@ defmodule Blog.PostsFixtures do
   def post_valid_attrs(), do: %{title: "test post", body: "this is a test post.", published: true}
   def post_invalid_attrs(), do: %{title: nil}
 
+  def varied_published_post_attrs() do
+    [
+      %{published: true},
+      %{published: true},
+      %{published: false},
+      %{published: false}
+    ]
+  end
+
   defp sort_posts_by_insertion_date(posts), do: Enum.sort(posts, &(&1.inserted_at >= &2.inserted_at))
 
   def post_fixture(attrs \\ %{}) do

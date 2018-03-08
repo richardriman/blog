@@ -14,12 +14,7 @@ defmodule BlogWeb.PageControllerTest do
     end
 
     test "only shows latest published post", %{conn: conn} do
-      posts = [
-        %{published: true},
-        %{published: true},
-        %{published: false},
-        %{published: false}
-      ]
+      posts = varied_published_post_attrs()
 
       for post <- posts do
         post = post_fixture(post)
@@ -34,12 +29,7 @@ defmodule BlogWeb.PageControllerTest do
 
     test "shows latest post for logged in user", %{conn: conn} do
       conn = login_as(conn, "user")
-      posts = [
-        %{published: true},
-        %{published: true},
-        %{published: false},
-        %{published: false}
-      ]
+      posts = varied_published_post_attrs()
 
       for post <- posts do
         post = post_fixture(post)

@@ -104,7 +104,6 @@ defmodule BlogWeb.PostControllerTest do
 
   test "new shows post new page", %{conn: conn} do
     conn = login_as(conn, "user")
-
     conn = get(conn, post_path(conn, :new))
     assert html_response(conn, :ok) =~ ~r/New Post/s
   end
@@ -117,8 +116,11 @@ defmodule BlogWeb.PostControllerTest do
   end
 
   describe "update post" do
+    setup %{conn: conn} = context do
+      {:ok, conn: login_as(conn, "user")}
+    end
+
     test "updates existing post and redirects", %{conn: conn} do
-      conn = login_as(conn, "user")
       post = post_fixture(@valid_attrs)
       conn = put(conn, post_path(conn, :update, post), post: %{title: "new title"})
       assert html_response(conn, 302)
@@ -126,7 +128,6 @@ defmodule BlogWeb.PostControllerTest do
     end
 
     test "does not update invlaid post", %{conn: conn} do
-      conn = login_as(conn, "user")
       post = post_fixture(@valid_attrs)
       conn = put(conn, post_path(conn, :update, post), post: %{title: ""})
       assert html_response(conn, 200) =~ "check the errors"
