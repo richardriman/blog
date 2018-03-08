@@ -116,7 +116,7 @@ defmodule BlogWeb.PostControllerTest do
   end
 
   describe "update post" do
-    setup %{conn: conn} = context do
+    setup %{conn: conn} do
       {:ok, conn: login_as(conn, "user")}
     end
 
