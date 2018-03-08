@@ -7,26 +7,21 @@ defmodule Blog.PostsTest do
   @valid_attrs post_valid_attrs()
   @invalid_attrs post_invalid_attrs()
 
-  # TODO: fix these list tests so that they look like the accounts context tests
-  test "list_posts/0 lists all posts" do
-    posts = gen_post_fixtures(4)
+  defp sort_posts_by_insertion_date(posts), do: Enum.sort(posts, &(&1.inserted_at >= &2.inserted_at))
 
-    result = Posts.list_posts()
-    for post <- posts do
-      assert Enum.any?(result, fn p -> p.title == post.title end) == true
-    end 
+  test "list_posts/0 lists all posts in descending order of insertion date" do
+    posts = gen_post_fixtures(4) |> sort_posts_by_insertion_date()
+    assert Posts.list_posts() == posts
   end
   
   test "list_published_posts/0 lists all published posts" do
-    posts = gen_post_fixtures(4)
+    posts = gen_post_fixtures(4) |> sort_posts_by_insertion_date()
 
     result = Posts.list_published_posts()
     published = Enum.filter(posts, fn p -> p.published == true end) 
     unpublished = Enum.filter(posts, fn p -> p.published == false end) 
-                              
-    for post <- published do
-      assert Enum.any?(result, fn p -> p.title == post.title end) == true
-    end 
+    
+    assert Posts.list_published_posts() == published
 
     for post <- unpublished do
       refute Enum.any?(result, fn p -> p.title == post.title end) == true
