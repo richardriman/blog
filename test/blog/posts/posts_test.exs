@@ -7,25 +7,23 @@ defmodule Blog.PostsTest do
   @valid_attrs post_valid_attrs()
   @invalid_attrs post_invalid_attrs()
 
-  defp sort_posts_by_insertion_date(posts), do: Enum.sort(posts, &(&1.inserted_at >= &2.inserted_at))
-
-  test "list_posts/0 lists all posts in descending order of insertion date" do
-    posts = gen_post_fixtures(4) |> sort_posts_by_insertion_date()
+  test "list_posts/0 lists all posts" do
+    posts = gen_post_fixtures(4)
     assert Posts.list_posts() == posts
   end
   
   test "list_published_posts/0 lists all published posts" do
-    posts = gen_post_fixtures(4) |> sort_posts_by_insertion_date()
+    posts = gen_post_fixtures(4)
 
     result = Posts.list_published_posts()
     published = Enum.filter(posts, fn p -> p.published == true end) 
-    unpublished = Enum.filter(posts, fn p -> p.published == false end) 
+    unpublished = Enum.filter(posts, fn p -> p.published == false end)
     
     assert Posts.list_published_posts() == published
 
     for post <- unpublished do
       refute Enum.any?(result, fn p -> p.title == post.title end) == true
-    end 
+    end
   end
 
   describe "get_post_by_slug!/1" do
@@ -118,7 +116,7 @@ defmodule Blog.PostsTest do
   end
 
   test "change_post/1 returns a post changeset" do
-    post = post_fixture(@valid_attrs)
+    post = post_fixture()
     assert %Ecto.Changeset{} = Posts.change_post(post)
   end 
 end
