@@ -43,8 +43,10 @@ defmodule BlogWeb.PageControllerTest do
     end
   end
 
-  test "GET /resume redirects", %{conn: conn} do
+  test "GET /resume redirects to resume_url in application env", %{conn: conn} do
+    app = :blog
+    url = Application.get_env(app, :resume_url)
     conn = get(conn, "/resume")
-    assert redirected_to(conn, 302)
+    assert redirected_to(conn, 302) =~ url 
   end
 end

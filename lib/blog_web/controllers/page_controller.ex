@@ -14,6 +14,8 @@ defmodule BlogWeb.PageController do
   end
 
   def resume(conn, _params) do
-    redirect(conn, external: "https://docs.google.com/document/d/19oHVdNPB6kei_OaQSQ1afYZCcQFh_oBw91yiNG2mLHQ/export?format=pdf")
+    app = Application.get_application(__MODULE__)
+    url = Application.get_env(app, :resume_url)
+    redirect(conn, external: url)
   end
 end

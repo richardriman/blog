@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :blog,
-  ecto_repos: [Blog.Repo]
+  ecto_repos: [Blog.Repo],
+  resume_url: "https://www.sharelatex.com/project/58bdaac8e627e037140641a4/output/output.pdf?compileGroup=standard"
 
 # Configures the endpoint
 config :blog, BlogWeb.Endpoint,
