@@ -1,18 +1,7 @@
 language: elixir
 elixir:
-  - 1.4.1
-  - 1.5.0
+  - 1.6.0
 otp_release:
-  - 19.0
   - 20.0
-matrix:
-  exclude:
-    - elixir: 1.4.1
-      otp_release: 20.0
-    - elixir: 1.5.0
-      otp_release: 19.0
-  allow_failures:
-    - elixir: 1.4.1
-      otp_release: 19.0
 script:
   - "MIX_ENV=test mix do deps.get, compile, coveralls.travis"
