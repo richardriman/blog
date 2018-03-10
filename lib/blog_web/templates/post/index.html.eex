@@ -21,6 +21,6 @@
 </div>
 <%= if @current_user do %>
   <div style="padding-top: 4em;">
-    <%= button "New", to: post_path(@conn, :new), method: :get, class: "pure-button pure-button-primary" %>
+    <%= link "New", to: post_path(@conn, :new), class: "pure-button pure-button-primary" %>
   </div>
 <% end %>
