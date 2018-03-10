@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Remove old releases
-rm -rf _build/prod/rel/*
-
 # Build the image
 docker build --rm -t blog-build -f Dockerfile.build .
 
