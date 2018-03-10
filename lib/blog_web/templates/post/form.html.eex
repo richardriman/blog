@@ -22,8 +22,7 @@
     </label>
     <%= error_tag f, :published %>
 
-    <%= button "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary", style: "margin-top: 15px;" %>
-
+    <%= link "Back", to: post_path(@conn, :index), class: "pure-button pure-button-primary", style: "margin-top: 15px;" %>
     <%= submit "Submit", class: "pure-button pure-button-primary", style: "margin-top: 15px;" %>
   </fieldset>
 <% end %>
