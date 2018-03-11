@@ -15,8 +15,6 @@
     <%= textarea f, :body, class: "pure-input-1 post-body-input", rows: "25", placeholder: "Body" %>
     <%= error_tag f, :body %>
 
-    <div id="preview"></div>
-    
     <label id="published-label" for="post_published" class="pure-checkbox">
       <%= checkbox f, :published %> Published
     </label>
@@ -24,6 +22,8 @@
 
     <%= link "Back", to: post_path(@conn, :index), class: "pure-button pure-button-primary", style: "margin-top: 15px;" %>
     <%= submit "Submit", class: "pure-button pure-button-primary", style: "margin-top: 15px;" %>
+    
+    <div id="preview"></div>
   </fieldset>
 <% end %>
 
