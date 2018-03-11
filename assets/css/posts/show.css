@@ -1,3 +1,7 @@
+.post-buttons {
+  padding-top: 4em;
+}
+
 .post-buttons > form.link {
   display: inline-block;
 }
