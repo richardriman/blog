@@ -5,3 +5,7 @@
 .post-buttons > form.link {
   display: inline-block;
 }
+
+.page-heading > span {
+  color: red;
+}

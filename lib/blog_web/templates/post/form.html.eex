@@ -4,8 +4,8 @@
   </div>
 <% end %>
 
-<%= form_for @changeset, @action, [class: "pure-form", style: "margin-top: 15px;"], fn f -> %>
-  <fieldset style="padding-top: 0px;">
+<%= form_for @changeset, @action, [class: "pure-form", id: "post-form"], fn f -> %>
+  <fieldset>
     <%= text_input f, :title, class: "pure-input-1-2", placeholder: "Title" %>
     <div>
       <%= error_tag f, :title %>
@@ -17,7 +17,7 @@
 
     <div id="preview"></div>
     
-    <label for="post_published" class="pure-checkbox", style="margin: 0px;">
+    <label id="published-label" for="post_published" class="pure-checkbox">
       <%= checkbox f, :published %> Published
     </label>
     <%= error_tag f, :published %>

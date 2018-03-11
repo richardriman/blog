@@ -19,8 +19,8 @@
     <div class="container">
       <%= if @current_user do %>
         <div class="header">
-          <span style="display: inline;">Signed in as: <strong><%= @current_user.username %></strong></span>
-          <div style="float: right;">
+          <span>Signed in as: <strong><%= @current_user.username %></strong></span>
+          <div id="logout">
             <%= link "Log out", to: session_path(@conn, :delete, @current_user), method: "delete" %>
           </div>
         </div>

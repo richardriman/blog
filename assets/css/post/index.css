@@ -1,0 +1,11 @@
+.post-entry > h3 {
+  display: inline;
+}
+
+.post-entry > span {
+  float: right;
+}
+
+#new-post-button {
+  padding-top: 4em;
+}

@@ -14,3 +14,15 @@ fieldset {
   margin-top: 15px;
   word-wrap: break-word;
 }
+
+#post-form {
+  margin-top: 15px;
+}
+
+#post-form > fieldset {
+  padding-top: 0px;
+}
+
+#published-label {
+  margin: 0px;
+}
