@@ -16,13 +16,12 @@ defmodule Blog.DataCase do
 
   using do
     quote do
-      alias Blog.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
       import Blog.DataCase
-      
+
     end
   end
 
@@ -32,7 +31,7 @@ defmodule Blog.DataCase do
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(Blog.Repo, {:shared, self()})
     end
-    
+
     :ok
   end
 

@@ -2,7 +2,7 @@ defmodule BlogWeb.SessionController do
   @moduledoc """
   Provides controller actions for user sessions.
   """
-  
+
   use BlogWeb, :controller
 
   def new(conn, _) do
@@ -10,7 +10,7 @@ defmodule BlogWeb.SessionController do
   end
 
   def create(conn, %{"session" => %{"username" => user, "password" => pass}}) do
-    case Auth.login_by_username_and_pass(conn, user, pass, repo: Repo) do
+    case Auth.login_by_username_and_pass(conn, user, pass) do
       {:ok, conn} ->
         conn
         |> put_flash(:info, "Welcome back!")

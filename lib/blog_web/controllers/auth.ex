@@ -15,7 +15,7 @@ defmodule BlogWeb.Auth do
     cond do
       user = conn.assigns[:current_user] ->
         conn
-      user = user_id && Accounts.get_user(user_id) -> 
+      user = user_id && Accounts.get_user(user_id) ->
         assign(conn, :current_user, user)
       true ->
         assign(conn, :current_user, nil)
@@ -33,9 +33,9 @@ defmodule BlogWeb.Auth do
     configure_session(conn, drop: true)
   end
 
-  def login_by_username_and_pass(conn, username, given_pass, _opts) do
+  def login_by_username_and_pass(conn, username, given_pass) do
     user = Accounts.get_user_by_username(username)
-    
+
     cond do
       user && checkpw(given_pass, user.password_hash) ->
         {:ok, login(conn, user)}

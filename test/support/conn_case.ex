@@ -20,11 +20,6 @@ defmodule BlogWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      alias Blog.Repo
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-
       import BlogWeb.Router.Helpers
 
       # The default endpoint for testing
@@ -37,10 +32,10 @@ defmodule BlogWeb.ConnCase do
         user = Blog.AccountsFixtures.user_fixture(%{username: username})
         assign(conn, :current_user, user)
       end
-  
+
       defp bypass_browser(conn) do
-        conn 
-        |> bypass_through(BlogWeb.Router, [:browser]) 
+        conn
+        |> bypass_through(BlogWeb.Router, [:browser])
         |> get("/")
       end
 

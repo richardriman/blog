@@ -1,10 +1,13 @@
 defmodule BlogWeb.PostControllerTest do
   use BlogWeb.ConnCase
   import Blog.PostsFixtures
+  alias Blog.Posts
   alias Blog.Posts.Post
+  alias Blog.Repo
 
   @valid_attrs post_valid_attrs()
   @invalid_attrs post_invalid_attrs()
+  @update_attrs post_update_attrs()
 
   test "require user authentication for certain post actions", %{conn: conn} do
     Enum.each([
@@ -13,7 +16,7 @@ defmodule BlogWeb.PostControllerTest do
         put(conn, post_path(conn, :update, "123", %{})),
         post(conn, post_path(conn, :create, %{})),
         delete(conn, post_path(conn, :delete, "123"))
-      ], fn conn -> 
+      ], fn conn ->
         assert html_response(conn, 302)
         assert conn.halted
       end)
@@ -55,7 +58,7 @@ defmodule BlogWeb.PostControllerTest do
   end
 
   describe "create post" do
-    defp post_count(query), do: Repo.one(from p in query, select: count(p.id))
+    defp post_count(), do: Posts.list_posts() |> Enum.count()
 
     test "creates new post and redirects", %{conn: conn} do
       conn = login_as(conn, "user")
@@ -66,10 +69,10 @@ defmodule BlogWeb.PostControllerTest do
 
     test "does not create post and renders errors when invalid", %{conn: conn} do
       conn = login_as(conn, "user")
-      count_before = post_count(Post)
+      count_before = post_count()
       conn = post(conn, post_path(conn, :create), post: @invalid_attrs)
       assert html_response(conn, 200) =~ "check the errors"
-      assert post_count(Post) == count_before
+      assert post_count() == count_before
     end
   end
 
@@ -122,14 +125,14 @@ defmodule BlogWeb.PostControllerTest do
 
     test "updates existing post and redirects", %{conn: conn} do
       post = post_fixture(@valid_attrs)
-      conn = put(conn, post_path(conn, :update, post), post: %{title: "new title"})
+      conn = put(conn, post_path(conn, :update, post), post: @update_attrs)
       assert html_response(conn, 302)
       assert Repo.get(Post, post.id).title == "new title"
     end
 
-    test "does not update invlaid post", %{conn: conn} do
+    test "does not update invalid post", %{conn: conn} do
       post = post_fixture(@valid_attrs)
-      conn = put(conn, post_path(conn, :update, post), post: %{title: ""})
+      conn = put(conn, post_path(conn, :update, post), post: @invalid_attrs)
       assert html_response(conn, 200) =~ "check the errors"
       assert Repo.get(Post, post.id).title == post.title
     end
