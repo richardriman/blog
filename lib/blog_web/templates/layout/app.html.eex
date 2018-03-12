@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Joe Sweeney</title>
+    <title><%= title(@view_module, @view_template, assigns) %></title>
+
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
     <!--[if lte IE 8]>

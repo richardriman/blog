@@ -7,7 +7,7 @@ defmodule BlogWeb.Auth do
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
   alias Blog.Accounts
 
-  def init(opts), do: opts
+  def init(_opts), do: []
 
   def call(conn, _opts) do
     user_id = get_session(conn, :user_id)

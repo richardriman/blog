@@ -78,8 +78,4 @@ defmodule BlogWeb.AuthTest do
         Auth.login_by_username_and_pass(conn, "test", "wrong")
     end
   end
-
-  test "init/1 passes through opts" do
-    assert Auth.init(key: "value") == [key: "value"]
-  end
 end
