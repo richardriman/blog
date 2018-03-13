@@ -1,5 +1,6 @@
 defmodule BlogWeb.PostView do
   use BlogWeb, :view
+  @behaviour BlogWeb.CustomPageTitle
 
   def get_formatted_post(post) do
     post.body

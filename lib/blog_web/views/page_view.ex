@@ -1,5 +1,6 @@
 defmodule BlogWeb.PageView do
   use BlogWeb, :view
+  @behaviour BlogWeb.CustomPageTitle
 
   def modify_post_title(post) do
     if post.published, do: post, else: Map.put(post, :title, post.title <> " (unpublished)")
