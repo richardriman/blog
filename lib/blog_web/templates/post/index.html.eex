@@ -20,7 +20,7 @@
   <% end %>
 </div>
 <div class="nav-buttons">
-  <%= link "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary" %>
+  <%= link "Back", to: page_path(@conn, :index), method: :get, class: "pure-button pure-button-primary" %>
   <%= if @current_user do %>
     <%= link "New", to: post_path(@conn, :new), class: "pure-button pure-button-primary" %>
   <% end %>
