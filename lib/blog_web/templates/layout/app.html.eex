@@ -7,6 +7,8 @@
     <title><%= title(@view_module, @view_template, assigns) %></title>
 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/vendor.css") %>">
+    
     <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/grids-responsive-old-ie-min.css">
@@ -41,6 +43,5 @@
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-    <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
   </body>
 </html>
