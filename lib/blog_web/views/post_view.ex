@@ -4,7 +4,7 @@ defmodule BlogWeb.PostView do
 
   def get_formatted_post(post) do
     post.body
-    |> Earmark.as_html!()
+    |> Earmark.as_html!(%Earmark.Options{code_class_prefix: "lang-"})
     |> String.replace("<table>", "<table class=\"pure-table\">")
   end
 

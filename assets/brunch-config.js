@@ -5,7 +5,8 @@ exports.config = {
       // joinTo: "js/app.js"
       joinTo: {
         "js/app.js": /^(js\/app.js)|(node_modules)/,
-        "js/markdown.js": /^(js\/markdown.js)|(node_modules)/
+        "js/markdown.js": /^(js\/markdown.js)|(node_modules)/,
+        "js/vendor.js": /^(vendor)/
       }
 
       // To use a separate vendor.js bundle, specify two files path
