@@ -5,8 +5,7 @@ exports.config = {
       // joinTo: "js/app.js"
       joinTo: {
         "js/app.js": /^(js\/app.js)|(node_modules)/,
-        "js/markdown.js": /^(js\/markdown.js)|(node_modules)/,
-        "js/vendor.js": /^(vendor)/
+        "js/markdown.js": /^(js\/markdown.js)|(node_modules)/
       }
 
       // To use a separate vendor.js bundle, specify two files path
@@ -25,7 +24,10 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: {
+        "css/app.css": /^(?!node_modules)/,
+        "css/vendor.css": /^node_modules/
+      }
     },
     templates: {
       joinTo: "js/app.js"
@@ -63,6 +65,9 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+    styles: {
+      prismjs: ["themes/prism.css"]
+    }
   }
 };

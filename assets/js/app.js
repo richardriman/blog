@@ -19,3 +19,14 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+// Syntax highliting via Prism
+import "prismjs"
+import "prismjs/components/prism-elixir.js"
+import "prismjs/components/prism-diff.js"
+import "prismjs/components/prism-docker.js"
+import "prismjs/components/prism-bash.js"
+import "prismjs/components/prism-nginx.js"
+import "prismjs/components/prism-yaml.js"
+
+Prism.highlightAll();

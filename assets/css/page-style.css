@@ -27,6 +27,27 @@ hr {
   margin: 50px auto;
 }
 
+code,
+pre {
+  background: #f5f7f9 !important;
+  border-bottom: 1px solid #d8dee9;
+  color: #a7adba;
+}
+
+code {
+  padding: 2px 4px;
+  vertical-align: text-bottom;
+}
+
+pre {
+  border-left: 2px solid #69c;
+  padding: 1em;
+}
+
+pre > code {
+  border-bottom: 0;
+}
+
 .pure-table thead {
   background-color: #f5f7f9 !important;
 }
