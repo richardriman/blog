@@ -34,3 +34,15 @@ hr {
 .help-block {
   color: #a94442;
 }
+
+.nav-buttons {
+  padding-top: 4em;
+}
+
+.nav-buttons > form.link {
+  display: inline-block;
+}
+
+.form-buttons {
+  padding-top: 15px;
+}

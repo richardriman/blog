@@ -19,8 +19,9 @@
     </div>
   <% end %>
 </div>
-<%= if @current_user do %>
-  <div id="new-post-button">
+<div class="nav-buttons">
+  <%= link "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary" %>
+  <%= if @current_user do %>
     <%= link "New", to: post_path(@conn, :new), class: "pure-button pure-button-primary" %>
-  </div>
-<% end %>
+  <% end %>
+</div>

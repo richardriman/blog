@@ -20,8 +20,10 @@
     </label>
     <%= error_tag f, :published %>
 
-    <%= link "Back", to: post_path(@conn, :index), class: "pure-button pure-button-primary", style: "margin-top: 15px;" %>
-    <%= submit "Submit", class: "pure-button pure-button-primary", style: "margin-top: 15px;" %>
+    <div class="form-buttons">
+      <%= link "Back", to: post_path(@conn, :index), class: "pure-button pure-button-primary" %>
+      <%= submit "Submit", class: "pure-button pure-button-primary" %>
+    </div>
     
     <div id="preview"></div>
   </fieldset>

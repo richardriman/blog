@@ -1,7 +1,7 @@
 <h1 class="page-heading">
   <%= @post.title %> 
   <%= if !@post.published do %>
-    <span>(unpublished)</span>
+    <span class="unpublished">(unpublished)</span>
   <% end %>
 </h1>
 <div class="center-text">
@@ -12,7 +12,7 @@
   <%= raw(get_formatted_post(@post)) %>
 </div>
 
-<div class="post-buttons">
+<div class="nav-buttons">
   <%= link "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary" %>
   <%= if @current_user do %>
     <%= link "Edit", to: post_path(@conn, :edit, @post), method: :get, class: "pure-button pure-button-primary" %>

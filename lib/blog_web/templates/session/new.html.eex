@@ -4,6 +4,10 @@
   <fieldset>
     <%= text_input f, :username, placeholder: "Username", class: "form-control" %>
     <%= password_input f, :password, placeholder: "Password", class: "form-control" %>
-    <%= submit "Log in", class: "pure-button pure-button-primary" %>
+
+    <div class="form-buttons">
+      <%= link "Back", to: page_path(@conn, :index), class: "pure-button pure-button-primary" %>
+      <%= submit "Log in", class: "pure-button pure-button-primary" %>
+    </div>
   </fieldset>
 <% end %>

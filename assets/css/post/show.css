@@ -1,11 +1,3 @@
-.post-buttons {
-  padding-top: 4em;
-}
-
-.post-buttons > form.link {
-  display: inline-block;
-}
-
-.page-heading > span {
+.page-heading > span.unpublished {
   color: red;
 }
