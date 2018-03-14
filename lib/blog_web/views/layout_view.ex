@@ -7,12 +7,16 @@ defmodule BlogWeb.LayoutView do
   """
   def title(view_module, view_template, assigns) do
     default = "Joe Sweeney"
-    try do
-      prefix = view_module.title(view_template, assigns)
-      "#{prefix} | Joe Sweeney"
-    rescue
-      _e in FunctionClauseError -> default
-      _e in UndefinedFunctionError -> default
+    behaviours = Keyword.get(view_module.__info__(:attributes), :behaviour)
+    case behaviours && (Enum.member?(behaviours, BlogWeb.CustomPageTitle) || Enum.member?(behaviours, CustomPageTitle)) do
+      true ->
+        try do
+          prefix = view_module.title(view_template, assigns)
+          "#{prefix} | Joe Sweeney"
+        rescue
+          _e in FunctionClauseError -> default
+        end
+      _ -> default
     end
   end
 end

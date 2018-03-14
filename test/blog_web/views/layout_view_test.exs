@@ -4,25 +4,41 @@ defmodule BlogWeb.LayoutViewTest do
 
   @default_title "Joe Sweeney"
 
-  defmodule ViewModuleWithoutFunction do
+  defmodule ViewModuleWithoutBehaviour do
     def foo(), do: :bar
   end
 
-  defmodule ViewModuleWithoutClause do
+  defmodule ViewModuleWithBehaviour do
+    @behaviour BlogWeb.CustomPageTitle
+    def title("index.html", _assigns), do: "Page"
+  end
+
+  defmodule ViewModuleWithBehaviourWithoutClause do
+    @behaviour BlogWeb.CustomPageTitle
+    def title("show.html", _assigns), do: "Page"
+  end
+
+  defmodule ViewModuleWithBehaviourAliased do
+    alias BlogWeb.CustomPageTitle
+    @behaviour CustomPageTitle
     def title("index.html", _assigns), do: "Page"
   end
 
   describe "title/3" do
-    test "returns title from view module title/2" do
-      assert title(ViewModuleWithoutClause, "index.html", %{}) == "Page | Joe Sweeney"
+    test "returns title from view module implementing behaviour" do
+      assert title(ViewModuleWithBehaviour, "index.html", %{}) == "Page | Joe Sweeney"
     end
 
-    test "returns default title when view module doesn't implement title/2" do
-      assert title(ViewModuleWithoutFunction, "show.html", %{}) == @default_title
+    test "returns title from view module implementing behaviour missing clause" do
+      assert title(ViewModuleWithBehaviourWithoutClause, "index.html", %{}) == @default_title
     end
 
-    test "returns default title when view module doesn't implement correct title/2 clause" do
-      assert title(ViewModuleWithoutClause, "show.html", %{}) == @default_title
+    test "returns title from view module implementing aliased behaviour" do
+      assert title(ViewModuleWithBehaviourAliased, "index.html", %{}) == "Page | Joe Sweeney"
+    end
+
+    test "returns default title from view module not implemeting behaviour" do
+      assert title(ViewModuleWithoutBehaviour, "index.html", %{}) == @default_title
     end
   end
 end
