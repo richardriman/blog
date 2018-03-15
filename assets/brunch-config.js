@@ -27,6 +27,9 @@ exports.config = {
       joinTo: {
         "css/app.css": /^(?!node_modules)/,
         "css/vendor.css": /^node_modules/
+      },
+      order: {
+        after: ["node_modules/purecss/build/grids-responsive.css"]
       }
     },
     templates: {
@@ -67,7 +70,8 @@ exports.config = {
   npm: {
     enabled: true,
     styles: {
-      prismjs: ["themes/prism.css"]
+      prismjs: ["themes/prism.css"],
+      purecss: ["build/pure.css", "build/grids-responsive.css"]
     }
   }
 };
