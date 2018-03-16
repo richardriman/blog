@@ -2,13 +2,17 @@
   #home-info {
     padding-left: 50px;
   }
+
+  .container {
+    padding: 3em !important;
+  }
 }
 
 .container {
   margin: 0 auto;
   max-width: 50em;
   line-height: 1.5;
-  padding: 3em;
+  padding: 1.5em;
 }
 
 .home-container {
