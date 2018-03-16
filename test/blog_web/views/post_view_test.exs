@@ -32,7 +32,7 @@ defmodule BlogWeb.PostViewTest do
 
   test "renders new.html", %{conn: conn} do
     conn = bypass_browser(conn)
-    changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
+    changeset = Blog.Posts.change_post(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "new.html", conn: conn, changeset: changeset)
     assert String.contains?(content, "New Post")
   end
@@ -54,14 +54,14 @@ defmodule BlogWeb.PostViewTest do
   test "renders edit.html", %{conn: conn} do
     conn = bypass_browser(conn)
     post = post_fixture()
-    changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
+    changeset = Blog.Posts.change_post(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "edit.html", conn: conn, changeset: changeset, post: post)
     assert String.contains?(content, "Edit Post")
   end
 
   test "renders form.html", %{conn: conn} do
     conn = bypass_browser(conn)
-    changeset = Blog.Posts.Post.changeset(%Blog.Posts.Post{})
+    changeset = Blog.Posts.change_post(%Blog.Posts.Post{})
     content = render_to_string(BlogWeb.PostView, "form.html", conn: conn, changeset: changeset, action: nil)
     for word <- ["Title", "Body", "Published"], do: assert String.contains?(content, word)
   end
