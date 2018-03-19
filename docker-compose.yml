@@ -25,6 +25,8 @@ services:
     environment:
       - PORT=5002
       - HOST="j1.io"
+    expose:
+      - "5002"
     command: foreground
     networks:
       - nginx-network
