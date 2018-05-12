@@ -1,0 +1,48 @@
+<div class="pure-g home-container">
+  <div class="pure-u-1 pure-u-md-1-3">
+    <h3 id="name-header">Richard Říman</h3>
+    <p>
+      Jsem zakladatelem a CTO ve společnosti Projektově.CZ s.r.o., kde tvoříme aplikaci pro snadné řízení úkolů, projektů a firmy.
+      Kromě toho jsem ale stále rovněž zapáleným fullstack vývojářem, takže se zajímám o nové technologie a trendy v oblasti vývoje
+      software, především pak toho pro web. Bydlím poblíž Ostravy a rád si někam zajdu poklábosit např. o software architektuře,
+      Elixíru, GraphQL, Reactu, Elm apod.
+    </p>
+    <p>
+      Ještě jsi nezačal programovat, ale myslíš si, že by tě to bavilo a chceš se to naučit? Pojďme se sejít a zjistit, zda je to pro tebe.
+      Pouze v okolí Ostravy.
+    </p>
+  </div>
+  <div class="pure-u-1 pure-u-md-2-3">
+    <div id="home-info">
+      <h3 id="links-header">Odkazy</h3>
+      <div class="indent">
+        <a href="/me">Kdo jsem</a>
+        <br>
+        <a href="/posts">Blog</a>
+        <%# <br>
+        <a href="//github.com/jswny">GitHub</a>
+        <br>
+        <a href="//linkedin.com/in/jswny">LinkedIn</a>
+        <br>
+        <a href="//keybase.io/jswny">Keybase</a>
+        <br>
+        <a href="/resume">Resume</a> %>
+      </div>
+
+      <h3>Kontakt</h3>
+      <div class="indent">
+        <a href="mailto:riman.richard@gmail.com">riman.richard(at)gmail.com</a>
+      </div>
+
+      <h3>Latest Post</h3>
+      <div class="indent">
+        <%= if @latest_post do %>
+          <span id="latest-post-title"><%= link modify_post_title(@latest_post).title, to: post_path(@conn, :show, @latest_post) %></span>
+          <span id="latest-post-date"><%= get_formatted_date(@latest_post) %></span>
+        <% else %>
+          <span>Zatím nic!</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

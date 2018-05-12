@@ -9,8 +9,17 @@ defmodule BlogWeb.PageController do
       conn
       |> ControllerHelpers.list_authorized_posts()
       |> List.first()
-    
+
     render(conn, "index.html", latest_post: latest_post)
+  end
+
+  def me(conn, _params) do
+    latest_post =
+      conn
+      |> ControllerHelpers.list_authorized_posts()
+      |> List.first()
+
+    render(conn, "me.html", latest_post: latest_post)
   end
 
   def resume(conn, _params) do

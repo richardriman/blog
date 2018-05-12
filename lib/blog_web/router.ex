@@ -18,6 +18,8 @@ defmodule BlogWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/me", PageController, :me
+
     resources "/users", UserController, only: [:create]
     resources "/sessions", SessionController, only: [:create, :delete]
     resources "/posts", PostController
@@ -25,7 +27,7 @@ defmodule BlogWeb.Router do
     get "/login", SessionController, :new
     get "/register", UserController, :new
 
-    get "/resume", PageController, :resume
+    # get "/resume", PageController, :resume
   end
 
   # Other scopes may use custom stacks.
